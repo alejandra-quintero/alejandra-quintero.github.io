@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gobernación del Táchira — PM Case Study 03</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Barlow:wght@300;400;500;600&family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --beige:    #ECE7DC;
+  --beige-dk: #D9D2C3;
+  --ink:      #111111;
+  --navy:     #1B2B5E;
+  --teal:     #2AADA8;
+  --coral:    #E8394A;
+  --gold:     #F5A623;
+  --sky:      #7EC8D8;
+  --lilac:    #6B5B95;
+  --white:    #FAFAF7;
+  --muted:    #7A7065;
+  --border:   #C8C0B0;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--beige);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.65;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0;
+}
+
+/* ── LAYOUT ── */
+.page { max-width: 980px; margin: 0 auto; padding: 0 40px 80px; position: relative; z-index: 1; }
+
+.section {
+  padding: 64px 0;
+  border-bottom: 1.5px solid var(--border);
+  position: relative;
+}
+.section:last-child { border-bottom: none; }
+
+hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 56px 0; }
+
+/* ── TYPOGRAPHY ── */
+.eyebrow {
+  font-family: 'Fragment Mono', monospace;
+  font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 10px;
+  display: flex; align-items: center; gap: 10px;
+}
+.eyebrow::before { content: ''; width: 20px; height: 2px; background: var(--teal); display: inline-block; }
+
+h2.block-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: clamp(26px, 3vw, 38px);
+  text-transform: uppercase; letter-spacing: -.01em;
+  line-height: 1; margin-bottom: 6px; color: var(--ink);
+}
+h2.block-title em { font-style: italic; color: var(--teal); font-weight: 600; }
+
+.narrative {
+  font-size: 15px; font-weight: 400; color: #2a2a2a;
+  line-height: 1.8; max-width: 720px;
+}
+.narrative p { margin-bottom: 16px; }
+.narrative p:last-child { margin-bottom: 0; }
+.narrative strong { font-weight: 600; color: var(--ink); }
+.narrative em { font-style: italic; color: var(--navy); }
+
+.artifact-label {
+  font-family: 'Fragment Mono', monospace;
+  font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 12px; margin-top: 40px;
+  display: flex; align-items: center; gap: 8px;
+}
+.artifact-label::before { content: ''; width: 14px; height: 1px; background: var(--muted); display: inline-block; }
+
+.pull-quote {
+  border-left: 3px solid var(--teal);
+  padding: 14px 20px;
+  margin: 28px 0;
+  background: rgba(42,173,168,.05);
+  border-radius: 0 3px 3px 0;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600; font-size: 18px;
+  font-style: italic; color: var(--navy);
+  line-height: 1.4; max-width: 680px;
+}
+
+.print-note {
+  margin-top: 16px; padding: 10px 14px;
+  background: rgba(42,173,168,.07);
+  border-left: 3px solid var(--teal);
+  font-family: 'Fragment Mono', monospace; font-size: 10.5px;
+  color: var(--muted); border-radius: 0 3px 3px 0;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--navy);
+  margin: 0 -40px;
+  padding: 80px 40px 72px;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 0; right: 0; width: 400px; height: 100%;
+  background:
+    linear-gradient(135deg, var(--teal) 25%, transparent 25%) 0 0 / 32px 32px,
+    linear-gradient(225deg, var(--coral) 25%, transparent 25%) 0 0 / 32px 32px,
+    linear-gradient(315deg, var(--gold) 25%, transparent 25%) 0 0 / 32px 32px,
+    linear-gradient(45deg, var(--sky) 25%, transparent 25%) 0 0 / 32px 32px;
+  opacity: .10; pointer-events: none;
+}
+.hero::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--teal), var(--coral), var(--gold), var(--sky));
+}
+.hero-inner { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; }
+.hero-back {
+  font-family: 'Fragment Mono', monospace; font-size: 10px;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(250,250,247,.55); margin-bottom: 24px;
+  display: flex; align-items: center; gap: 8px;
+}
+.hero-back::before { content: '←'; }
+.hero-tag {
+  font-family: 'Fragment Mono', monospace; font-size: 10px;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.hero-tag::before { content: ''; width: 20px; height: 2px; background: var(--teal); display: inline-block; }
+.hero-h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: clamp(44px, 6vw, 72px);
+  text-transform: uppercase; letter-spacing: -.02em;
+  line-height: .95; color: var(--white); margin-bottom: 14px;
+}
+.hero-h1 span { color: var(--teal); }
+.hero-h1 em { color: var(--coral); font-style: normal; }
+.hero-sub {
+  font-family: 'Barlow', sans-serif; font-weight: 400;
+  font-size: 16px; color: rgba(250,250,247,.75);
+  max-width: 580px; margin-bottom: 36px; line-height: 1.6;
+}
+.hero-meta {
+  display: grid; grid-template-columns: repeat(4, auto);
+  gap: 0; width: fit-content;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 3px; overflow: hidden;
+}
+.hero-meta-item {
+  padding: 12px 20px; border-right: 1px solid rgba(255,255,255,.1);
+  text-align: center;
+}
+.hero-meta-item:last-child { border-right: none; }
+.hm-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 13px;
+  color: var(--white); text-transform: uppercase;
+  letter-spacing: .04em; line-height: 1.2; margin-bottom: 2px;
+}
+.hm-lbl {
+  font-family: 'Fragment Mono', monospace; font-size: 9px;
+  color: rgba(250,250,247,.55); letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+/* ── KPI STRIP ── */
+.kpi-strip {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0; border: 1.5px solid var(--border);
+  border-radius: 3px; overflow: hidden;
+}
+.kpi-cell {
+  padding: 24px 18px 20px;
+  border-right: 1.5px solid var(--border);
+  background: var(--white); position: relative;
+}
+.kpi-cell:last-child { border-right: none; }
+.kpi-cell::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+}
+.kpi-cell:nth-child(1)::before { background: var(--teal); }
+.kpi-cell:nth-child(2)::before { background: var(--coral); }
+.kpi-cell:nth-child(3)::before { background: var(--gold); }
+.kpi-cell:nth-child(4)::before { background: var(--navy); }
+.kpi-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 32px; line-height: 1;
+  color: var(--ink); margin-bottom: 4px;
+}
+.kpi-lbl {
+  font-family: 'Fragment Mono', monospace; font-size: 9.5px;
+  color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
+  line-height: 1.4;
+}
+
+/* ── PROBLEM ── */
+.problem-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  margin-top: 32px;
+}
+.problem-card {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 3px; padding: 22px 20px;
+}
+.problem-card.bad  { border-top: 3px solid var(--coral); }
+.problem-card.goal { border-top: 3px solid var(--teal); }
+.pc-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 13px; text-transform: uppercase;
+  letter-spacing: .08em; margin-bottom: 14px;
+  display: flex; align-items: center; gap: 7px;
+}
+.pc-title.bad-title  { color: var(--coral); }
+.pc-title.goal-title { color: var(--teal); }
+.pc-list { list-style: none; }
+.pc-list li {
+  display: flex; align-items: flex-start; gap: 9px;
+  padding: 7px 0; border-bottom: 1px solid var(--beige-dk);
+  font-size: 13px; line-height: 1.45;
+}
+.pc-list li:last-child { border-bottom: none; }
+.pc-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+
+/* ── REGIONAL STRATEGY TABLE ── */
+.strategy-table {
+  width: 100%; border-collapse: collapse; font-size: 13.5px;
+}
+.strategy-table th {
+  background: var(--navy); color: var(--white);
+  padding: 11px 18px; text-align: left;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 12px;
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.strategy-table th:first-child { border-radius: 3px 0 0 0; }
+.strategy-table th:last-child  { border-radius: 0 3px 0 0; }
+.strategy-table td {
+  padding: 13px 18px; border-bottom: 1px solid var(--beige-dk);
+  vertical-align: top; background: var(--white);
+}
+.strategy-table tr:last-child td { border-bottom: none; }
+.strategy-table tr:nth-child(even) td { background: rgba(0,0,0,.02); }
+.strategy-table td:first-child { font-weight: 500; color: var(--muted); }
+.strategy-table td:last-child  { font-weight: 500; color: var(--navy); }
+
+/* ── WORKFLOW ── */
+.wf-container {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border: 1.5px solid var(--border); border-radius: 3px;
+  overflow: hidden; background: var(--white);
+}
+.wf-lane { border-right: 1.5px solid var(--border); display: flex; flex-direction: column; }
+.wf-lane:last-child { border-right: none; }
+.wf-head {
+  padding: 13px 16px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 12px; letter-spacing: .07em;
+  text-transform: uppercase; text-align: center;
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+}
+.wf-head.routine   { background: var(--teal);  color: var(--white); }
+.wf-head.sensitive { background: var(--gold);  color: var(--ink); }
+.wf-head.health    { background: var(--coral); color: var(--white); }
+.wf-head.newft     { background: var(--navy);  color: var(--white); }
+.wf-body { padding: 16px 14px; flex: 1; }
+.wf-step {
+  display: flex; align-items: flex-start; gap: 8px;
+  margin-bottom: 10px; font-size: 12px; line-height: 1.4;
+}
+.wf-num {
+  width: 18px; height: 18px; border-radius: 50%;
+  font-family: 'Fragment Mono', monospace; font-size: 9px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 1px;
+}
+.num-teal  { background: var(--teal);  color: var(--white); }
+.num-gold  { background: var(--gold);  color: var(--ink); }
+.num-coral { background: var(--coral); color: var(--white); }
+.num-navy  { background: var(--navy);  color: var(--white); }
+.wf-arrow { text-align: center; color: var(--border); font-size: 14px; margin: 2px 0 6px; }
+.wf-tag {
+  display: inline-block; padding: 2px 7px;
+  font-family: 'Fragment Mono', monospace; font-size: 9.5px;
+  border-radius: 2px; margin-top: 6px;
+}
+.tag-teal  { background: rgba(42,173,168,.12);  color: var(--teal);  border: 1px solid rgba(42,173,168,.25); }
+.tag-gold  { background: rgba(245,166,35,.12);  color: #8a5800;      border: 1px solid rgba(245,166,35,.3); }
+.tag-coral { background: rgba(232,57,74,.1);    color: var(--coral); border: 1px solid rgba(232,57,74,.25); }
+.tag-navy  { background: rgba(27,43,94,.1);     color: var(--navy);  border: 1px solid rgba(27,43,94,.2); }
+
+/* ── ALERT GOVERNANCE TABLE ── */
+.gov-table {
+  width: 100%; border-collapse: collapse; font-size: 13px;
+}
+.gov-table th {
+  background: var(--navy); color: var(--white);
+  padding: 10px 14px; text-align: left;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 11px;
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.gov-table td {
+  padding: 11px 14px; border-bottom: 1px solid var(--beige-dk);
+  background: var(--white); vertical-align: middle;
+}
+.gov-table tr:nth-child(even) td { background: rgba(0,0,0,.02); }
+.gov-table tr:last-child td { border-bottom: none; }
+.badge {
+  display: inline-block; padding: 3px 9px; border-radius: 2px;
+  font-family: 'Fragment Mono', monospace; font-size: 10px;
+  font-weight: 500; text-transform: uppercase; letter-spacing: .04em;
+}
+.badge-teal  { background: rgba(42,173,168,.12); color: var(--teal); }
+.badge-gold  { background: rgba(245,166,35,.14); color: #8a5800; }
+.badge-coral { background: rgba(232,57,74,.1);   color: var(--coral); }
+.badge-navy  { background: rgba(27,43,94,.1);    color: var(--navy); }
+
+/* ── FEEDBACK LOOP ── */
+.loop-track {
+  display: flex; align-items: stretch; gap: 0;
+  border: 1.5px solid var(--border); border-radius: 3px;
+  overflow: hidden; background: var(--white);
+}
+.loop-node {
+  flex: 1; padding: 20px 14px;
+  border-right: 1.5px solid var(--border);
+  position: relative; text-align: center;
+}
+.loop-node:last-child { border-right: none; }
+.loop-node::after {
+  content: '→'; position: absolute;
+  right: -11px; top: 50%; transform: translateY(-50%);
+  font-size: 14px; color: var(--gold); z-index: 2;
+  background: var(--white); padding: 2px 0;
+}
+.loop-node:last-child::after { display: none; }
+.ln-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 30px; line-height: 1; margin-bottom: 4px;
+}
+.ln-icon { font-size: 18px; margin-bottom: 6px; display: block; }
+.ln-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 13px; text-transform: uppercase;
+  letter-spacing: .05em; color: var(--ink); margin-bottom: 5px;
+}
+.ln-sub { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+.loop-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+.loop-chip {
+  display: flex; align-items: center; gap: 7px;
+  padding: 8px 14px; border: 1.5px solid var(--border);
+  border-radius: 2px; background: var(--white); font-size: 12px;
+}
+.chip-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── TRADE-OFF ── */
+.tradeoff-wrap {
+  display: grid; grid-template-columns: 1fr 56px 1fr;
+  align-items: stretch; gap: 0;
+}
+.to-card {
+  border: 1.5px solid var(--border); border-radius: 3px;
+  overflow: hidden; background: var(--white);
+}
+.to-card.chosen { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(42,173,168,.1); }
+.to-card.rejected { opacity: .7; }
+.to-head {
+  padding: 12px 18px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 12px;
+  letter-spacing: .1em; text-transform: uppercase;
+}
+.to-head.rej { background: var(--beige-dk); color: var(--muted); }
+.to-head.cho { background: var(--teal); color: var(--white); }
+.to-body { padding: 18px 18px; }
+.to-subtitle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 18px; text-transform: uppercase;
+  letter-spacing: -.01em; color: var(--ink);
+  margin-bottom: 14px; line-height: 1.1;
+}
+.to-list { list-style: none; }
+.to-list li {
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 7px 0; border-bottom: 1px solid var(--beige-dk);
+  font-size: 12.5px; line-height: 1.45;
+}
+.to-list li:last-child { border-bottom: none; }
+.to-vs { display: flex; align-items: center; justify-content: center; }
+.vs-circle {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--navy); color: var(--white);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+}
+.outcome-row {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 0; border: 1.5px solid var(--border);
+  border-radius: 3px; overflow: hidden;
+  margin-top: 20px; background: var(--navy);
+}
+.outcome-cell {
+  padding: 18px 14px; border-right: 1px solid rgba(255,255,255,.1);
+  text-align: center;
+}
+.outcome-cell:last-child { border-right: none; }
+.oc-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 24px; color: var(--white);
+  line-height: 1; margin-bottom: 4px;
+}
+.oc-lbl {
+  font-family: 'Fragment Mono', monospace; font-size: 9px;
+  color: rgba(250,250,247,.4); text-transform: uppercase; letter-spacing: .05em;
+}
+
+/* ── MOCKUPS ── */
+.mockup-legend {
+  display: flex; gap: 20px; flex-wrap: wrap;
+  padding: 12px 16px; background: var(--white);
+  border: 1.5px solid var(--border); border-radius: 3px;
+  margin-bottom: 28px; font-size: 12.5px;
+}
+.ml-item { display: flex; align-items: center; gap: 7px; }
+.ml-swatch { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+.alert-group { margin-bottom: 48px; }
+.ag-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 16px; text-transform: uppercase;
+  letter-spacing: .05em; margin-bottom: 6px;
+  display: flex; align-items: center; gap: 7px;
+}
+.ag-source {
+  font-family: 'Fragment Mono', monospace; font-size: 10px;
+  color: var(--muted); margin-bottom: 18px;
+  padding: 7px 12px; background: rgba(0,0,0,.03);
+  border-left: 3px solid var(--teal); border-radius: 0 3px 3px 0; line-height: 1.6;
+}
+.ag-source em { color: var(--navy); font-style: normal; font-weight: 500; }
+
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media(max-width:900px){ .three-col { grid-template-columns: 1fr 1fr; } }
+
+.phone-col-lbl {
+  text-align: center; font-family: 'Fragment Mono', monospace;
+  font-size: 9.5px; text-transform: uppercase; letter-spacing: .1em;
+  margin-bottom: 8px; padding: 4px 0; border-radius: 2px;
+}
+.lbl-real    { background: rgba(42,173,168,.1);  color: var(--teal); }
+.lbl-literal { background: rgba(232,57,74,.09);  color: var(--coral); }
+.lbl-adapted { background: rgba(245,166,35,.12); color: #8a5800; }
+
+.phone {
+  background: #1c1c1e; border-radius: 22px; padding: 8px;
+  box-shadow: 0 8px 28px rgba(0,0,0,.18);
+  max-width: 210px; margin: 0 auto;
+}
+.phone-screen { background: #f2f2f7; border-radius: 15px; overflow: hidden; min-height: 0; }
+.p-header { padding: 8px 11px 7px; }
+.p-header.h-routine   { background: var(--navy); }
+.p-header.h-sensitive { background: #3a3020; }
+.p-header.h-health    { background: #4a1010; }
+.p-appname { font-family: 'Fragment Mono', monospace; font-size: 8px; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.5); }
+.p-time    { font-size: 8.5px; color: rgba(255,255,255,.35); float: right; margin-top: -10px; }
+.p-notif {
+  margin: 7px; background: white; border-radius: 9px;
+  padding: 9px 10px 9px; box-shadow: 0 1px 5px rgba(0,0,0,.06);
+}
+.p-notif.lit { border: 1.5px dashed rgba(232,57,74,.4); background: #fff9f9; }
+.p-notif.adp { border: 1.5px solid var(--gold); background: #fffdf5; }
+.p-badge {
+  display: inline-block; font-family: 'Fragment Mono', monospace; font-size: 8px;
+  padding: 1px 5px; border-radius: 2px; margin-bottom: 6px;
+  text-transform: uppercase; letter-spacing: .04em;
+}
+.pb-real    { background: rgba(42,173,168,.12); color: var(--teal); }
+.pb-literal { background: rgba(232,57,74,.1);   color: var(--coral); }
+.pb-adapted { background: rgba(245,166,35,.15); color: #8a5800; }
+.p-row { display: flex; align-items: center; gap: 6px; margin-bottom: 7px; }
+.p-ico { width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0; }
+.ico-routine   { background: rgba(42,173,168,.15); }
+.ico-sensitive { background: rgba(245,166,35,.15); }
+.ico-health    { background: rgba(232,57,74,.12); }
+.p-from { font-weight: 600; font-size: 10px; color: var(--ink); }
+.p-when { font-size: 8.5px; color: var(--muted); }
+.p-body { font-size: 10.5px; color: var(--ink); line-height: 1.45; margin-bottom: 8px; }
+.p-actions { display: flex; gap: 5px; }
+.p-btn { flex: 1; text-align: center; border-radius: 5px; padding: 4px 6px; font-size: 9.5px; font-weight: 600; cursor: default; }
+.btn-main   { background: var(--navy);  color: white; }
+.btn-sec    { background: #f0f0f5;      color: var(--ink); }
+.btn-urgent { background: var(--coral); color: white; }
+.btn-gold   { background: var(--gold);  color: var(--ink); }
+
+/* ── IMPACT METRICS TABLE ── */
+.metrics-tbl {
+  width: 100%; border-collapse: collapse; font-size: 13px;
+}
+.metrics-tbl th {
+  background: var(--navy); color: var(--white); padding: 11px 16px; text-align: left;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 12px;
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.metrics-tbl td { padding: 11px 16px; border-bottom: 1px solid var(--beige-dk); vertical-align: middle; }
+.metrics-tbl tr:last-child td { border-bottom: none; }
+.metrics-tbl tr:nth-child(even) td { background: rgba(0,0,0,.02); }
+.metrics-tbl .big { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 20px; color: var(--navy); }
+
+/* ── INFOGRAPHIC ── */
+.infographic {
+  background: var(--navy); border-radius: 3px;
+  padding: 40px; position: relative; overflow: hidden;
+}
+.infographic::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 260px; height: 260px;
+  background:
+    linear-gradient(135deg, var(--teal) 25%, transparent 25%) 0 0 / 24px 24px,
+    linear-gradient(225deg, var(--coral) 25%, transparent 25%) 0 0 / 24px 24px,
+    linear-gradient(315deg, var(--gold) 25%, transparent 25%) 0 0 / 24px 24px,
+    linear-gradient(45deg, var(--sky) 25%, transparent 25%) 0 0 / 24px 24px;
+  opacity: .09;
+}
+.ig-inner { position: relative; z-index: 1; }
+.ig-header { margin-bottom: 28px; }
+.ig-title {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+  font-size: 28px; text-transform: uppercase; color: var(--white); line-height: 1;
+}
+.ig-title span { color: var(--teal); }
+.ig-sub { font-family: 'Fragment Mono', monospace; font-size: 9.5px; color: rgba(250,250,247,.3); letter-spacing: .1em; text-transform: uppercase; margin-top: 4px; }
+.ig-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2px; margin-bottom: 2px;
+}
+.ig-cell {
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
+  padding: 20px 16px; text-align: center; position: relative; overflow: hidden;
+}
+.ig-cell::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; }
+.ig-cell:nth-child(1)::before { background: var(--teal); }
+.ig-cell:nth-child(2)::before { background: var(--coral); }
+.ig-cell:nth-child(3)::before { background: var(--gold); }
+.ig-cell:nth-child(4)::before { background: var(--sky); }
+.ig-cell:nth-child(5)::before { background: var(--lilac); }
+.ig-cell:nth-child(6)::before { background: var(--teal); }
+.ig-cell:nth-child(7)::before { background: var(--coral); }
+.ig-cell:nth-child(8)::before { background: var(--gold); }
+.ig-cell:nth-child(9)::before { background: var(--sky); }
+.ig-val { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 32px; color: var(--white); line-height: 1; margin-bottom: 4px; }
+.ig-val.sm { font-size: 22px; }
+.ig-lbl { font-family: 'Fragment Mono', monospace; font-size: 9px; color: rgba(250,250,247,.4); text-transform: uppercase; letter-spacing: .05em; line-height: 1.5; }
+.ig-timeline {
+  margin-top: 28px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.08);
+  display: flex; align-items: flex-start;
+}
+.ig-tl-item { flex: 1; text-align: center; }
+.ig-tl-dot { width: 9px; height: 9px; border-radius: 50%; margin: 0 auto 7px; }
+.ig-tl-year { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 3px; }
+.ig-tl-event { font-size: 10px; color: rgba(250,250,247,.35); line-height: 1.4; }
+.ig-tl-line { flex-shrink: 0; width: 32px; height: 1px; background: rgba(255,255,255,.1); margin-top: 13px; }
+
+/* ── LEADERSHIP ── */
+.collab-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+}
+.collab-card {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 3px; padding: 18px 16px;
+  text-align: center;
+}
+.collab-card .cc-icon { font-size: 20px; margin-bottom: 8px; display: block; }
+.collab-card .cc-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 13px; text-transform: uppercase;
+  letter-spacing: .05em; color: var(--navy); margin-bottom: 5px;
+}
+.collab-card .cc-desc { font-size: 11.5px; color: var(--muted); line-height: 1.4; }
+
+/* ── TAKEAWAYS ── */
+.takeaway-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;
+}
+.takeaway-card {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 3px; padding: 18px 16px; position: relative; overflow: hidden;
+}
+.takeaway-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+}
+.tc-1::before { background: var(--teal); }
+.tc-2::before { background: var(--coral); }
+.tc-3::before { background: var(--gold); }
+.tc-4::before { background: var(--navy); }
+.tc-5::before { background: var(--lilac); }
+.tc-6::before { background: var(--sky); }
+.takeaway-card .tk-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 32px; color: var(--beige-dk);
+  line-height: 1; margin-bottom: 4px;
+}
+.takeaway-card .tk-text {
+  font-size: 13px; color: var(--ink); font-weight: 500; line-height: 1.45;
+}
+
+/* ── IMAGE EVIDENCE ── */
+.img-badge {
+  display: inline-block;
+  font-family: 'Fragment Mono', monospace; font-size: 9px;
+  padding: 2px 7px; border-radius: 2px; margin-bottom: 6px;
+  text-transform: uppercase; letter-spacing: .06em;
+}
+.img-badge.problem  { background: rgba(232,57,74,.1);  color: var(--coral); }
+.img-badge.solution { background: rgba(42,173,168,.1); color: var(--teal); }
+.img-badge.context  { background: rgba(27,43,94,.1);   color: var(--navy); }
+.img-badge.feature  { background: rgba(245,166,35,.12);color: #8a5800; }
+
+.evidence-grid { display: grid; gap: 16px; }
+.evidence-grid.col-2 { grid-template-columns: 1fr 1fr; }
+.evidence-grid.col-3 { grid-template-columns: 1fr 1fr 1fr; }
+.evidence-grid.col-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+.evidence-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 3px; overflow: hidden;
+}
+.evidence-card img { width: 100%; display: block; object-fit: cover; }
+.evidence-card.phone-card img {
+  width: 55%; display: block; margin: 12px auto;
+  border-radius: 4px;
+}
+.evidence-card .ec-body {
+  padding: 11px 14px; border-top: 1px solid var(--border);
+}
+.evidence-card .ec-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 12px;
+  text-transform: uppercase; letter-spacing: .05em;
+  color: var(--ink); margin-bottom: 3px;
+}
+.evidence-card .ec-desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+.nc-compare {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border: 1.5px solid var(--border); border-radius: 3px; overflow: hidden;
+}
+.nc-col:first-child { border-right: 1.5px solid var(--border); }
+.nc-head {
+  padding: 9px 14px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+  border-bottom: 1.5px solid var(--border);
+}
+.nc-head.ph { background: rgba(232,57,74,.08); color: var(--coral); }
+.nc-head.sh { background: rgba(42,173,168,.08); color: var(--teal); }
+.nc-body { padding: 12px; background: var(--white); }
+.nc-body img { width: 100%; display: block; border-radius: 2px; margin-bottom: 8px; }
+.nc-body img:last-child { margin-bottom: 0; }
+
+@media(max-width: 768px){
+  .page { padding: 0 20px 60px; }
+  .hero { margin: 0 -20px; padding: 48px 20px; }
+  .hero-meta { grid-template-columns: 1fr 1fr; }
+  .kpi-strip { grid-template-columns: 1fr 1fr; }
+  .problem-grid { grid-template-columns: 1fr; }
+  .wf-container { grid-template-columns: 1fr 1fr; }
+  .tradeoff-wrap { grid-template-columns: 1fr; }
+  .to-vs { padding: 10px; }
+  .outcome-row { grid-template-columns: repeat(3, 1fr); }
+  .collab-grid { grid-template-columns: 1fr 1fr; }
+  .takeaway-grid { grid-template-columns: 1fr 1fr; }
+  .ig-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── SIDEBAR LAYOUT ── */
+.site-wrap { display: grid; grid-template-columns: 210px 1fr; min-height: 100vh; }
+.sidebar {
+  position: fixed; top: 0; left: 0; width: 210px; height: 100vh;
+  background: var(--navy); padding: 28px 0; overflow-y: auto;
+  z-index: 100; display: flex; flex-direction: column;
+}
+.sidebar-logo { padding: 0 20px 24px; border-bottom: 1px solid rgba(255,255,255,.08); margin-bottom: 16px; }
+.sidebar-logo-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 14px; text-transform: uppercase; letter-spacing: .05em; color: var(--white); line-height: 1.1; }
+.sidebar-logo-title span { color: var(--teal); }
+.sidebar-logo-sub { font-family: 'Fragment Mono', monospace; font-size: 8.5px; color: rgba(250,250,247,.25); letter-spacing: .1em; text-transform: uppercase; margin-top: 3px; }
+.sidebar-nav a {
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 7px 20px;
+  font-family: 'Fragment Mono', monospace; font-size: 9px; letter-spacing: .05em;
+  text-transform: uppercase; text-decoration: none;
+  color: rgba(250,250,247,.3); transition: all .2s;
+  border-left: 2px solid transparent; line-height: 1.4;
+}
+.sidebar-nav a:hover { color: rgba(250,250,247,.65); background: rgba(255,255,255,.04); }
+.sidebar-nav a.active { color: var(--teal); border-left-color: var(--teal); background: rgba(42,173,168,.07); }
+.sidebar-nav a .nn { color: rgba(250,250,247,.18); flex-shrink: 0; font-size: 8px; margin-top: 1px; }
+.sidebar-nav a.active .nn { color: rgba(42,173,168,.6); }
+.sidebar-back { padding: 16px 20px 0; border-top: 1px solid rgba(255,255,255,.07); margin-top: 12px; }
+.sidebar-back a { font-family: 'Fragment Mono', monospace; font-size: 8.5px; color: rgba(250,250,247,.2); text-decoration: none; letter-spacing: .08em; text-transform: uppercase; }
+.sidebar-back a:hover { color: rgba(250,250,247,.45); }
+
+.main-content { margin-left: 210px; }
+.page { max-width: 860px; margin: 0 auto; padding: 0 44px 80px; position: relative; z-index: 1; }
+
+/* ── ACCORDION ── */
+.section { padding: 0; border-bottom: 1.5px solid var(--border); position: relative; }
+.section:last-child { border-bottom: none; }
+.section-header {
+  padding: 28px 0 22px; cursor: pointer;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 20px;
+  user-select: none;
+}
+.section-header:hover .sec-toggle { color: var(--teal); }
+.section-preview {
+  font-size: 14px; font-weight: 400; color: #4a4540; line-height: 1.7;
+  max-width: 640px; margin-top: 8px;
+}
+.section-preview strong { font-weight: 600; color: var(--ink); }
+.sec-toggle {
+  font-family: 'Fragment Mono', monospace; font-size: 9.5px; color: var(--muted);
+  letter-spacing: .07em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 5px;
+  white-space: nowrap; flex-shrink: 0; padding-top: 34px;
+  transition: color .2s;
+}
+.sec-toggle::after { content: '↓'; display: inline-block; transition: transform .25s ease; }
+.section.open .sec-toggle::after { transform: rotate(180deg); }
+.section.open .sec-toggle { color: var(--teal); }
+.section-body { max-height: 0; overflow: hidden; transition: max-height .45s ease; }
+.section.open .section-body { max-height: 99999px; }
+.section-body-inner { padding-bottom: 44px; }
+.section.always-open .section-header { cursor: default; }
+.section.always-open .sec-toggle { display: none; }
+.section.always-open .section-body { max-height: none; overflow: visible; }
+
+/* ── HERO simplified ── */
+.hero-meta { display: none; }
+.hero-meta-simple {
+  font-family: 'Fragment Mono', monospace; font-size: 10px; letter-spacing: .09em;
+  color: rgba(250,250,247,.32); margin-bottom: 32px; display: flex; flex-wrap: wrap; gap: 0;
+}
+.hero-meta-simple .sep { margin: 0 9px; color: rgba(250,250,247,.13); }
+.hero-meta-simple .hi { color: var(--teal); }
+
+@media(max-width:900px){
+  .site-wrap { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .main-content { margin-left: 0; }
+  .page { padding: 0 20px 60px; }
+}
+
+
+.topnav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--beige);
+  border-bottom: 1.5px solid var(--border);
+}
+.topnav-accent {
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal), var(--coral), var(--gold));
+}
+.topnav-inner {
+  max-width: 780px; margin: 0 auto; padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 48px;
+}
+.topnav-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 18px;
+  text-transform: uppercase; letter-spacing: .04em;
+  color: var(--ink); text-decoration: none;
+  transition: color .18s;
+}
+.topnav-logo:hover { color: var(--teal); }
+.topnav-links {
+  display: flex; gap: 4px; align-items: center;
+}
+.topnav-link {
+  font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 500;
+  color: var(--muted); text-decoration: none;
+  padding: 5px 10px; border-radius: 2px;
+  transition: all .18s; letter-spacing: .01em;
+}
+.topnav-link:hover { color: var(--ink); background: rgba(0,0,0,.04); }
+.topnav-link.active { color: var(--ink); font-weight: 600; }
+.topnav-contact {
+  font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 600;
+  color: var(--teal); text-decoration: none;
+  border: 1.5px solid rgba(42,173,168,.45);
+  padding: 5px 14px; border-radius: 2px; margin-left: 8px;
+  transition: all .18s; letter-spacing: .01em;
+}
+.topnav-contact:hover {
+  background: var(--teal); color: var(--white);
+  border-color: var(--teal);
+}
+@media(max-width: 600px) {
+  .topnav-links { gap: 2px; }
+  .topnav-link { font-size: 11px; padding: 4px 7px; }
+  .topnav-contact { padding: 4px 10px; margin-left: 4px; }
+}
+
+</style>
+<style>
+body { background: var(--beige); }
+.r-wrap { max-width: 860px; margin: 0 auto; padding: 0 40px 80px; }
+.r-section { padding: 44px 0; border-bottom: 1.5px solid var(--border); }
+.r-section:last-of-type { border-bottom: none; }
+.r-eyebrow { font-family:'Fragment Mono',monospace; font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:var(--teal); margin-bottom:8px; display:flex; align-items:center; gap:8px; }
+.r-eyebrow::before { content:''; width:16px; height:2px; background:var(--teal); display:block; flex-shrink:0; }
+.r-title { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:30px; text-transform:uppercase; letter-spacing:-.01em; line-height:1; color:var(--ink); margin-bottom:16px; }
+.r-title em { font-style:italic; font-weight:600; color:var(--teal); }
+.r-lead { font-size:14px; font-weight:300; color:#3a3530; line-height:1.75; max-width:700px; margin-bottom:10px; }
+.r-lead strong { font-weight:600; color:var(--ink); }
+.r-lead em { color:var(--navy); font-style:italic; }
+.r-quote { border-left:3px solid var(--coral); padding:13px 20px; margin:20px 0; background:rgba(232,57,74,.04); border-radius:0 3px 3px 0; font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:19px; line-height:1.3; color:var(--navy); font-style:italic; }
+
+/* Cards */
+.r-cards { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:20px; }
+.r-card { background:var(--white); border:1.5px solid var(--border); border-radius:3px; padding:18px 20px; border-top:3px solid var(--teal); }
+.r-card:nth-child(2) { border-top-color:var(--gold); }
+.r-card:nth-child(3) { border-top-color:var(--navy); }
+.r-card:nth-child(4) { border-top-color:var(--coral); }
+.r-cards.problem .r-card { border-top-color:var(--coral); }
+.r-card-tag { font-family:'Fragment Mono',monospace; font-size:8.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:5px; }
+.r-card-title { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:18px; text-transform:uppercase; letter-spacing:.02em; color:var(--ink); margin-bottom:7px; }
+.r-card-body { font-size:13px; color:#4a4540; line-height:1.6; }
+.r-card-body strong { color:var(--ink); font-weight:600; }
+
+/* Constraint cards */
+.constraint-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:20px; }
+.constraint-card { background:var(--white); border:1.5px solid var(--border); border-radius:3px; padding:16px; border-top:3px solid var(--coral); }
+.constraint-label { font-family:'Fragment Mono',monospace; font-size:8px; text-transform:uppercase; letter-spacing:.08em; color:var(--coral); margin-bottom:5px; }
+.constraint-title { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:15px; text-transform:uppercase; color:var(--ink); margin-bottom:6px; line-height:1.1; }
+.constraint-body { font-size:12px; color:#4a4540; line-height:1.5; }
+
+/* Org chart */
+.org-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:20px; }
+.org-dept { background:var(--white); border:1.5px solid var(--border); border-radius:3px; padding:14px 12px; }
+.org-dept.owned { border-top:3px solid var(--teal); }
+.org-dept.matrix { border-top:3px solid var(--gold); border-style:dashed; border-top-style:solid; }
+.org-dept-label { font-family:'Fragment Mono',monospace; font-size:7.5px; text-transform:uppercase; letter-spacing:.07em; margin-bottom:5px; }
+.org-dept-label.owned { color:var(--teal); }
+.org-dept-label.matrix { color:#b8962e; }
+.org-dept-name { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:14px; text-transform:uppercase; color:var(--ink); margin-bottom:5px; line-height:1.1; }
+.org-dept-detail { font-size:11px; color:var(--muted); line-height:1.4; }
+.org-note { margin-top:10px; font-family:'Fragment Mono',monospace; font-size:9px; color:var(--muted); letter-spacing:.04em; }
+
+/* Crisis protocol flow */
+.crisis-flow { display:grid; grid-template-columns:repeat(5,1fr); gap:0; margin-top:20px; position:relative; }
+.crisis-step { background:var(--white); border:1.5px solid var(--border); border-right:none; padding:16px 12px; position:relative; }
+.crisis-step:last-child { border-right:1.5px solid var(--border); border-radius:0 3px 3px 0; }
+.crisis-step:first-child { border-radius:3px 0 0 3px; }
+.crisis-step-num { font-family:'Fragment Mono',monospace; font-size:8px; text-transform:uppercase; letter-spacing:.07em; color:var(--muted); margin-bottom:5px; }
+.crisis-step-title { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:14px; text-transform:uppercase; color:var(--ink); margin-bottom:5px; line-height:1.1; }
+.crisis-step-body { font-size:10.5px; color:#4a4540; line-height:1.45; }
+.crisis-step::after { content:'→'; position:absolute; right:-12px; top:50%; transform:translateY(-50%); font-size:12px; color:var(--muted); z-index:1; }
+.crisis-step:last-child::after { display:none; }
+.crisis-step.active { border-top:3px solid var(--coral); }
+.crisis-step.active .crisis-step-num { color:var(--coral); }
+
+/* Trade-off decision */
+.tradeoff { display:grid; grid-template-columns:1fr 1fr; gap:0; margin-top:20px; border:1.5px solid var(--border); border-radius:3px; overflow:hidden; }
+.tradeoff-col { padding:20px; }
+.tradeoff-col.rejected { background:rgba(232,57,74,.04); border-right:1.5px solid var(--border); }
+.tradeoff-col.chosen { background:rgba(42,173,168,.04); }
+.tradeoff-label { font-family:'Fragment Mono',monospace; font-size:8px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px; }
+.tradeoff-label.rejected { color:var(--coral); }
+.tradeoff-label.chosen { color:var(--teal); }
+.tradeoff-title { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:17px; text-transform:uppercase; color:var(--ink); margin-bottom:10px; }
+.tradeoff-item { font-size:12.5px; color:#4a4540; line-height:1.55; padding:5px 0; border-bottom:1px solid var(--border); display:flex; gap:8px; }
+.tradeoff-item:last-child { border-bottom:none; }
+.tradeoff-icon { flex-shrink:0; }
+
+/* Timeline */
+.timeline { margin-top:20px; position:relative; padding-left:24px; border-left:2px solid var(--border); }
+.tl-item { margin-bottom:24px; position:relative; }
+.tl-item:last-child { margin-bottom:0; }
+.tl-dot { position:absolute; left:-31px; top:3px; width:12px; height:12px; border-radius:50%; background:var(--teal); border:2px solid var(--white); box-shadow:0 0 0 2px var(--teal); }
+.tl-dot.gold { background:var(--gold); box-shadow:0 0 0 2px var(--gold); }
+.tl-dot.navy { background:var(--navy); box-shadow:0 0 0 2px var(--navy); }
+.tl-dot.coral { background:var(--coral); box-shadow:0 0 0 2px var(--coral); }
+.tl-date { font-family:'Fragment Mono',monospace; font-size:8.5px; text-transform:uppercase; letter-spacing:.07em; color:var(--muted); margin-bottom:4px; }
+.tl-title { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:17px; text-transform:uppercase; color:var(--ink); margin-bottom:5px; }
+.tl-body { font-size:13px; color:#4a4540; line-height:1.6; }
+.tl-body strong { color:var(--ink); font-weight:600; }
+
+/* Impact */
+.r-impact { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:20px; }
+.r-stat { background:var(--white); border:1.5px solid var(--border); border-radius:3px; padding:18px 16px; }
+.r-stat:nth-child(1) { border-top:3px solid var(--teal); }
+.r-stat:nth-child(2) { border-top:3px solid var(--gold); }
+.r-stat:nth-child(3) { border-top:3px solid var(--navy); }
+.r-stat:nth-child(4) { border-top:3px solid var(--coral); }
+.r-stat:nth-child(5) { border-top:3px solid var(--teal); }
+.r-stat:nth-child(6) { border-top:3px solid var(--gold); }
+.r-stat-val { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:32px; line-height:1; color:var(--ink); }
+.r-stat-lbl { font-family:'Fragment Mono',monospace; font-size:8.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; margin-top:5px; line-height:1.4; }
+
+/* Testimonial */
+.r-testimonial { margin-top:24px; background:var(--white); border:1.5px solid var(--border); border-radius:3px; padding:24px 28px; border-left:4px solid var(--navy); }
+.r-testimonial-quote { font-size:13.5px; color:#3a3530; line-height:1.75; font-style:italic; margin-bottom:14px; }
+.r-testimonial-quote strong { font-weight:600; color:var(--ink); font-style:normal; }
+.r-testimonial-attr { font-family:'Fragment Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:.07em; color:var(--muted); }
+.r-testimonial-attr span { color:var(--navy); font-weight:600; }
+
+.r-punch { margin-top:36px; padding:24px 28px; background:var(--navy); border-radius:3px; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:18px; line-height:1.4; color:var(--white); letter-spacing:.01em; }
+.r-punch em { color:var(--teal); font-style:italic; }
+
+.r-inline-link { display:block; margin-top:48px; text-align:right; font-family:'Fragment Mono',monospace; font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); text-decoration:none; padding-top:20px; border-top:1px solid var(--border); }
+.r-inline-link:hover { color:var(--teal); }
+.r-inline-link span { color:var(--teal); }
+
+@media(max-width:700px) {
+  .r-cards,.constraint-grid,.org-grid { grid-template-columns:1fr 1fr; }
+  .crisis-flow { grid-template-columns:1fr 1fr; }
+  .tradeoff { grid-template-columns:1fr; }
+  .r-impact { grid-template-columns:1fr 1fr; }
+  .r-wrap { padding:0 20px 60px; }
+}
+</style>
+</head>
+<body>
+<!-- NAVBAR -->
+<nav class="topnav">
+  <div class="topnav-accent"></div>
+  <div class="topnav-inner">
+    <a href="index.html" class="topnav-logo">AQ</a>
+    <div class="topnav-links">
+      <a href="furbo-recruiter.html" class="topnav-link">Furbo Case Study</a>
+      <a href="readingraphics-casestudy.html" class="topnav-link">Readingraphics</a>
+      <a href="gobernacion-casestudy.html" class="topnav-link active">Gobernación</a>
+      <a href="/cdn-cgi/l/email-protection#37565b525d565953455646425e594352455877505a565e5b1954585a" class="topnav-contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <a href="index.html" class="hero-back" style="text-decoration:none;">Portfolio Home</a>
+    <div class="hero-tag">0-to-1 Product Build · Gobernación del Táchira · 2009–2012</div>
+    <h1 class="hero-h1">Building Digital<br><span>Government</span> <em>From Zero</em></h1>
+    <p class="hero-sub">In 2009, I built Venezuela's first opposition government digital communications unit from scratch — designing the system, the crisis protocols, the cross-functional workflows, and the data intelligence pipeline that turned a newly elected government into a trusted citizen platform, under active censorship, with no playbook.</p>
+    <div class="hero-meta-simple">
+      <span class="hi">Head of Digital Communications &amp; Senior Strategist</span>
+      <span class="sep">·</span><span>Gobernación del Táchira</span>
+      <span class="sep">·</span><span>2009–2012</span>
+      <span class="sep">·</span><span>Venezuela</span>
+    </div>
+  </div>
+</div>
+
+<div class="r-wrap">
+
+  <div class="kpi-strip" style="margin-top:40px;">
+    <div class="kpi-cell"><div class="kpi-val">40K</div><div class="kpi-lbl">Followers Built from Zero</div></div>
+    <div class="kpi-cell"><div class="kpi-val">Top 10</div><div class="kpi-lbl">Most-Followed Accounts · Venezuela</div></div>
+    <div class="kpi-cell"><div class="kpi-val">#2</div><div class="kpi-lbl">Government Account · National Ranking</div></div>
+    <div class="kpi-cell"><div class="kpi-val">4 mo</div><div class="kpi-lbl">To Full Operation from Zero</div></div>
+  </div>
+
+  <!-- 00 PRODUCT FRAMING -->
+  <div class="r-section" style="background:var(--ink);border-radius:12px;padding:40px;margin:0;">
+    <div class="r-eyebrow" style="color:var(--teal);">00 · Product Framing</div>
+    <h2 class="r-title" style="color:var(--white);">A Citizen Communication <em>Platform</em></h2>
+    <p class="r-lead" style="color:rgba(255,255,255,0.85);">The challenge was not to run a government social media account. It was to design a real-time citizen communication platform operating under censorship constraints — with no precedent, no budget history, and no existing team.</p>
+    <p class="r-lead" style="color:rgba(255,255,255,0.85);">The product had four layers:</p>
+    <div class="r-cards problem" style="grid-template-columns:1fr 1fr;margin-top:16px;">
+      <div class="r-card" style="background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.1);">
+        <div class="r-card-tag" style="background:var(--teal);color:var(--ink);">Input Layer</div>
+        <div class="r-card-title" style="color:var(--white);">Citizen Signals</div>
+        <div class="r-card-body" style="color:rgba(255,255,255,0.75);">Social listening across platforms — complaints, emergencies, questions, sentiment. Triage and classification by type and urgency.</div>
+      </div>
+      <div class="r-card" style="background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.1);">
+        <div class="r-card-tag" style="background:var(--gold);color:var(--ink);">Processing Layer</div>
+        <div class="r-card-title" style="color:var(--white);">Triage &amp; Routing</div>
+        <div class="r-card-body" style="color:rgba(255,255,255,0.75);">Defined workflows routing signals to the correct department. Response in under 1 hour during working hours. Emergency protocol for off-hours crises.</div>
+      </div>
+      <div class="r-card" style="background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.1);">
+        <div class="r-card-tag" style="background:var(--coral);color:var(--white);">Response Layer</div>
+        <div class="r-card-title" style="color:var(--white);">Public Resolution</div>
+        <div class="r-card-body" style="color:rgba(255,255,255,0.75);">Citizen-facing replies visible to all — turning individual interactions into public trust signals. Directors responded directly once trained.</div>
+      </div>
+      <div class="r-card" style="background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.1);">
+        <div class="r-card-tag" style="background:var(--navy);color:var(--white);">Intelligence Layer</div>
+        <div class="r-card-title" style="color:var(--white);">Cabinet Decision Feed</div>
+        <div class="r-card-body" style="color:rgba(255,255,255,0.75);">Recurring patterns translated into policy signals. Social data fed directly into cabinet recommendations — citizen input became institutional intelligence.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 01 CONTEXT -->
+  <div class="r-section">
+    <div class="r-eyebrow">01 · Context &amp; Constraints</div>
+    <h2 class="r-title">Building in <em>Impossible Conditions</em></h2>
+    <p class="r-lead">September 2009. Táchira, Venezuela. A newly elected opposition government operating under an active national censorship law (Ley RESORTE) that suppressed traditional media. Print, radio, and TV were unreliable. <strong>Digital was the only uncensorable channel available — and it didn't exist yet.</strong></p>
+    <p class="r-lead">Web 2.0 was just beginning globally. Twitter had launched two years earlier. Almost no public institution in Venezuela had a digital communications strategy. <strong>I was handed a mandate with no team, no process, no budget precedent, and no local reference point.</strong> The challenge wasn't building a communications unit — it was designing a system capable of operating under crisis conditions from day one.</p>
+    <div class="constraint-grid">
+      <div class="constraint-card">
+        <div class="constraint-label">Political Constraint</div>
+        <div class="constraint-title">Active Censorship Law</div>
+        <div class="constraint-body">Ley RESORTE gave the national government power to shut down media outlets. Traditional channels were unreliable. Digital was the only uncensorable channel — and we had to build it from nothing, fast.</div>
+      </div>
+      <div class="constraint-card">
+        <div class="constraint-label">Resource Constraint</div>
+        <div class="constraint-title">No Playbook, No Precedent</div>
+        <div class="constraint-body">No existing digital unit. No Venezuelan government had done this before. Direct team of 3. Effective coordination scope of ~35 people across departments with no prior digital workflow.</div>
+      </div>
+      <div class="constraint-card">
+        <div class="constraint-label">Trust Constraint</div>
+        <div class="constraint-title">Citizen Distrust at Baseline</div>
+        <div class="constraint-body">High political polarization and institutional crisis meant citizens distrusted official channels by default. The product had to earn trust in a context actively designed to undermine it.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 THE PROBLEM -->
+  <div class="r-section">
+    <div class="r-eyebrow">02 · The Problem</div>
+    <h2 class="r-title">What Was <em>Broken</em></h2>
+    <p class="r-lead">My diagnosis on arrival: this was not a "open social media accounts" problem. It was a systems design problem. The government had no infrastructure for digital communication — and in a crisis context, that absence was a governance risk, not just an operational gap.</p>
+    <div class="r-cards problem">
+      <div class="r-card">
+        <div class="r-card-tag">Content Strategy Failure</div>
+        <div class="r-card-title">Print News Copied Verbatim Online</div>
+        <div class="r-card-body">The website and Twitter account republished the exact text of printed newspapers — no format adaptation, no audience consideration, no engagement design. <strong>A broadcast medium pretending to be a two-way channel.</strong></div>
+      </div>
+      <div class="r-card">
+        <div class="r-card-tag">Audience Mismatch</div>
+        <div class="r-card-title">Content Written for Journalists, Not Citizens</div>
+        <div class="r-card-body">Young people didn't read newspapers. Older citizens were alienated by political protagonism. <strong>No one had designed for the actual digital audience</strong> — their language, their needs, their level of trust.</div>
+      </div>
+      <div class="r-card">
+        <div class="r-card-tag">No Operational System</div>
+        <div class="r-card-title">No Workflow, No Crisis Protocol</div>
+        <div class="r-card-body">Each department operated in silos. No production pipeline, no approval flow, no crisis response framework. <strong>When an event broke, there was no system to respond.</strong> Everything was improvised.</div>
+      </div>
+      <div class="r-card">
+        <div class="r-card-tag">No Data Infrastructure</div>
+        <div class="r-card-title">No Monitoring, No Intelligence</div>
+        <div class="r-card-body">No social listening, no sentiment tracking, no structured data feeding into decisions. <strong>The cabinet made communication decisions based on intuition</strong> — with no real-time signal from citizens.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 THE KEY DECISION -->
+  <div class="r-section">
+    <div class="r-eyebrow">03 · Key Decision · Trade-off</div>
+    <h2 class="r-title">Build Internal or <em>Outsource?</em></h2>
+    <p class="r-lead">The first strategic decision I made defined everything that followed. With no existing unit and immediate pressure to deliver, the default option was to outsource content production to an external agency. I made the opposite call — and owned the consequences.</p>
+    <div class="tradeoff">
+      <div class="tradeoff-col rejected">
+        <div class="tradeoff-label rejected">Option A — Rejected</div>
+        <div class="tradeoff-title">Outsource to External Agency</div>
+        <div class="tradeoff-item"><span class="tradeoff-icon">⚡</span>Faster to launch — no hiring, no training</div>
+        <div class="tradeoff-item"><span class="tradeoff-icon">❌</span>No crisis response capability — dependent on third party availability</div>
+        <div class="tradeoff-item"><span class="tradeoff-icon">❌</span>No institutional knowledge accumulation</div>
+        <div class="tradeoff-item"><span class="tradeoff-icon">❌</span>Inconsistency in tone, political sensitivity, and message control</div>
+        <div class="tradeoff-item"><span class="tradeoff-icon">❌</span>Not sustainable — unit disappears when contract ends</div>
+      </div>
+      <div class="tradeoff-col chosen">
+        <div class="tradeoff-label chosen">Option B — Chosen ✓</div>
+        <div class="tradeoff-title">Build Internal Capacity</div>
+        <div class="tradeoff-item"><span class="tradeoff-icon">✅</span>Full crisis response capability — team available 24/7</div>
+        <div class="tradeoff-item"><span class="tradeoff-icon">✅</span>Quality and message control — political sensitivity built into the team</div>
+        <div class="tradeoff-item"><span class="tradeoff-icon">✅</span>Institutional knowledge that compounds over time</div>
+        <div class="tradeoff-item"><span class="tradeoff-icon">✅</span>Sustainable — unit continued operating after my tenure</div>
+        <div class="tradeoff-item"><span class="tradeoff-icon">⏱</span>Higher upfront cost — 4 months to full operation</div>
+      </div>
+    </div>
+    <p class="r-lead" style="margin-top:16px;">The unit I built continued operating after my tenure ended in 2012. <strong>That is the proof that the decision was correct.</strong></p>
+  </div>
+
+  <!-- 03.5 EXECUTIVE ADOPTION -->
+  <div class="r-section" style="background:var(--ink);border-radius:12px;padding:40px;margin:0;">
+    <div class="r-eyebrow" style="color:var(--teal);">03.5 · The Decision That Required the Most Patience</div>
+    <h2 class="r-title" style="color:var(--white);">Getting the <em>Cabinet Online</em></h2>
+    <p class="r-lead" style="color:rgba(255,255,255,0.85);">The hardest part wasn't building the system. It was getting the executive team to use it.</p>
+    <p class="r-lead" style="color:rgba(255,255,255,0.85);">When I joined, resistance from the executive branch was significant. Directors didn't understand the channel, didn't trust it, and didn't see it as their responsibility. I also served as digital advisor to the full cabinet — which meant the resistance was mine to resolve.</p>
+    <p class="r-lead" style="color:rgba(255,255,255,0.85);">I didn't push adoption through hierarchy. I made the value visible first. As the government's digital presence grew and citizen engagement increased, directors could see something concrete: the channel was giving visibility to sectors that bureaucracy had kept invisible. Work that existed but wasn't seen — was now being seen, publicly, by the people it served. That had a direct impact on their reputation.</p>
+
+    <div style="border-left:3px solid var(--coral);padding-left:20px;margin:24px 0;">
+      <div style="font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--coral);margin-bottom:10px;">Hard Moment</div>
+      <p class="r-lead" style="color:rgba(255,255,255,0.85);margin-bottom:12px;">Some directors refused outright for a long time. The resistance wasn't sabotage — it was fear: fear of public exposure, fear of losing control over the narrative, fear of citizens saying things they couldn't manage. When direct adoption stalled, I routed citizen signals to their departmental teams instead. Accountability became visible anyway. The system was designed to function with partial adoption, and it did.</p>
+      <p class="r-lead" style="color:rgba(255,255,255,0.85);margin-bottom:0;">External pressure was constant too. As the only opposition governor who consistently won re-election, Táchira was a permanent target of coordinated disinformation attacks. Every response decision was strategic: respond and risk amplifying the attack, stay silent and risk implied admission, or get ahead of it entirely. I developed the editorial triage criteria — what warranted public response, what didn't, and when to move first. Each communication was a statement. That discipline became part of the protocol.</p>
+    </div>
+
+    <p class="r-lead" style="color:rgba(255,255,255,0.85);">I ran micro-workshops with each director — practical, short, in their language — and built curated lists in the government account and in each director's own account and page so they could monitor their sector directly. The governor led by example, but the cabinet followed because they understood the incentive. Directors began responding directly: reading a citizen signal about an issue in their sector, investigating the case themselves, and replying publicly. What started as a communications unit became a distributed accountability system — adopted because it made their work visible, not because it was mandated.</p>
+  </div>
+
+  <!-- 04 SYSTEM DESIGN -->
+  <div class="r-section">
+    <div class="r-eyebrow">04 · System Design</div>
+    <h2 class="r-title">The Architecture <em>I Built</em></h2>
+    <p class="r-lead">I designed three interconnected systems: a cross-functional team structure with clear matrix coordination, a crisis communication protocol, and a social monitoring intelligence pipeline feeding directly into cabinet decisions.</p>
+
+    <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);margin:24px 0 4px;">Team Architecture — Direct + Matrix Coordination</h3>
+    <div class="org-grid">
+      <div class="org-dept owned">
+        <div class="org-dept-label owned">Direct Ownership</div>
+        <div class="org-dept-name">Digital Comms Unit</div>
+        <div class="org-dept-detail">2 designers, 1 journalist. Web, social, digital editorial. Built from zero in 4 months.</div>
+      </div>
+      <div class="org-dept matrix">
+        <div class="org-dept-label matrix">Matrix Coordination</div>
+        <div class="org-dept-name">Print Dept</div>
+        <div class="org-dept-detail">~20 people. Journalists sent stories before print. I adapted and published. Photographers briefed on digital needs.</div>
+      </div>
+      <div class="org-dept matrix">
+        <div class="org-dept-label matrix">Matrix Coordination</div>
+        <div class="org-dept-name">Audiovisual</div>
+        <div class="org-dept-detail">~6 people. Camera operators, editors, TV journalists. Content pipeline integrated into digital output.</div>
+      </div>
+      <div class="org-dept matrix">
+        <div class="org-dept-label matrix">Matrix Coordination</div>
+        <div class="org-dept-name">Propaganda &amp; Strategy</div>
+        <div class="org-dept-detail">~4 political advisors. Alignment between political messaging and digital editorial line.</div>
+      </div>
+    </div>
+    <p class="org-note">Every 6 weeks: rotational operational leadership of all 4 departments (~35 people) during full communication guard shifts.</p>
+
+    <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);margin:32px 0 4px;">Crisis Communication Protocol</h3>
+    <p class="r-lead">I designed a 5-stage crisis protocol — the operational system that allowed the unit to respond to breaking events in real time, with consistency and no improvisation.</p>
+    <div class="crisis-flow">
+      <div class="crisis-step active">
+        <div class="crisis-step-num">Stage 01</div>
+        <div class="crisis-step-title">Detection</div>
+        <div class="crisis-step-body">Real-time monitoring of social media and media for emerging events. Alerts triggered on keyword thresholds.</div>
+      </div>
+      <div class="crisis-step active">
+        <div class="crisis-step-num">Stage 02</div>
+        <div class="crisis-step-title">Evaluation</div>
+        <div class="crisis-step-body">Rapid assessment of impact potential and response urgency. Decision: activate protocol or monitor.</div>
+      </div>
+      <div class="crisis-step active">
+        <div class="crisis-step-num">Stage 03</div>
+        <div class="crisis-step-title">Activation</div>
+        <div class="crisis-step-body">Protocol activated with clear roles and responsibilities. No ambiguity about who does what under pressure.</div>
+      </div>
+      <div class="crisis-step active">
+        <div class="crisis-step-num">Stage 04</div>
+        <div class="crisis-step-title">Response</div>
+        <div class="crisis-step-body">Coordinated content produced and published across all channels simultaneously. Online and offline aligned.</div>
+      </div>
+      <div class="crisis-step active">
+        <div class="crisis-step-num">Stage 05</div>
+        <div class="crisis-step-title">Post-Crisis</div>
+        <div class="crisis-step-body">Sentiment monitoring post-response. Adjustments if needed. Learnings documented for protocol improvement.</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);margin:32px 0 4px;">Social Monitoring → Cabinet Intelligence</h3>
+    <p class="r-lead">I implemented a social listening system using Twitter Analytics, Hootsuite, Bit.ly, Google Analytics, TweetStats, and TweetCounter — not to produce reports, but to generate <strong>actionable intelligence for the cabinet.</strong> Sentiment tracking, trend detection, and early warning signals were translated into concrete recommendations: adjust a message, address an emerging issue, or reframe a policy communication. The governor's cabinet made decisions informed by real-time citizen data.</p>
+
+    <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);margin:32px 0 4px;">The Feedback Loop — From Citizen Complaint to Public Resolution</h3>
+    <p class="r-lead">The monitoring system was not passive. I designed a citizen communication triage protocol that turned every incoming message into a product interaction:</p>
+    <div class="r-cards" style="grid-template-columns:repeat(4,1fr);margin-top:12px;">
+      <div class="r-card" style="border-top-color:var(--teal);">
+        <div class="r-card-tag">Step 01</div>
+        <div class="r-card-title">Categorize</div>
+        <div class="r-card-body">Every mention, comment, and DM reviewed and tagged: service complaint, information request, security report, or general feedback.</div>
+      </div>
+      <div class="r-card" style="border-top-color:var(--gold);">
+        <div class="r-card-tag">Step 02</div>
+        <div class="r-card-title">Prioritize</div>
+        <div class="r-card-body">Urgent cases — public service failures, safety risks — flagged for immediate response. Non-urgent cases queued for follow-up.</div>
+      </div>
+      <div class="r-card" style="border-top-color:var(--navy);">
+        <div class="r-card-tag">Step 03</div>
+        <div class="r-card-title">Resolve Publicly</div>
+        <div class="r-card-body">Urgent cases answered <strong>publicly, on the same platform.</strong> The resolution was visible to everyone — not just the person who reported it.</div>
+      </div>
+      <div class="r-card" style="border-top-color:var(--coral);">
+        <div class="r-card-tag">Step 04</div>
+        <div class="r-card-title">Feed Intelligence</div>
+        <div class="r-card-body">Patterns — recurring complaints, geographic clusters — documented and reported to the cabinet as signals for policy or infrastructure decisions.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;background:var(--white);border:1.5px solid var(--border);border-radius:3px;padding:20px 24px;border-left:4px solid var(--teal);">
+      <div style="font-family:'Fragment Mono',monospace;font-size:8px;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);margin-bottom:12px;">Example · Crisis Cycle in Action · 2010</div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;font-size:11.5px;color:#3a3530;line-height:1.5;">
+        <div><strong style="display:block;font-family:'Barlow Condensed',sans-serif;font-size:13px;text-transform:uppercase;color:var(--ink);margin-bottom:4px;">🔍 Detection</strong>Spike in mentions about a water outage in a district. Volume triggers alert threshold.</div>
+        <div><strong style="display:block;font-family:'Barlow Condensed',sans-serif;font-size:13px;text-transform:uppercase;color:var(--ink);margin-bottom:4px;">⚖️ Evaluation</strong>High volume + potential for public panic. Decision: activate protocol immediately.</div>
+        <div><strong style="display:block;font-family:'Barlow Condensed',sans-serif;font-size:13px;text-transform:uppercase;color:var(--ink);margin-bottom:4px;">📢 Activation</strong>Digital team coordinates with press. Official statement drafted and verified with relevant department.</div>
+        <div><strong style="display:block;font-family:'Barlow Condensed',sans-serif;font-size:13px;text-transform:uppercase;color:var(--ink);margin-bottom:4px;">✅ Response</strong>Published on Twitter and Facebook: cause explained, resolution timeline stated. Individual citizens replied to publicly.</div>
+        <div><strong style="display:block;font-family:'Barlow Condensed',sans-serif;font-size:13px;text-transform:uppercase;color:var(--ink);margin-bottom:4px;">📊 Post-Crisis</strong>Sentiment monitored post-resolution. Recurring pattern flagged to cabinet: structural infrastructure issue requiring policy action.</div>
+      </div>
+      <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);font-size:12.5px;color:var(--muted);font-style:italic;">"The feature was not the response. The product was the trust — built one public interaction at a time."</div>
+    </div>
+  </div>
+
+  <!-- 05 EXECUTION TIMELINE -->
+  <div class="r-section">
+    <div class="r-eyebrow">05 · Execution</div>
+    <h2 class="r-title">Research → System → <em>Scale</em></h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Sep–Oct 2009 · Month 1–2</div>
+        <div class="tl-title">Diagnosis & Research</div>
+        <div class="tl-body">Full audit of existing digital presence — website, Twitter, Facebook. Analyzed content format, tone, and engagement against citizen response patterns. Conducted structured brainstorming with department heads. <strong>Key finding: content was designed for journalists, not citizens. There was no user.</strong></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot gold"></div>
+        <div class="tl-date">Oct–Dec 2009 · Month 3–4</div>
+        <div class="tl-title">System Build & Editorial Redesign</div>
+        <div class="tl-body">Hired and trained the digital team. Designed cross-departmental workflows. Redesigned the editorial framework: shifted from political protagonist-led content to <strong>facts, solutions, and citizen-centered stories.</strong> Briefed photographers on digital-first capture. Built the content pipeline from print to digital. Launched crisis protocol.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot navy"></div>
+        <div class="tl-date">Early 2010</div>
+        <div class="tl-title">Two-Way Citizen Channel Launch</div>
+        <div class="tl-body">Opened direct citizen response channels on Facebook. Established classification and response protocol — incoming communications triaged, responded directly or delegated. <strong>E-Government 2.0 before the term existed in Venezuela.</strong> Citizens could reach the government and receive answers. Trust metrics began to move.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot coral"></div>
+        <div class="tl-date">2010–2012</div>
+        <div class="tl-title">Data-Driven Iteration & Cabinet Advisory</div>
+        <div class="tl-body">Deployed unified digital methodology across the entire executive and audiovisual team. Citizen journalism began to emerge organically. Served as <strong>chief digital advisor to the full cabinet</strong> — translating social data into policy communication recommendations. New policies and tactics developed on an ongoing basis based on tracking social trends and analytics.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 RESULTS -->
+  <div class="r-section">
+    <div class="r-eyebrow">06 · Results</div>
+    <h2 class="r-title">From Zero to <em>National Benchmark</em></h2>
+    <p class="r-lead">In 3 years, the Táchira government's digital presence went from nonexistent to the second most-followed government account in Venezuela — surpassed only by Miranda state, whose governor Henrique Capriles Radonsky was the main opposition presidential candidate against Chávez. In the context of 2009–2012 Venezuela, this was not a social media achievement. <strong>It was a democratic infrastructure achievement.</strong></p>
+    <p class="r-lead">The growth metrics (40K followers, #2 national) reflect a deeper shift in the citizen relationship. <strong>The system transformed the government's digital channel from a megaphone into a public square.</strong> A recurring example: a citizen reported a power outage in their neighborhood on Facebook. The triage protocol flagged it, the team verified with the relevant department, and responded publicly: "We've contacted the utility and a crew is already on the way. Service will be restored within 2 hours. Thank you for reporting." That single visible interaction resolved the problem for one person — and built trust for hundreds who saw it. Patterns like this fed the cabinet intelligence pipeline: recurring outages in the same zone became a policy signal, not just a communication event. <strong>The feature was not the response. The product was the trust — built one public interaction at a time.</strong></p>
+    <p class="r-lead">The intelligence layer produced its clearest validation at the strategic level. Over three years of tracking engagement patterns — which topics generated the most response, which geographic areas were most active, which message formats resonated with smartphone users — I compiled behavioral reports that informed communication strategy at the highest level. The urban smartphone segment represented a significant portion of the engaged electorate. The engagement data, topic clusters, and message performance fed directly into strategic communication decisions. <strong>Citizen signals became institutional intelligence. Social data became decision input.</strong> That is what the system was designed to do.</p>
+    <div class="r-impact">
+      <div class="r-stat"><div class="r-stat-val">40K</div><div class="r-stat-lbl">Followers built from zero · 3 years</div></div>
+      <div class="r-stat"><div class="r-stat-val">Top 10</div><div class="r-stat-lbl">Most-followed accounts in Venezuela</div></div>
+      <div class="r-stat"><div class="r-stat-val">#2</div><div class="r-stat-lbl">Government accounts · national ranking</div></div>
+      <div class="r-stat"><div class="r-stat-val">4 mo</div><div class="r-stat-lbl">To full operation from zero</div></div>
+      <div class="r-stat"><div class="r-stat-val">&lt;1hr</div><div class="r-stat-lbl">Citizen response time · working hours</div></div>
+      <div class="r-stat"><div class="r-stat-val">~35</div><div class="r-stat-lbl">People coordinated cross-functionally</div></div>
+      <div class="r-stat"><div class="r-stat-val">3+ yr</div><div class="r-stat-lbl">Unit continued operating post-tenure</div></div>
+    </div>
+
+    <div class="r-testimonial">
+      <div class="r-testimonial-quote">
+        "Alejandra Quintero developed an entire innovative communication policy — demonstrating <strong>creativity, capacity to analyze complex social realities, rapid response capability, and research effort to offer adequate solutions to citizens.</strong> She is a person trained to work under pressure, in dynamic and diverse scenarios."
+      </div>
+      <div class="r-testimonial-attr">— <span>César Pérez Vivas</span> · Governor, Estado Táchira · LinkedIn, September 2018</div>
+    </div>
+
+    <div class="r-punch">
+      I did not inherit a digital product.<br>
+      <em>I built a governance system that transformed citizen interaction into institutional intelligence — and it continued operating after I left.</em>
+    </div>
+  </div>
+
+  <a href="index.html" class="r-inline-link">
+    Portfolio Ho

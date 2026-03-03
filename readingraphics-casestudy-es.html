@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Readingraphics — Caso de Estudio PM</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Barlow:wght@300;400;500;600&family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --beige:    #ECE7DC;
+  --beige-dk: #D9D2C3;
+  --ink:      #111111;
+  --navy:     #1B2B5E;
+  --teal:     #2AADA8;
+  --coral:    #E8394A;
+  --gold:     #F5A623;
+  --sky:      #7EC8D8;
+  --lilac:    #6B5B95;
+  --white:    #FAFAF7;
+  --muted:    #7A7065;
+  --border:   #C8C0B0;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--beige);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.65;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0;
+}
+
+/* ── LAYOUT ── */
+.page { max-width: 980px; margin: 0 auto; padding: 0 40px 80px; position: relative; z-index: 1; }
+
+.section {
+  padding: 64px 0;
+  border-bottom: 1.5px solid var(--border);
+  position: relative;
+}
+.section:last-child { border-bottom: none; }
+
+hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 56px 0; }
+
+/* ── TYPOGRAPHY ── */
+.eyebrow {
+  font-family: 'Fragment Mono', monospace;
+  font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 10px;
+  display: flex; align-items: center; gap: 10px;
+}
+.eyebrow::before { content: ''; width: 20px; height: 2px; background: var(--teal); display: inline-block; }
+
+h2.block-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: clamp(26px, 3vw, 38px);
+  text-transform: uppercase; letter-spacing: -.01em;
+  line-height: 1; margin-bottom: 6px; color: var(--ink);
+}
+h2.block-title em { font-style: italic; color: var(--teal); font-weight: 600; }
+
+.narrative {
+  font-size: 15px; font-weight: 400; color: #2a2a2a;
+  line-height: 1.8; max-width: 720px;
+}
+.narrative p { margin-bottom: 16px; }
+.narrative p:last-child { margin-bottom: 0; }
+.narrative strong { font-weight: 600; color: var(--ink); }
+.narrative em { font-style: italic; color: var(--navy); }
+
+.artifact-label {
+  font-family: 'Fragment Mono', monospace;
+  font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 12px; margin-top: 40px;
+  display: flex; align-items: center; gap: 8px;
+}
+.artifact-label::before { content: ''; width: 14px; height: 1px; background: var(--muted); display: inline-block; }
+
+.pull-quote {
+  border-left: 3px solid var(--teal);
+  padding: 14px 20px;
+  margin: 28px 0;
+  background: rgba(42,173,168,.05);
+  border-radius: 0 3px 3px 0;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600; font-size: 18px;
+  font-style: italic; color: var(--navy);
+  line-height: 1.4; max-width: 680px;
+}
+
+.print-note {
+  margin-top: 16px; padding: 10px 14px;
+  background: rgba(42,173,168,.07);
+  border-left: 3px solid var(--teal);
+  font-family: 'Fragment Mono', monospace; font-size: 10.5px;
+  color: var(--muted); border-radius: 0 3px 3px 0;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--navy);
+  margin: 0 -40px;
+  padding: 80px 40px 72px;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 0; right: 0; width: 400px; height: 100%;
+  background:
+    linear-gradient(135deg, var(--teal) 25%, transparent 25%) 0 0 / 32px 32px,
+    linear-gradient(225deg, var(--coral) 25%, transparent 25%) 0 0 / 32px 32px,
+    linear-gradient(315deg, var(--gold) 25%, transparent 25%) 0 0 / 32px 32px,
+    linear-gradient(45deg, var(--sky) 25%, transparent 25%) 0 0 / 32px 32px;
+  opacity: .10; pointer-events: none;
+}
+.hero::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--teal), var(--coral), var(--gold), var(--sky));
+}
+.hero-inner { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; }
+.hero-back {
+  font-family: 'Fragment Mono', monospace; font-size: 10px;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(250,250,247,.55); margin-bottom: 24px;
+  display: flex; align-items: center; gap: 8px;
+}
+.hero-back::before { content: '←'; }
+.hero-tag {
+  font-family: 'Fragment Mono', monospace; font-size: 10px;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.hero-tag::before { content: ''; width: 20px; height: 2px; background: var(--teal); display: inline-block; }
+.hero-h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: clamp(44px, 6vw, 72px);
+  text-transform: uppercase; letter-spacing: -.02em;
+  line-height: .95; color: var(--white); margin-bottom: 14px;
+}
+.hero-h1 span { color: var(--teal); }
+.hero-h1 em { color: var(--coral); font-style: normal; }
+.hero-sub {
+  font-family: 'Barlow', sans-serif; font-weight: 400;
+  font-size: 16px; color: rgba(250,250,247,.75);
+  max-width: 580px; margin-bottom: 36px; line-height: 1.6;
+}
+.hero-meta {
+  display: grid; grid-template-columns: repeat(4, auto);
+  gap: 0; width: fit-content;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 3px; overflow: hidden;
+}
+.hero-meta-item {
+  padding: 12px 20px; border-right: 1px solid rgba(255,255,255,.1);
+  text-align: center;
+}
+.hero-meta-item:last-child { border-right: none; }
+.hm-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 13px;
+  color: var(--white); text-transform: uppercase;
+  letter-spacing: .04em; line-height: 1.2; margin-bottom: 2px;
+}
+.hm-lbl {
+  font-family: 'Fragment Mono', monospace; font-size: 9px;
+  color: rgba(250,250,247,.55); letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+/* ── KPI STRIP ── */
+.kpi-strip {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0; border: 1.5px solid var(--border);
+  border-radius: 3px; overflow: hidden;
+}
+.kpi-cell {
+  padding: 24px 18px 20px;
+  border-right: 1.5px solid var(--border);
+  background: var(--white); position: relative;
+}
+.kpi-cell:last-child { border-right: none; }
+.kpi-cell::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+}
+.kpi-cell:nth-child(1)::before { background: var(--teal); }
+.kpi-cell:nth-child(2)::before { background: var(--coral); }
+.kpi-cell:nth-child(3)::before { background: var(--gold); }
+.kpi-cell:nth-child(4)::before { background: var(--navy); }
+.kpi-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 32px; line-height: 1;
+  color: var(--ink); margin-bottom: 4px;
+}
+.kpi-lbl {
+  font-family: 'Fragment Mono', monospace; font-size: 9.5px;
+  color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
+  line-height: 1.4;
+}
+
+/* ── PROBLEM ── */
+.problem-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  margin-top: 32px;
+}
+.problem-card {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 3px; padding: 22px 20px;
+}
+.problem-card.bad  { border-top: 3px solid var(--coral); }
+.problem-card.goal { border-top: 3px solid var(--teal); }
+.pc-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 13px; text-transform: uppercase;
+  letter-spacing: .08em; margin-bottom: 14px;
+  display: flex; align-items: center; gap: 7px;
+}
+.pc-title.bad-title  { color: var(--coral); }
+.pc-title.goal-title { color: var(--teal); }
+.pc-list { list-style: none; }
+.pc-list li {
+  display: flex; align-items: flex-start; gap: 9px;
+  padding: 7px 0; border-bottom: 1px solid var(--beige-dk);
+  font-size: 13px; line-height: 1.45;
+}
+.pc-list li:last-child { border-bottom: none; }
+.pc-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+
+/* ── REGIONAL STRATEGY TABLE ── */
+.strategy-table {
+  width: 100%; border-collapse: collapse; font-size: 13.5px;
+}
+.strategy-table th {
+  background: var(--navy); color: var(--white);
+  padding: 11px 18px; text-align: left;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 12px;
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.strategy-table th:first-child { border-radius: 3px 0 0 0; }
+.strategy-table th:last-child  { border-radius: 0 3px 0 0; }
+.strategy-table td {
+  padding: 13px 18px; border-bottom: 1px solid var(--beige-dk);
+  vertical-align: top; background: var(--white);
+}
+.strategy-table tr:last-child td { border-bottom: none; }
+.strategy-table tr:nth-child(even) td { background: rgba(0,0,0,.02); }
+.strategy-table td:first-child { font-weight: 500; color: var(--muted); }
+.strategy-table td:last-child  { font-weight: 500; color: var(--navy); }
+
+/* ── WORKFLOW ── */
+.wf-container {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border: 1.5px solid var(--border); border-radius: 3px;
+  overflow: hidden; background: var(--white);
+}
+.wf-lane { border-right: 1.5px solid var(--border); display: flex; flex-direction: column; }
+.wf-lane:last-child { border-right: none; }
+.wf-head {
+  padding: 13px 16px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 12px; letter-spacing: .07em;
+  text-transform: uppercase; text-align: center;
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+}
+.wf-head.routine   { background: var(--teal);  color: var(--white); }
+.wf-head.sensitive { background: var(--gold);  color: var(--ink); }
+.wf-head.health    { background: var(--coral); color: var(--white); }
+.wf-head.newft     { background: var(--navy);  color: var(--white); }
+.wf-body { padding: 16px 14px; flex: 1; }
+.wf-step {
+  display: flex; align-items: flex-start; gap: 8px;
+  margin-bottom: 10px; font-size: 12px; line-height: 1.4;
+}
+.wf-num {
+  width: 18px; height: 18px; border-radius: 50%;
+  font-family: 'Fragment Mono', monospace; font-size: 9px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 1px;
+}
+.num-teal  { background: var(--teal);  color: var(--white); }
+.num-gold  { background: var(--gold);  color: var(--ink); }
+.num-coral { background: var(--coral); color: var(--white); }
+.num-navy  { background: var(--navy);  color: var(--white); }
+.wf-arrow { text-align: center; color: var(--border); font-size: 14px; margin: 2px 0 6px; }
+.wf-tag {
+  display: inline-block; padding: 2px 7px;
+  font-family: 'Fragment Mono', monospace; font-size: 9.5px;
+  border-radius: 2px; margin-top: 6px;
+}
+.tag-teal  { background: rgba(42,173,168,.12);  color: var(--teal);  border: 1px solid rgba(42,173,168,.25); }
+.tag-gold  { background: rgba(245,166,35,.12);  color: #8a5800;      border: 1px solid rgba(245,166,35,.3); }
+.tag-coral { background: rgba(232,57,74,.1);    color: var(--coral); border: 1px solid rgba(232,57,74,.25); }
+.tag-navy  { background: rgba(27,43,94,.1);     color: var(--navy);  border: 1px solid rgba(27,43,94,.2); }
+
+/* ── ALERT GOVERNANCE TABLE ── */
+.gov-table {
+  width: 100%; border-collapse: collapse; font-size: 13px;
+}
+.gov-table th {
+  background: var(--navy); color: var(--white);
+  padding: 10px 14px; text-align: left;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 11px;
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.gov-table td {
+  padding: 11px 14px; border-bottom: 1px solid var(--beige-dk);
+  background: var(--white); vertical-align: middle;
+}
+.gov-table tr:nth-child(even) td { background: rgba(0,0,0,.02); }
+.gov-table tr:last-child td { border-bottom: none; }
+.badge {
+  display: inline-block; padding: 3px 9px; border-radius: 2px;
+  font-family: 'Fragment Mono', monospace; font-size: 10px;
+  font-weight: 500; text-transform: uppercase; letter-spacing: .04em;
+}
+.badge-teal  { background: rgba(42,173,168,.12); color: var(--teal); }
+.badge-gold  { background: rgba(245,166,35,.14); color: #8a5800; }
+.badge-coral { background: rgba(232,57,74,.1);   color: var(--coral); }
+.badge-navy  { background: rgba(27,43,94,.1);    color: var(--navy); }
+
+/* ── FEEDBACK LOOP ── */
+.loop-track {
+  display: flex; align-items: stretch; gap: 0;
+  border: 1.5px solid var(--border); border-radius: 3px;
+  overflow: hidden; background: var(--white);
+}
+.loop-node {
+  flex: 1; padding: 20px 14px;
+  border-right: 1.5px solid var(--border);
+  position: relative; text-align: center;
+}
+.loop-node:last-child { border-right: none; }
+.loop-node::after {
+  content: '→'; position: absolute;
+  right: -11px; top: 50%; transform: translateY(-50%);
+  font-size: 14px; color: var(--gold); z-index: 2;
+  background: var(--white); padding: 2px 0;
+}
+.loop-node:last-child::after { display: none; }
+.ln-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 30px; line-height: 1; margin-bottom: 4px;
+}
+.ln-icon { font-size: 18px; margin-bottom: 6px; display: block; }
+.ln-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 13px; text-transform: uppercase;
+  letter-spacing: .05em; color: var(--ink); margin-bottom: 5px;
+}
+.ln-sub { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+.loop-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+.loop-chip {
+  display: flex; align-items: center; gap: 7px;
+  padding: 8px 14px; border: 1.5px solid var(--border);
+  border-radius: 2px; background: var(--white); font-size: 12px;
+}
+.chip-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── TRADE-OFF ── */
+.tradeoff-wrap {
+  display: grid; grid-template-columns: 1fr 56px 1fr;
+  align-items: stretch; gap: 0;
+}
+.to-card {
+  border: 1.5px solid var(--border); border-radius: 3px;
+  overflow: hidden; background: var(--white);
+}
+.to-card.chosen { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(42,173,168,.1); }
+.to-card.rejected { opacity: .7; }
+.to-head {
+  padding: 12px 18px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 12px;
+  letter-spacing: .1em; text-transform: uppercase;
+}
+.to-head.rej { background: var(--beige-dk); color: var(--muted); }
+.to-head.cho { background: var(--teal); color: var(--white); }
+.to-body { padding: 18px 18px; }
+.to-subtitle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 18px; text-transform: uppercase;
+  letter-spacing: -.01em; color: var(--ink);
+  margin-bottom: 14px; line-height: 1.1;
+}
+.to-list { list-style: none; }
+.to-list li {
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 7px 0; border-bottom: 1px solid var(--beige-dk);
+  font-size: 12.5px; line-height: 1.45;
+}
+.to-list li:last-child { border-bottom: none; }
+.to-vs { display: flex; align-items: center; justify-content: center; }
+.vs-circle {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--navy); color: var(--white);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+}
+.outcome-row {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 0; border: 1.5px solid var(--border);
+  border-radius: 3px; overflow: hidden;
+  margin-top: 20px; background: var(--navy);
+}
+.outcome-cell {
+  padding: 18px 14px; border-right: 1px solid rgba(255,255,255,.1);
+  text-align: center;
+}
+.outcome-cell:last-child { border-right: none; }
+.oc-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 24px; color: var(--white);
+  line-height: 1; margin-bottom: 4px;
+}
+.oc-lbl {
+  font-family: 'Fragment Mono', monospace; font-size: 9px;
+  color: rgba(250,250,247,.4); text-transform: uppercase; letter-spacing: .05em;
+}
+
+/* ── MOCKUPS ── */
+.mockup-legend {
+  display: flex; gap: 20px; flex-wrap: wrap;
+  padding: 12px 16px; background: var(--white);
+  border: 1.5px solid var(--border); border-radius: 3px;
+  margin-bottom: 28px; font-size: 12.5px;
+}
+.ml-item { display: flex; align-items: center; gap: 7px; }
+.ml-swatch { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+.alert-group { margin-bottom: 48px; }
+.ag-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 16px; text-transform: uppercase;
+  letter-spacing: .05em; margin-bottom: 6px;
+  display: flex; align-items: center; gap: 7px;
+}
+.ag-source {
+  font-family: 'Fragment Mono', monospace; font-size: 10px;
+  color: var(--muted); margin-bottom: 18px;
+  padding: 7px 12px; background: rgba(0,0,0,.03);
+  border-left: 3px solid var(--teal); border-radius: 0 3px 3px 0; line-height: 1.6;
+}
+.ag-source em { color: var(--navy); font-style: normal; font-weight: 500; }
+
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media(max-width:900px){ .three-col { grid-template-columns: 1fr 1fr; } }
+
+.phone-col-lbl {
+  text-align: center; font-family: 'Fragment Mono', monospace;
+  font-size: 9.5px; text-transform: uppercase; letter-spacing: .1em;
+  margin-bottom: 8px; padding: 4px 0; border-radius: 2px;
+}
+.lbl-real    { background: rgba(42,173,168,.1);  color: var(--teal); }
+.lbl-literal { background: rgba(232,57,74,.09);  color: var(--coral); }
+.lbl-adapted { background: rgba(245,166,35,.12); color: #8a5800; }
+
+.phone {
+  background: #1c1c1e; border-radius: 22px; padding: 8px;
+  box-shadow: 0 8px 28px rgba(0,0,0,.18);
+  max-width: 210px; margin: 0 auto;
+}
+.phone-screen { background: #f2f2f7; border-radius: 15px; overflow: hidden; min-height: 0; }
+.p-header { padding: 8px 11px 7px; }
+.p-header.h-routine   { background: var(--navy); }
+.p-header.h-sensitive { background: #3a3020; }
+.p-header.h-health    { background: #4a1010; }
+.p-appname { font-family: 'Fragment Mono', monospace; font-size: 8px; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.5); }
+.p-time    { font-size: 8.5px; color: rgba(255,255,255,.35); float: right; margin-top: -10px; }
+.p-notif {
+  margin: 7px; background: white; border-radius: 9px;
+  padding: 9px 10px 9px; box-shadow: 0 1px 5px rgba(0,0,0,.06);
+}
+.p-notif.lit { border: 1.5px dashed rgba(232,57,74,.4); background: #fff9f9; }
+.p-notif.adp { border: 1.5px solid var(--gold); background: #fffdf5; }
+.p-badge {
+  display: inline-block; font-family: 'Fragment Mono', monospace; font-size: 8px;
+  padding: 1px 5px; border-radius: 2px; margin-bottom: 6px;
+  text-transform: uppercase; letter-spacing: .04em;
+}
+.pb-real    { background: rgba(42,173,168,.12); color: var(--teal); }
+.pb-literal { background: rgba(232,57,74,.1);   color: var(--coral); }
+.pb-adapted { background: rgba(245,166,35,.15); color: #8a5800; }
+.p-row { display: flex; align-items: center; gap: 6px; margin-bottom: 7px; }
+.p-ico { width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0; }
+.ico-routine   { background: rgba(42,173,168,.15); }
+.ico-sensitive { background: rgba(245,166,35,.15); }
+.ico-health    { background: rgba(232,57,74,.12); }
+.p-from { font-weight: 600; font-size: 10px; color: var(--ink); }
+.p-when { font-size: 8.5px; color: var(--muted); }
+.p-body { font-size: 10.5px; color: var(--ink); line-height: 1.45; margin-bottom: 8px; }
+.p-actions { display: flex; gap: 5px; }
+.p-btn { flex: 1; text-align: center; border-radius: 5px; padding: 4px 6px; font-size: 9.5px; font-weight: 600; cursor: default; }
+.btn-main   { background: var(--navy);  color: white; }
+.btn-sec    { background: #f0f0f5;      color: var(--ink); }
+.btn-urgent { background: var(--coral); color: white; }
+.btn-gold   { background: var(--gold);  color: var(--ink); }
+
+/* ── IMPACT METRICS TABLE ── */
+.metrics-tbl {
+  width: 100%; border-collapse: collapse; font-size: 13px;
+}
+.metrics-tbl th {
+  background: var(--navy); color: var(--white); padding: 11px 16px; text-align: left;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 12px;
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.metrics-tbl td { padding: 11px 16px; border-bottom: 1px solid var(--beige-dk); vertical-align: middle; }
+.metrics-tbl tr:last-child td { border-bottom: none; }
+.metrics-tbl tr:nth-child(even) td { background: rgba(0,0,0,.02); }
+.metrics-tbl .big { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 20px; color: var(--navy); }
+
+/* ── INFOGRAPHIC ── */
+.infographic {
+  background: var(--navy); border-radius: 3px;
+  padding: 40px; position: relative; overflow: hidden;
+}
+.infographic::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 260px; height: 260px;
+  background:
+    linear-gradient(135deg, var(--teal) 25%, transparent 25%) 0 0 / 24px 24px,
+    linear-gradient(225deg, var(--coral) 25%, transparent 25%) 0 0 / 24px 24px,
+    linear-gradient(315deg, var(--gold) 25%, transparent 25%) 0 0 / 24px 24px,
+    linear-gradient(45deg, var(--sky) 25%, transparent 25%) 0 0 / 24px 24px;
+  opacity: .09;
+}
+.ig-inner { position: relative; z-index: 1; }
+.ig-header { margin-bottom: 28px; }
+.ig-title {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+  font-size: 28px; text-transform: uppercase; color: var(--white); line-height: 1;
+}
+.ig-title span { color: var(--teal); }
+.ig-sub { font-family: 'Fragment Mono', monospace; font-size: 9.5px; color: rgba(250,250,247,.3); letter-spacing: .1em; text-transform: uppercase; margin-top: 4px; }
+.ig-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2px; margin-bottom: 2px;
+}
+.ig-cell {
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
+  padding: 20px 16px; text-align: center; position: relative; overflow: hidden;
+}
+.ig-cell::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; }
+.ig-cell:nth-child(1)::before { background: var(--teal); }
+.ig-cell:nth-child(2)::before { background: var(--coral); }
+.ig-cell:nth-child(3)::before { background: var(--gold); }
+.ig-cell:nth-child(4)::before { background: var(--sky); }
+.ig-cell:nth-child(5)::before { background: var(--lilac); }
+.ig-cell:nth-child(6)::before { background: var(--teal); }
+.ig-cell:nth-child(7)::before { background: var(--coral); }
+.ig-cell:nth-child(8)::before { background: var(--gold); }
+.ig-cell:nth-child(9)::before { background: var(--sky); }
+.ig-val { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 32px; color: var(--white); line-height: 1; margin-bottom: 4px; }
+.ig-val.sm { font-size: 22px; }
+.ig-lbl { font-family: 'Fragment Mono', monospace; font-size: 9px; color: rgba(250,250,247,.4); text-transform: uppercase; letter-spacing: .05em; line-height: 1.5; }
+.ig-timeline {
+  margin-top: 28px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.08);
+  display: flex; align-items: flex-start;
+}
+.ig-tl-item { flex: 1; text-align: center; }
+.ig-tl-dot { width: 9px; height: 9px; border-radius: 50%; margin: 0 auto 7px; }
+.ig-tl-year { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 3px; }
+.ig-tl-event { font-size: 10px; color: rgba(250,250,247,.35); line-height: 1.4; }
+.ig-tl-line { flex-shrink: 0; width: 32px; height: 1px; background: rgba(255,255,255,.1); margin-top: 13px; }
+
+/* ── LEADERSHIP ── */
+.collab-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+}
+.collab-card {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 3px; padding: 18px 16px;
+  text-align: center;
+}
+.collab-card .cc-icon { font-size: 20px; margin-bottom: 8px; display: block; }
+.collab-card .cc-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 13px; text-transform: uppercase;
+  letter-spacing: .05em; color: var(--navy); margin-bottom: 5px;
+}
+.collab-card .cc-desc { font-size: 11.5px; color: var(--muted); line-height: 1.4; }
+
+/* ── TAKEAWAYS ── */
+.takeaway-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;
+}
+.takeaway-card {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 3px; padding: 18px 16px; position: relative; overflow: hidden;
+}
+.takeaway-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+}
+.tc-1::before { background: var(--teal); }
+.tc-2::before { background: var(--coral); }
+.tc-3::before { background: var(--gold); }
+.tc-4::before { background: var(--navy); }
+.tc-5::before { background: var(--lilac); }
+.tc-6::before { background: var(--sky); }
+.takeaway-card .tk-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 32px; color: var(--beige-dk);
+  line-height: 1; margin-bottom: 4px;
+}
+.takeaway-card .tk-text {
+  font-size: 13px; color: var(--ink); font-weight: 500; line-height: 1.45;
+}
+
+/* ── IMAGE EVIDENCE ── */
+.img-badge {
+  display: inline-block;
+  font-family: 'Fragment Mono', monospace; font-size: 9px;
+  padding: 2px 7px; border-radius: 2px; margin-bottom: 6px;
+  text-transform: uppercase; letter-spacing: .06em;
+}
+.img-badge.problem  { background: rgba(232,57,74,.1);  color: var(--coral); }
+.img-badge.solution { background: rgba(42,173,168,.1); color: var(--teal); }
+.img-badge.context  { background: rgba(27,43,94,.1);   color: var(--navy); }
+.img-badge.feature  { background: rgba(245,166,35,.12);color: #8a5800; }
+
+.evidence-grid { display: grid; gap: 16px; }
+.evidence-grid.col-2 { grid-template-columns: 1fr 1fr; }
+.evidence-grid.col-3 { grid-template-columns: 1fr 1fr 1fr; }
+.evidence-grid.col-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+.evidence-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 3px; overflow: hidden;
+}
+.evidence-card img { width: 100%; display: block; object-fit: cover; }
+.evidence-card.phone-card img {
+  width: 55%; display: block; margin: 12px auto;
+  border-radius: 4px;
+}
+.evidence-card .ec-body {
+  padding: 11px 14px; border-top: 1px solid var(--border);
+}
+.evidence-card .ec-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 12px;
+  text-transform: uppercase; letter-spacing: .05em;
+  color: var(--ink); margin-bottom: 3px;
+}
+.evidence-card .ec-desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+.nc-compare {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border: 1.5px solid var(--border); border-radius: 3px; overflow: hidden;
+}
+.nc-col:first-child { border-right: 1.5px solid var(--border); }
+.nc-head {
+  padding: 9px 14px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+  border-bottom: 1.5px solid var(--border);
+}
+.nc-head.ph { background: rgba(232,57,74,.08); color: var(--coral); }
+.nc-head.sh { background: rgba(42,173,168,.08); color: var(--teal); }
+.nc-body { padding: 12px; background: var(--white); }
+.nc-body img { width: 100%; display: block; border-radius: 2px; margin-bottom: 8px; }
+.nc-body img:last-child { margin-bottom: 0; }
+
+@media(max-width: 768px){
+  .page { padding: 0 20px 60px; }
+  .hero { margin: 0 -20px; padding: 48px 20px; }
+  .hero-meta { grid-template-columns: 1fr 1fr; }
+  .kpi-strip { grid-template-columns: 1fr 1fr; }
+  .problem-grid { grid-template-columns: 1fr; }
+  .wf-container { grid-template-columns: 1fr 1fr; }
+  .tradeoff-wrap { grid-template-columns: 1fr; }
+  .to-vs { padding: 10px; }
+  .outcome-row { grid-template-columns: repeat(3, 1fr); }
+  .collab-grid { grid-template-columns: 1fr 1fr; }
+  .takeaway-grid { grid-template-columns: 1fr 1fr; }
+  .ig-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── SIDEBAR LAYOUT ── */
+.site-wrap { display: grid; grid-template-columns: 210px 1fr; min-height: 100vh; }
+.sidebar {
+  position: fixed; top: 0; left: 0; width: 210px; height: 100vh;
+  background: var(--navy); padding: 28px 0; overflow-y: auto;
+  z-index: 100; display: flex; flex-direction: column;
+}
+.sidebar-logo { padding: 0 20px 24px; border-bottom: 1px solid rgba(255,255,255,.08); margin-bottom: 16px; }
+.sidebar-logo-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 14px; text-transform: uppercase; letter-spacing: .05em; color: var(--white); line-height: 1.1; }
+.sidebar-logo-title span { color: var(--teal); }
+.sidebar-logo-sub { font-family: 'Fragment Mono', monospace; font-size: 8.5px; color: rgba(250,250,247,.25); letter-spacing: .1em; text-transform: uppercase; margin-top: 3px; }
+.sidebar-nav a {
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 7px 20px;
+  font-family: 'Fragment Mono', monospace; font-size: 9px; letter-spacing: .05em;
+  text-transform: uppercase; text-decoration: none;
+  color: rgba(250,250,247,.3); transition: all .2s;
+  border-left: 2px solid transparent; line-height: 1.4;
+}
+.sidebar-nav a:hover { color: rgba(250,250,247,.65); background: rgba(255,255,255,.04); }
+.sidebar-nav a.active { color: var(--teal); border-left-color: var(--teal); background: rgba(42,173,168,.07); }
+.sidebar-nav a .nn { color: rgba(250,250,247,.18); flex-shrink: 0; font-size: 8px; margin-top: 1px; }
+.sidebar-nav a.active .nn { color: rgba(42,173,168,.6); }
+.sidebar-back { padding: 16px 20px 0; border-top: 1px solid rgba(255,255,255,.07); margin-top: 12px; }
+.sidebar-back a { font-family: 'Fragment Mono', monospace; font-size: 8.5px; color: rgba(250,250,247,.2); text-decoration: none; letter-spacing: .08em; text-transform: uppercase; }
+.sidebar-back a:hover { color: rgba(250,250,247,.45); }
+
+.main-content { margin-left: 210px; }
+.page { max-width: 860px; margin: 0 auto; padding: 0 44px 80px; position: relative; z-index: 1; }
+
+/* ── ACCORDION ── */
+.section { padding: 0; border-bottom: 1.5px solid var(--border); position: relative; }
+.section:last-child { border-bottom: none; }
+.section-header {
+  padding: 28px 0 22px; cursor: pointer;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 20px;
+  user-select: none;
+}
+.section-header:hover .sec-toggle { color: var(--teal); }
+.section-preview {
+  font-size: 14px; font-weight: 400; color: #4a4540; line-height: 1.7;
+  max-width: 640px; margin-top: 8px;
+}
+.section-preview strong { font-weight: 600; color: var(--ink); }
+.sec-toggle {
+  font-family: 'Fragment Mono', monospace; font-size: 9.5px; color: var(--muted);
+  letter-spacing: .07em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 5px;
+  white-space: nowrap; flex-shrink: 0; padding-top: 34px;
+  transition: color .2s;
+}
+.sec-toggle::after { content: '↓'; display: inline-block; transition: transform .25s ease; }
+.section.open .sec-toggle::after { transform: rotate(180deg); }
+.section.open .sec-toggle { color: var(--teal); }
+.section-body { max-height: 0; overflow: hidden; transition: max-height .45s ease; }
+.section.open .section-body { max-height: 99999px; }
+.section-body-inner { padding-bottom: 44px; }
+.section.always-open .section-header { cursor: default; }
+.section.always-open .sec-toggle { display: none; }
+.section.always-open .section-body { max-height: none; overflow: visible; }
+
+/* ── HERO simplified ── */
+.hero-meta { display: none; }
+.hero-meta-simple {
+  font-family: 'Fragment Mono', monospace; font-size: 10px; letter-spacing: .09em;
+  color: rgba(250,250,247,.32); margin-bottom: 32px; display: flex; flex-wrap: wrap; gap: 0;
+}
+.hero-meta-simple .sep { margin: 0 9px; color: rgba(250,250,247,.13); }
+.hero-meta-simple .hi { color: var(--teal); }
+
+@media(max-width:900px){
+  .site-wrap { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .main-content { margin-left: 0; }
+  .page { padding: 0 20px 60px; }
+}
+
+
+.topnav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--beige);
+  border-bottom: 1.5px solid var(--border);
+}
+.topnav-accent {
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal), var(--coral), var(--gold));
+}
+.topnav-inner {
+  max-width: 780px; margin: 0 auto; padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 48px;
+}
+.topnav-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 18px;
+  text-transform: uppercase; letter-spacing: .04em;
+  color: var(--ink); text-decoration: none;
+  transition: color .18s;
+}
+.topnav-logo:hover { color: var(--teal); }
+.topnav-links {
+  display: flex; gap: 4px; align-items: center;
+}
+.topnav-link {
+  font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 500;
+  color: var(--muted); text-decoration: none;
+  padding: 5px 10px; border-radius: 2px;
+  transition: all .18s; letter-spacing: .01em;
+}
+.topnav-link:hover { color: var(--ink); background: rgba(0,0,0,.04); }
+.topnav-link.active { color: var(--ink); font-weight: 600; }
+.topnav-contact {
+  font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 600;
+  color: var(--teal); text-decoration: none;
+  border: 1.5px solid rgba(42,173,168,.45);
+  padding: 5px 14px; border-radius: 2px; margin-left: 8px;
+  transition: all .18s; letter-spacing: .01em;
+}
+.topnav-contact:hover {
+  background: var(--teal); color: var(--white);
+  border-color: var(--teal);
+}
+@media(max-width: 600px) {
+  .topnav-links { gap: 2px; }
+  .topnav-link { font-size: 11px; padding: 4px 7px; }
+  .topnav-contact { padding: 4px 10px; margin-left: 4px; }
+}
+
+</style>
+<style>
+body { background: var(--beige); }
+.r-wrap { max-width: 860px; margin: 0 auto; padding: 0 40px 80px; }
+.r-section { padding: 44px 0; border-bottom: 1.5px solid var(--border); }
+.r-section:last-of-type { border-bottom: none; }
+.r-eyebrow {
+  font-family: 'Fragment Mono', monospace; font-size: 9px;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--teal);
+  margin-bottom: 8px; display: flex; align-items: center; gap: 8px;
+}
+.r-eyebrow::before { content:''; width:16px; height:2px; background:var(--teal); display:block; flex-shrink:0; }
+.r-title { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:30px; text-transform:uppercase; letter-spacing:-.01em; line-height:1; color:var(--ink); margin-bottom:16px; }
+.r-title em { font-style:italic; font-weight:600; color:var(--teal); }
+.r-lead { font-size:14px; font-weight:300; color:#3a3530; line-height:1.75; max-width:700px; margin-bottom:10px; }
+.r-lead strong { font-weight:600; color:var(--ink); }
+.r-lead em { color:var(--navy); font-style:italic; }
+.r-quote { border-left:3px solid var(--coral); padding:13px 20px; margin:20px 0; background:rgba(232,57,74,.04); border-radius:0 3px 3px 0; font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:19px; line-height:1.3; color:var(--navy); font-style:italic; }
+
+/* Cards */
+.r-cards { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:20px; }
+.r-card { background:var(--white); border:1.5px solid var(--border); border-radius:3px; padding:18px 20px; border-top:3px solid var(--teal); }
+.r-card:nth-child(2) { border-top-color:var(--gold); }
+.r-card:nth-child(3) { border-top-color:var(--navy); }
+.r-card:nth-child(4) { border-top-color:var(--coral); }
+.r-cards.problem .r-card { border-top-color:var(--coral); }
+.r-card-tag { font-family:'Fragment Mono',monospace; font-size:8.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:5px; }
+.r-card-title { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:18px; text-transform:uppercase; letter-spacing:.02em; color:var(--ink); margin-bottom:7px; }
+.r-card-body { font-size:13px; color:#4a4540; line-height:1.6; }
+.r-card-body strong { color:var(--ink); font-weight:600; }
+
+/* Product screenshot */
+.r-product-img { margin-top:20px; border:1.5px solid var(--border); border-radius:3px; overflow:hidden; }
+.r-product-img img { width:100%; display:block; }
+.r-product-label { font-family:'Fragment Mono',monospace; font-size:8px; letter-spacing:.07em; text-transform:uppercase; padding:7px 12px; background:rgba(27,43,94,.04); color:var(--navy); border-top:1px solid var(--border); }
+
+/* Segmentation diagram */
+.seg-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:20px; }
+.seg-card { border-radius:3px; padding:18px 16px; border:1.5px solid var(--border); position:relative; }
+.seg-card.high { background:rgba(42,173,168,.06); border-color:var(--teal); border-top:3px solid var(--teal); }
+.seg-card.mid { background:rgba(212,175,55,.06); border-color:var(--gold); border-top:3px solid var(--gold); }
+.seg-card.low { background:rgba(232,57,74,.06); border-color:var(--coral); border-top:3px solid var(--coral); }
+.seg-label { font-family:'Fragment Mono',monospace; font-size:8px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px; }
+.seg-label.high { color:var(--teal); }
+.seg-label.mid { color:#b8962e; }
+.seg-label.low { color:var(--coral); }
+.seg-name { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:17px; text-transform:uppercase; color:var(--ink); margin-bottom:8px; line-height:1.1; }
+.seg-desc { font-size:12px; color:#4a4540; line-height:1.55; }
+.seg-desc strong { color:var(--ink); font-weight:600; }
+.seg-stat { margin-top:10px; padding-top:10px; border-top:1px solid var(--border); font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:20px; color:var(--ink); }
+.seg-stat-lbl { font-family:'Fragment Mono',monospace; font-size:8px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; margin-top:2px; }
+
+/* Journey flow */
+.journey-flow { margin-top:20px; }
+.journey-row { display:grid; grid-template-columns:120px 1fr; gap:0; margin-bottom:4px; align-items:stretch; }
+.journey-seg { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:.04em; padding:12px 14px; display:flex; align-items:center; border-radius:3px 0 0 3px; color:var(--white); }
+.journey-seg.high { background:var(--teal); }
+.journey-seg.mid { background:var(--gold); color:var(--ink); }
+.journey-seg.low { background:var(--coral); }
+.journey-steps { display:flex; align-items:center; gap:0; flex:1; }
+.journey-step { flex:1; padding:10px 10px; font-size:11px; color:#3a3530; line-height:1.4; border:1.5px solid var(--border); border-left:none; background:var(--white); position:relative; }
+.journey-step:last-child { border-radius:0 3px 3px 0; }
+.journey-step-num { font-family:'Fragment Mono',monospace; font-size:8px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; display:block; margin-bottom:3px; }
+.journey-step strong { font-weight:600; color:var(--ink); display:block; margin-bottom:2px; font-size:11px; }
+.journey-arrow { width:16px; flex-shrink:0; text-align:center; font-size:10px; color:var(--muted); }
+
+/* A/B table */
+.ab-table { width:100%; border-collapse:collapse; font-size:12.5px; margin-top:20px; }
+.ab-table th { background:var(--navy); color:var(--white); padding:10px 14px; text-align:left; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:11px; letter-spacing:.07em; text-transform:uppercase; }
+.ab-table td { padding:10px 14px; border-bottom:1px solid var(--border); vertical-align:top; line-height:1.5; }
+.ab-table tr:last-child td { border-bottom:none; }
+.ab-table tr:nth-child(even) td { background:rgba(0,0,0,.02); }
+.ab-win { color:var(--teal); font-weight:600; font-family:'Fragment Mono',monospace; font-size:10px; }
+.ab-lose { color:var(--coral); font-family:'Fragment Mono',monospace; font-size:10px; }
+
+/* Impact */
+.r-impact { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:20px; }
+.r-stat { background:var(--white); border:1.5px solid var(--border); border-radius:3px; padding:18px 16px; }
+.r-stat:nth-child(1) { border-top:3px solid var(--teal); }
+.r-stat:nth-child(2) { border-top:3px solid var(--gold); }
+.r-stat:nth-child(3) { border-top:3px solid var(--navy); }
+.r-stat:nth-child(4) { border-top:3px solid var(--coral); }
+.r-stat:nth-child(5) { border-top:3px solid var(--teal); }
+.r-stat:nth-child(6) { border-top:3px solid var(--gold); }
+.r-stat-val { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:32px; line-height:1; color:var(--ink); }
+.r-stat-lbl { font-family:'Fragment Mono',monospace; font-size:8.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; margin-top:5px; line-height:1.4; }
+
+.r-punch { margin-top:36px; padding:24px 28px; background:var(--navy); border-radius:3px; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:18px; line-height:1.4; color:var(--white); letter-spacing:.01em; }
+.r-punch em { color:var(--teal); font-style:italic; }
+
+.r-inline-link { display:block; margin-top:48px; text-align:right; font-family:'Fragment Mono',monospace; font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); text-decoration:none; padding-top:20px; border-top:1px solid var(--border); }
+.r-inline-link:hover { color:var(--teal); }
+.r-inline-link span { color:var(--teal); }
+
+@media(max-width:680px) {
+  .r-cards,.seg-grid { grid-template-columns:1fr; }
+  .r-impact { grid-template-columns:1fr 1fr; }
+  .journey-row { grid-template-columns:1fr; }
+  .r-wrap { padding:0 20px 60px; }
+}
+</style>
+</head>
+<body>
+<!-- NAVBAR -->
+<nav class="topnav">
+  <div class="topnav-accent"></div>
+  <div class="topnav-inner">
+    <a href="index-es.html" class="topnav-logo">AQ</a>
+    <div class="topnav-links">
+      <a href="furbo-recruiter-es.html" class="topnav-link">Furbo Case Study</a>
+      <a href="readingraphics-casestudy-es.html" class="topnav-link active">Readingraphics</a>
+      <a href="gobernacion-casestudy-es.html" class="topnav-link">Gobernación</a>
+      <a href="/cdn-cgi/l/email-protection#b3d2dfd6d9d2ddd7c1d2c2c6daddc7d6c1dcf3d4ded2dadf9dd0dcde" class="topnav-contact">Contacto</a>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <a href="index-es.html" class="hero-back" style="text-decoration:none;">Inicio del Portfolio</a>
+    <div class="hero-tag">Growth Strategy · Readingraphics · 2025</div>
+    <h1 class="hero-h1">Crecimiento a Través de<br><span>Segmentación</span> <em>Conductual</em></h1>
+    <p class="hero-sub">Un proyecto de 6 meses que rompió una meseta de revenue por suscripciones — al identificar que el cuello de botella no era la adquisición, sino journeys de usuario desalineadas. Segmentación conductual + flujos de re-engagement personalizados generaron un crecimiento del +20% en revenue de suscripciones sin incrementar el gasto en adquisición.</p>
+    <div class="hero-meta-simple">
+      <span class="hi">Growth &amp; Product Strategist</span>
+      <span class="sep">·</span><span>Readingraphics</span>
+      <span class="sep">·</span><span>2025</span>
+      <span class="sep">·</span><span>6-Month Advisory</span>
+    </div>
+  </div>
+</div>
+
+<div class="r-wrap">
+
+  <div class="kpi-strip" style="margin-top:40px;">
+    <div class="kpi-cell"><div class="kpi-val">+20%</div><div class="kpi-lbl">Crecimiento de Revenue por Suscripciones</div></div>
+    <div class="kpi-cell"><div class="kpi-val">3</div><div class="kpi-lbl">Segmentos Conductuales Definidos</div></div>
+    <div class="kpi-cell"><div class="kpi-val">+18%</div><div class="kpi-lbl">Conversión Trial-to-Paid</div></div>
+    <div class="kpi-cell"><div class="kpi-val">6mo</div><div class="kpi-lbl">Proyecto Advisory</div></div>
+  </div>
+
+  <!-- 00 MY SCOPE -->
+  <div class="r-section">
+    <div class="r-eyebrow">00 · Mi Scope</div>
+    <h2 class="r-title">Lo que <em>Lideré</em></h2>
+    <div class="r-cards problem" style="grid-template-columns:1fr 1fr;">
+      <div class="r-card">
+        <div class="r-card-body">Firmé NDA y recibí acceso completo a los datos conductuales en bruto — limpié, estructuré e integré los datasets de forma independiente antes de comenzar cualquier análisis</div>
+      </div>
+      <div class="r-card">
+        <div class="r-card-body">Diseñé la lógica de segmentación desde cero — definí los criterios de segmento, los inputs conductuales y el framework de análisis comparativo que identificó la señal de conversión</div>
+      </div>
+      <div class="r-card">
+        <div class="r-card-body">Implementé todos los flujos de automatización directamente en Go High Level — construí, probé e iteré sobre cada secuencia de journey y cada experimento A/B</div>
+      </div>
+      <div class="r-card">
+        <div class="r-card-body">Gestioné el roadmap completo del proyecto — reporté directamente al CEO y tomé todas las decisiones de priorización estratégica de forma independiente</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 01 CONTEXT -->
+  <div class="r-section">
+    <div class="r-eyebrow">01 · Context e Insight Estratégico</div>
+    <h2 class="r-title">El <em>Problema Correcto</em></h2>
+    <p class="r-lead">Readingraphics ofrece resúmenes de libros en tres formatos — infografía de 1 página, texto de 10–15 páginas y audio de 20 minutos — con un tier gratuito y una suscripción Unlimited Membership. El negocio tenía una adquisición sólida en la parte superior del funnel: los usuarios descargaban contenido gratuito de forma consistente. Pero el revenue había llegado a una meseta.</p>
+    <p class="r-lead">El brief inicial era optimizar y sistematizar los journeys de usuario existentes. Antes de tocar nada, hice una pregunta diferente: <strong>¿por qué los usuarios no estaban convirtiendo en primer lugar?</strong> El CEO no tenía una respuesta — y no creía que los datos fueran a revelarla. Propuse que miráramos antes de construir.</p>
+    <p class="r-lead">El análisis reveló que el cuello de botella no era ni el tráfico ni el producto — era la ausencia total de un journey de usuario diseñado en torno a la intención. Los usuarios descargaban contenido y desaparecían. El producto no tenía ningún sistema para reconocer qué querían ni para volver a conectar con ellos ofreciéndoles valor relevante. <strong>El problema correcto estaba oculto detrás del brief incorrecto.</strong></p>
+    <div class="r-quote">«El brief era optimizar los journeys de usuario. La pregunta correcta era: ¿por qué no están convirtiendo?»</div>
+  </div>
+
+  <!-- 02 THE PROBLEM -->
+  <div class="r-section">
+    <div class="r-eyebrow">02 · El Problema</div>
+    <h2 class="r-title">Qué <em>Estaba Roto</em></h2>
+    <p class="r-lead">Los usuarios de prueba gratuita no volvían y no convertían a membresía de pago — a pesar de tener un interés consistente en la parte superior del funnel. Cuatro brechas estructurales impulsaban el estancamiento:</p>
+    <div class="r-cards problem">
+      <div class="r-card">
+        <div class="r-card-tag">Sin Segmentación</div>
+        <div class="r-card-title">Todos los Usuarios Trial Tratados Igual</div>
+        <div class="r-card-body">Cada usuario que descargó un libro gratuito recibía el mismo seguimiento — independientemente de qué descargó, cuántas veces volvió o qué indicaba su comportamiento sobre su intención. <strong>Una estrategia de audiencia homogénea para una audiencia heterogénea.</strong></div>
+      </div>
+      <div class="r-card">
+        <div class="r-card-tag">Sin Mapeo de Intención</div>
+        <div class="r-card-title">Preferencia de Contenido Ignorada</div>
+        <div class="r-card-body">Los datos existían — descargas por categoría, visitas recurrentes, patrones de engagement — pero <strong>nadie había conectado las preferencias de contenido de los usuarios con la propensión a suscribirse.</strong> La señal estaba ahí. El sistema para actuar sobre ella no.</div>
+      </div>
+      <div class="r-card">
+        <div class="r-card-tag">Sin Journey Personalizado</div>
+        <div class="r-card-title">Re-engagement Genérico</div>
+        <div class="r-card-body">Las comunicaciones de seguimiento eran de tipo broadcast: mismo mensaje, mismo timing, mismo contenido para todos. <strong>Los usuarios que habían mostrado comportamiento de alta intención recibían el mismo email que los usuarios que nunca habían vuelto.</strong> Sin relevancia, sin señal de conversión.</div>
+      </div>
+      <div class="r-card">
+        <div class="r-card-tag">Sin Feedback Loop</div>
+        <div class="r-card-title">Sin Sistema de Experimentación</div>
+        <div class="r-card-body">No había ningún framework de A/B testing, ninguna medición de qué mensajes generaban visitas recurrentes y ningún mecanismo para iterar. <strong>El equipo optimizaba a ciegas</strong> — invirtiendo en adquisición mientras la brecha de conversión crecía en silencio.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 HYPOTHESIS + DATA -->
+  <div class="r-section">
+    <div class="r-eyebrow">03 · Hipótesis y Análisis de Datos</div>
+    <h2 class="r-title">Encontrar la <em>Señal en los Datos</em></h2>
+    <p class="r-lead">Integré Go High Level con Google Analytics para auditar el comportamiento de los usuarios en todas las etapas del funnel. La hipótesis central: <strong>la intención del usuario y la propensión a suscribirse varían según la categoría de contenido descargada.</strong> Si ese patrón se confirmaba en los datos, la segmentación y los journeys personalizados desbloquearían la conversión.</p>
+    <p class="r-lead">El análisis comparó las categorías de contenido descargadas por los miembros de pago frente a los usuarios trial que no regresaron. Emergió un patrón claro: <strong>los suscriptores de pago descargaban contenido de Business &amp; Self-Development primero — y volvían a esa categoría repetidamente.</strong> Los usuarios trial que descargaban fuera de esa categoría tenían tasas de retorno significativamente menores. La señal no era solo correlación — era una huella conductual que predecía la intención de suscripción.</p>
+  </div>
+
+  <!-- 04 SEGMENTATION -->
+  <div class="r-section">
+    <div class="r-eyebrow">04 · Segmentación Conductual</div>
+    <h2 class="r-title">Tres Segmentos, <em>Tres Intenciones</em></h2>
+    <p class="r-lead">Basándome en el análisis de datos, definí tres segmentos conductuales usando la primera categoría descargada, los patrones de descarga repetidos y el comportamiento histórico de los miembros de pago como inputs. Cada segmento recibió una estrategia de re-engagement distinta — no una variación del mismo mensaje, sino un journey fundamentalmente diferente.</p>
+    <div class="seg-grid">
+      <div class="seg-card high">
+        <div class="seg-label high">Segmento A · Alta Intención</div>
+        <div class="seg-name">Suscriptores de Business &amp; Self-Dev</div>
+        <div class="seg-desc">El patrón coincide con el comportamiento de los miembros de pago. <strong>Descargas repetidas de Business &amp; Self-Development</strong>, alta frecuencia de retorno, engagement con múltiples formatos. Candidato claro a la suscripción.</div>
+        <div class="seg-stat">~28%<div class="seg-stat-lbl">de usuarios trial · mayor tasa de conversión</div></div>
+      </div>
+      <div class="seg-card mid">
+        <div class="seg-label mid">Segmento B · Intención Media</div>
+        <div class="seg-name">Exploradores de Categorías</div>
+        <div class="seg-desc">Descargaron en 2–3 categorías, mostraron visitas recurrentes pero <strong>sin un patrón consistente</strong>. Aún sin anclar a un área de valor. Necesitaban nurturing hacia una categoría de alto engagement.</div>
+        <div class="seg-stat">~45%<div class="seg-stat-lbl">de usuarios trial · segmento de mayor volumen</div></div>
+      </div>
+      <div class="seg-card low">
+        <div class="seg-label low">Segmento C · Baja Intención</div>
+        <div class="seg-name">Exploradores de Una Vez</div>
+        <div class="seg-desc">Descargaron una vez, fuera de la categoría Business, <strong>no regresaron</strong>. Sin señal conductual que coincida con el perfil de miembro de pago. Requerían una propuesta de valor diferente — no un pitch de suscripción.</div>
+        <div class="seg-stat">~27%<div class="seg-stat-lbl">de usuarios trial · menor tasa de retorno</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 JOURNEY DESIGN -->
+  <div class="r-section">
+    <div class="r-eyebrow">05 · Diseño de Journey Personalizado</div>
+    <h2 class="r-title">Journeys Alineados <em>a la Intención</em></h2>
+    <p class="r-lead">Diseñé tres flujos automatizados de re-engagement distintos en Go High Level — uno por segmento. Cada flujo se activaba según el perfil conductual del usuario y entregaba contenido alineado a la categoría, tono de mensaje y CTAs calibrados a su posición en el conversion journey. Todos los flujos se sometieron a A/B testing en líneas de asunto, tono de mensaje y ubicación de CTA.</p>
+    <div class="journey-flow">
+      <div class="journey-row">
+        <div class="journey-seg high">Segment<br>A</div>
+        <div class="journey-steps">
+          <div class="journey-step"><span class="journey-step-num">Day 1</span><strong>Coincidencia de Categoría</strong>Nuevas recomendaciones de Business &amp; Self-Dev alineadas a la primera descarga</div>
+          <div class="journey-arrow">→</div>
+          <div class="journey-step"><span class="journey-step-num">Day 4</span><strong>Señal de Valor</strong>"Miembros como tú acceden a más de 1.000 resúmenes" — social proof + valor de suscripción</div>
+          <div class="journey-arrow">→</div>
+          <div class="journey-step"><span class="journey-step-num">Day 7</span><strong>CTA de Conversión</strong>Oferta de suscripción dirigida con activador de urgencia específico por categoría</div>
+          <div class="journey-arrow">→</div>
+          <div class="journey-step"><span class="journey-step-num">Day 14</span><strong>Retención</strong>Onboarding a la biblioteca premium — categoría Business destacada</div>
+        </div>
+      </div>
+      <div class="journey-row" style="margin-top:8px;">
+        <div class="journey-seg mid">Segment<br>B</div>
+        <div class="journey-steps">
+          <div class="journey-step"><span class="journey-step-num">Day 1</span><strong>Exploración</strong>Digest multi-categoría — destacar Business &amp; Self-Dev junto a sus descargas</div>
+          <div class="journey-arrow">→</div>
+          <div class="journey-step"><span class="journey-step-num">Day 5</span><strong>Anclaje</strong>Destacar la categoría de mayor engagement, reforzar valor con datos de pares</div>
+          <div class="journey-arrow">→</div>
+          <div class="journey-step"><span class="journey-step-num">Day 10</span><strong>Impulso</strong>Presentar la suscripción como expansión de acceso — no como un pitch</div>
+          <div class="journey-arrow">→</div>
+          <div class="journey-step"><span class="journey-step-num">Day 18</span><strong>Re-activar</strong>Activador conductual si está inactivo — nuevo lanzamiento en la categoría más descargada</div>
+        </div>
+      </div>
+      <div class="journey-row" style="margin-top:8px;">
+        <div class="journey-seg low">Segment<br>C</div>
+        <div class="journey-steps">
+          <div class="journey-step"><span class="journey-step-num">Day 1</span><strong>Valor Primero</strong>Sin pitch de suscripción — entregar valor inmediato destacando contenido gratuito</div>
+          <div class="journey-arrow">→</div>
+          <div class="journey-step"><span class="journey-step-num">Day 6</span><strong>Descubrimiento</strong>Presentar la categoría Business &amp; Self-Dev con un punto de entrada gratuito atractivo</div>
+          <div class="journey-arrow">→</div>
+          <div class="journey-step"><span class="journey-step-num">Day 12</span><strong>CTA Suave</strong>Contenido de blog + resumen gratuito — menor fricción, generar confianza antes del CTA de conversión</div>
+          <div class="journey-arrow">→</div>
+          <div class="journey-step"><span class="journey-step-num">Day 21</span><strong>Oferta Final</strong>Oferta de suscripción de último contacto — propuesta de valor clara, sin framing de presión</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 A/B TESTING -->
+  <div class="r-section">
+    <div class="r-eyebrow">06 · Framework de A/B Testing</div>
+    <h2 class="r-title">Experimentación <em>en Cada Paso</em></h2>
+    <p class="r-lead">Cada elemento de los flujos de re-engagement se probó de forma sistemática. Realicé A/B tests en líneas de asunto, tono de mensaje, ubicación de CTA y contenido específico por segmento — usando tasa de apertura, CTR y conversión como métricas primarias. A continuación se presentan los hallazgos clave por segmento.</p>
+    <table class="ab-table">
+      <thead><tr><th>Elemento Probado</th><th>Variante A</th><th>Variante B</th><th>Ganador</th><th>Impacto</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Línea de Asunto — Seg. A</strong></td>
+          <td>«Nuevos resúmenes para ti esta semana»</td>
+          <td>«Porque te encantó [Título] — 5 opciones que querrás leer»</td>
+          <td><span class="ab-win">✓ Variant B</span></td>
+          <td>+31% tasa de apertura</td>
+        </tr>
+        <tr>
+          <td><strong>Tono de Mensaje — Seg. A</strong></td>
+          <td>Feature-led: «Accede a más de 1.000 resúmenes»</td>
+          <td>Outcome-led: «Los insights que tus competidores ya están usando»</td>
+          <td><span class="ab-win">✓ Variant B</span></td>
+          <td>+24% CTR</td>
+        </tr>
+        <tr>
+          <td><strong>Ubicación de CTA — Todos los Segs.</strong></td>
+          <td>CTA solo al final del email</td>
+          <td>CTA inline después del primer bloque de valor + al final</td>
+          <td><span class="ab-win">✓ Variant B</span></td>
+          <td>+19% clics de conversión</td>
+        </tr>
+        <tr>
+          <td><strong>Línea de Asunto — Seg. B</strong></td>
+          <td>«Esto es lo que leen los miembros»</td>
+          <td>«Exploraste 3 categorías — esto es lo que las conecta»</td>
+          <td><span class="ab-win">✓ Variant B</span></td>
+          <td>+27% tasa de apertura</td>
+        </tr>
+        <tr>
+          <td><strong>Re-engagement — Seg. C</strong></td>
+          <td>Oferta de suscripción como mensaje principal</td>
+          <td>Resumen gratuito como gancho, suscripción como secundario</td>
+          <td><span class="ab-win">✓ Variant B</span></td>
+          <td>+41% tasa de visitas recurrentes</td>
+        </tr>
+        <tr>
+          <td><strong>Horario de Envío — Todos los Segs.</strong></td>
+          <td>Envío matutino (8–9am)</td>
+          <td>Envío al mediodía (12–1pm)</td>
+          <td><span class="ab-win">✓ Variant B</span></td>
+          <td>+14% tasa de apertura</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 07 RESULTS -->
+  <div class="r-section">
+    <div class="r-eyebrow">07 · Resultados</div>
+    <h2 class="r-title">Rompiendo la <em>Meseta de Revenue</em></h2>
+    <p class="r-lead">El sistema de segmentación conductual y journeys personalizados rompió una meseta de revenue sostenida en los 6 meses del proyecto — sin incrementar el gasto en adquisición. Los resultados se acumularon en todo el funnel — desde las visitas recurrentes hasta la conversión a suscripción y la retención — validando la hipótesis central: <strong>cuando los journeys de usuario se alinean con la intención, la conversión llega.</strong></p>
+    <div class="r-impact">
+      <div class="r-stat"><div class="r-stat-val">+20%</div><div class="r-stat-lbl">Crecimiento de revenue por suscripciones · corto plazo</div></div>
+      <div class="r-stat"><div class="r-stat-val">+18%</div><div class="r-stat-lbl">Tasa de conversión trial-to-paid</div></div>
+      <div class="r-stat"><div class="r-stat-val">+31%</div><div class="r-stat-lbl">Tasa de apertura de email · asuntos personalizados</div></div>
+      <div class="r-stat"><div class="r-stat-val">+41%</div><div class="r-stat-lbl">Tasa de visitas recurrentes · re-engagement Segmento C</div></div>
+      <div class="r-stat"><div class="r-stat-val">3</div><div class="r-stat-lbl">Segmentos conductuales · flujos de journey distintos</div></div>
+      <div class="r-stat"><div class="r-stat-val">6</div><div class="r-stat-lbl">A/B tests realizados · 6 con lifts estadísticamente significativos</div></div>
+    </div>
+
+    <div class="r-punch">
+      El título era Web Content Architect.<br>
+      <em>El trabajo era growth product management.</em>
+    </div>
+  </div>
+
+  <a href="index-es.html" class="r-inline-link">
+    Inicio del Portfolio →

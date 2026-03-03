@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Furbo AI Trust — PM Case Study</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Barlow:wght@300;400;500;600&family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --beige:  #ECE7DC;
+  --ink:    #111111;
+  --navy:   #1B2B5E;
+  --teal:   #2AADA8;
+  --coral:  #E8394A;
+  --gold:   #F5A623;
+  --white:  #FAFAF7;
+  --muted:  #7A7065;
+  --border: #C8C0B0;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--beige);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* ── LAYOUT ── */
+.wrap { max-width: 780px; margin: 0 auto; padding: 0 32px 80px; }
+
+/* ── HERO ── */
+.hero {
+  background: var(--navy);
+  padding: 56px 0 52px;
+  margin-bottom: 0;
+}
+.hero-inner { max-width: 780px; margin: 0 auto; padding: 0 32px; }
+.hero-back {
+  font-family: 'Fragment Mono', monospace; font-size: 9.5px;
+  color: rgba(250,250,247,.3); letter-spacing: .12em; text-transform: uppercase;
+  margin-bottom: 20px; display: flex; align-items: center; gap: 8px;
+}
+.hero-back::before { content: '←'; }
+.hero-tag {
+  font-family: 'Fragment Mono', monospace; font-size: 9px;
+  color: var(--teal); letter-spacing: .14em; text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.hero-h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: clamp(40px, 6vw, 60px);
+  line-height: .95; color: var(--white);
+  text-transform: uppercase; letter-spacing: -.01em;
+  margin-bottom: 16px;
+}
+.hero-h1 span { color: var(--teal); }
+.hero-h1 em { font-style: italic; font-weight: 600; color: rgba(250,250,247,.6); }
+.hero-sub {
+  font-size: 15px; font-weight: 400; color: rgba(250,250,247,.82);
+  max-width: 560px; line-height: 1.65; margin-bottom: 28px;
+}
+.hero-meta {
+  font-family: 'Fragment Mono', monospace; font-size: 10px;
+  letter-spacing: .08em; color: rgba(250,250,247,.28);
+  display: flex; flex-wrap: wrap; gap: 0;
+}
+.hero-meta .sep { margin: 0 10px; color: rgba(250,250,247,.13); }
+.hero-meta .hi  { color: var(--teal); }
+
+/* ── KPI STRIP ── */
+.kpi-strip {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border: 1.5px solid var(--border); border-radius: 3px; overflow: hidden;
+  margin: 40px 0 0;
+}
+.kpi-cell {
+  padding: 20px 18px; background: var(--white);
+  border-right: 1.5px solid var(--border); position: relative;
+}
+.kpi-cell:last-child { border-right: none; }
+.kpi-cell::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 3px; background: var(--teal);
+}
+.kpi-cell:nth-child(2)::before { background: var(--coral); }
+.kpi-cell:nth-child(3)::before { background: var(--gold); }
+.kpi-cell:nth-child(4)::before { background: var(--navy); }
+.kpi-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 28px; color: var(--ink); line-height: 1;
+}
+.kpi-lbl {
+  font-family: 'Fragment Mono', monospace; font-size: 9px;
+  color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
+  margin-top: 5px;
+}
+
+/* ── SECTION BLOCKS ── */
+.block {
+  padding: 44px 0;
+  border-bottom: 1.5px solid var(--border);
+}
+.block:last-child { border-bottom: none; }
+
+.eyebrow {
+  font-family: 'Fragment Mono', monospace; font-size: 9.5px;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--teal);
+  margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
+}
+.eyebrow::before { content: ''; width: 20px; height: 2px; background: var(--teal); display: inline-block; }
+
+.block-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 30px;
+  text-transform: uppercase; letter-spacing: -.01em;
+  line-height: 1; color: var(--ink); margin-bottom: 20px;
+}
+.block-title em { font-style: italic; font-weight: 600; color: var(--teal); }
+
+.prose {
+  font-size: 14.5px; font-weight: 400; color: #3a3530; line-height: 1.75;
+  max-width: 640px;
+}
+.prose strong { font-weight: 600; color: var(--ink); }
+.prose em { color: var(--navy); font-style: italic; }
+
+.pull-quote {
+  border-left: 3px solid var(--teal);
+  padding: 14px 20px; margin: 24px 0;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600; font-size: 19px; line-height: 1.3;
+  color: var(--navy); font-style: italic;
+  background: rgba(42,173,168,.04); border-radius: 0 3px 3px 0;
+}
+
+/* ── DECISION CARDS (4 key decisions) ── */
+.decisions {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px; margin-top: 24px;
+}
+.decision-card {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 3px; padding: 18px 20px;
+  border-top: 3px solid var(--teal);
+  position: relative;
+}
+.decision-card:nth-child(2) { border-top-color: var(--gold); }
+.decision-card:nth-child(3) { border-top-color: var(--navy); }
+.decision-card:nth-child(4) { border-top-color: var(--coral); }
+.dc-num {
+  font-family: 'Fragment Mono', monospace; font-size: 9px;
+  color: var(--muted); letter-spacing: .1em; text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.dc-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 16px; text-transform: uppercase;
+  letter-spacing: .03em; color: var(--ink); margin-bottom: 6px;
+}
+.dc-body { font-size: 12.5px; color: var(--muted); line-height: 1.55; }
+.dc-body strong { color: var(--ink); font-weight: 600; }
+
+/* ── ALERT EVIDENCE (compact 3-col) ── */
+.alert-evidence {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px; margin-top: 24px;
+}
+.ae-card {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 3px; overflow: hidden;
+}
+.ae-label {
+  font-family: 'Fragment Mono', monospace; font-size: 8.5px;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 7px 10px; border-bottom: 1px solid var(--border);
+}
+.ae-label.adapted { background: rgba(42,173,168,.07); color: var(--teal); }
+.ae-img {
+  width: 60%; display: block;
+  margin: 12px auto;
+  border-radius: 4px;
+}
+.ae-note {
+  padding: 8px 10px; font-size: 10.5px; color: var(--muted);
+  line-height: 1.45; border-top: 1px solid var(--border);
+}
+.ae-note strong { color: var(--ink); }
+
+/* ── PHONE MOCKUPS ── */
+.mockup-pair {
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px; padding: 16px 12px;
+}
+.mockup-side { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; }
+.mockup-tag {
+  font-family: 'Fragment Mono', monospace; font-size: 8px;
+  text-transform: uppercase; letter-spacing: .08em;
+  padding: 2px 7px; border-radius: 2px;
+}
+.mockup-tag.bad  { background: rgba(232,57,74,.1); color: var(--coral); }
+.mockup-tag.good { background: rgba(42,173,168,.1); color: var(--teal); }
+.mockup-arrow { font-size: 18px; color: var(--muted); flex-shrink: 0; margin-top: 20px; }
+.phone-shell {
+  width: 130px; background: #1a1a1a; border-radius: 18px;
+  padding: 8px 6px; box-shadow: 0 4px 16px rgba(0,0,0,.2);
+  border: 2px solid #333;
+}
+.phone-shell.good-phone { border-color: var(--teal); box-shadow: 0 4px 16px rgba(42,173,168,.2); }
+.phone-notch {
+  width: 40px; height: 6px; background: #1a1a1a;
+  border-radius: 3px; margin: 0 auto 6px; background: #333;
+}
+.phone-screen {
+  background: #f5f5f5; border-radius: 12px;
+  padding: 8px; min-height: 120px;
+}
+.notif-bar {
+  display: flex; align-items: center; gap: 4px;
+  margin-bottom: 5px;
+}
+.notif-app-icon { font-size: 10px; }
+.notif-app-name { font-size: 8px; font-weight: 700; color: #333; flex: 1; }
+.notif-time { font-size: 7px; color: #999; }
+.notif-title { font-size: 9px; font-weight: 700; color: #111; line-height: 1.3; margin-bottom: 3px; }
+.notif-body { font-size: 8px; color: #555; line-height: 1.4; margin-bottom: 6px; }
+.notif-action {
+  font-size: 8px; font-weight: 600; text-align: center;
+  padding: 4px 8px; border-radius: 6px;
+}
+.bad-action  { background: #e0e0e0; color: #666; }
+.good-action { background: var(--teal); color: white; }
+
+/* ── PROBLEM SECTION HIGHLIGHT ── */
+.problem-block {
+  background: var(--ink); border-radius: 3px;
+  padding: 32px 36px; margin: 0 -4px;
+  border-left: 4px solid var(--coral);
+}
+.problem-block .eyebrow { color: var(--coral); }
+.problem-block .eyebrow::before { background: var(--coral); }
+.problem-block .block-title { color: var(--white); }
+.problem-block .block-title em { color: var(--coral); }
+.problem-block .prose { color: rgba(250,250,247,.82); }
+.problem-block .prose strong { color: var(--white); }
+.problem-block .pull-quote {
+  border-left-color: var(--coral);
+  color: rgba(250,250,247,.75);
+  background: rgba(255,255,255,.04);
+}
+
+/* ── IMPACT GRID ── */
+.impact-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 10px; margin-top: 24px;
+}
+.impact-card {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 3px; padding: 16px 14px;
+}
+.impact-card:nth-child(1) { border-top: 3px solid var(--teal); }
+.impact-card:nth-child(2) { border-top: 3px solid var(--gold); }
+.impact-card:nth-child(3) { border-top: 3px solid var(--navy); }
+.impact-card:nth-child(4) { border-top: 3px solid var(--coral); }
+.impact-card:nth-child(5) { border-top: 3px solid var(--teal); }
+.impact-card:nth-child(6) { border-top: 3px solid var(--gold); }
+.ic-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 30px; line-height: 1; color: var(--ink);
+}
+.ic-lbl {
+  font-family: 'Fragment Mono', monospace; font-size: 9px;
+  color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
+  margin-top: 4px; line-height: 1.4;
+}
+
+/* ── FULL STUDY LINK ── */
+.r-punch { margin-top:36px; padding:24px 28px; background:var(--navy); border-radius:3px; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:18px; line-height:1.4; color:var(--white); letter-spacing:.01em; }
+.r-punch em { color:var(--teal); font-style:italic; }
+.full-link-block {
+  margin-top: 48px; padding: 28px 32px;
+  background: var(--navy); border-radius: 3px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px;
+}
+.fl-text {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 20px; text-transform: uppercase;
+  letter-spacing: .03em; color: var(--white); line-height: 1.2;
+}
+.fl-sub {
+  font-size: 12px; font-weight: 400; color: rgba(250,250,247,.65);
+  margin-top: 4px; font-family: 'Barlow', sans-serif;
+}
+.fl-btn {
+  background: var(--teal); color: var(--white);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 13px; text-transform: uppercase;
+  letter-spacing: .08em; padding: 12px 24px; border-radius: 2px;
+  text-decoration: none; white-space: nowrap; flex-shrink: 0;
+  transition: background .2s;
+}
+.fl-btn:hover { background: #229e99; }
+
+@media(max-width: 680px) {
+  .kpi-strip { grid-template-columns: 1fr 1fr; }
+  .decisions { grid-template-columns: 1fr; }
+  .alert-evidence { grid-template-columns: 1fr; }
+  .impact-grid { grid-template-columns: 1fr 1fr; }
+  .full-link-block { flex-direction: column; }
+}
+
+/* ── TOP NAVBAR ── */
+.topnav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--beige);
+  border-bottom: 1.5px solid var(--border);
+}
+.topnav-accent {
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal), var(--coral), var(--gold));
+}
+.topnav-inner {
+  max-width: 780px; margin: 0 auto; padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 48px;
+}
+.topnav-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 18px;
+  text-transform: uppercase; letter-spacing: .04em;
+  color: var(--ink); text-decoration: none;
+  transition: color .18s;
+}
+.topnav-logo:hover { color: var(--teal); }
+.topnav-links {
+  display: flex; gap: 4px; align-items: center;
+}
+.topnav-link {
+  font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 500;
+  color: var(--muted); text-decoration: none;
+  padding: 5px 10px; border-radius: 2px;
+  transition: all .18s; letter-spacing: .01em;
+}
+.topnav-link:hover { color: var(--ink); background: rgba(0,0,0,.04); }
+.topnav-link.active { color: var(--ink); font-weight: 600; }
+.topnav-contact {
+  font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 600;
+  color: var(--teal); text-decoration: none;
+  border: 1.5px solid rgba(42,173,168,.45);
+  padding: 5px 14px; border-radius: 2px; margin-left: 8px;
+  transition: all .18s; letter-spacing: .01em;
+}
+.topnav-contact:hover {
+  background: var(--teal); color: var(--white);
+  border-color: var(--teal);
+}
+@media(max-width: 600px) {
+  .topnav-links { gap: 2px; }
+  .topnav-link { font-size: 11px; padding: 4px 7px; }
+  .topnav-contact { padding: 4px 10px; margin-left: 4px; }
+}
+
+/* ── PHONE MOCKUPS FROM WEB VERSION ── */
+/* ── MOCKUPS ── */
+.mockup-legend {
+  display: flex; gap: 20px; flex-wrap: wrap;
+  padding: 12px 16px; background: var(--white);
+  border: 1.5px solid var(--border); border-radius: 3px;
+  margin-bottom: 28px; font-size: 12.5px;}
+.ml-item { display: flex; align-items: center; gap: 7px;}
+.ml-swatch { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0;}
+.alert-group { margin-bottom: 48px;}
+.phone-col-lbl {
+  text-align: center; font-family: 'Fragment Mono', monospace;
+  font-size: 9.5px; text-transform: uppercase; letter-spacing: .1em;
+  margin-bottom: 8px; padding: 4px 0; border-radius: 2px;}
+.phone {
+  background: #1c1c1e; border-radius: 22px; padding: 8px;
+  box-shadow: 0 8px 28px rgba(0,0,0,.18);
+  max-width: 210px; margin: 0 auto;}
+.phone-screen { background: #f2f2f7; border-radius: 15px; overflow: hidden; min-height: 0;}
+.evidence-card.phone-card img {
+  width: 55%; display: block; margin: 12px auto;
+  border-radius: 4px;}
+
+/* ── 3x3 MOCKUP STYLES ── */
+.ag-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 16px; text-transform: uppercase;
+  letter-spacing: .05em; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 7px;
+}
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media(max-width:900px){ .three-col { grid-template-columns: 1fr; } }
+.phone-col-lbl {
+  text-align: center; font-family: 'Fragment Mono', monospace;
+  font-size: 9.5px; text-transform: uppercase; letter-spacing: .1em;
+  margin-bottom: 8px; padding: 4px 0; border-radius: 2px;
+}
+.lbl-real    { background: rgba(42,173,168,.1);  color: var(--teal); }
+.lbl-literal { background: rgba(232,57,74,.09);  color: var(--coral); }
+.lbl-adapted { background: rgba(245,166,35,.12); color: #8a5800; }
+.phone {
+  background: #1c1c1e; border-radius: 22px; padding: 8px;
+  box-shadow: 0 8px 28px rgba(0,0,0,.18);
+  max-width: 210px; margin: 0 auto;
+}
+.phone-screen { background: #f2f2f7; border-radius: 15px; overflow: hidden; min-height: 0; }
+.p-header { padding: 8px 11px 7px; }
+.p-header.h-routine   { background: var(--navy); }
+.p-header.h-sensitive { background: #3a3020; }
+.p-header.h-health    { background: #4a1010; }
+.p-appname { font-family: 'Fragment Mono', monospace; font-size: 8px; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.5); }
+.p-time    { font-size: 8.5px; color: rgba(255,255,255,.35); float: right; margin-top: -10px; }
+.p-notif {
+  margin: 7px; background: white; border-radius: 9px;
+  padding: 9px 10px; box-shadow: 0 1px 5px rgba(0,0,0,.06);
+}
+.p-notif.lit { border: 1.5px dashed rgba(232,57,74,.4); background: #fff9f9; }
+.p-notif.adp { border: 1.5px solid var(--gold); background: #fffdf5; }
+.p-badge {
+  display: inline-block; font-family: 'Fragment Mono', monospace; font-size: 8px;
+  padding: 1px 5px; border-radius: 2px; margin-bottom: 6px;
+  text-transform: uppercase; letter-spacing: .04em;
+}
+.pb-real    { background: rgba(42,173,168,.12); color: var(--teal); }
+.pb-literal { background: rgba(232,57,74,.1);   color: var(--coral); }
+.pb-adapted { background: rgba(245,166,35,.15); color: #8a5800; }
+.p-row { display: flex; align-items: center; gap: 6px; margin-bottom: 7px; }
+.p-ico { width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0; }
+.ico-routine   { background: rgba(42,173,168,.15); }
+.ico-sensitive { background: rgba(245,166,35,.15); }
+.ico-health    { background: rgba(232,57,74,.12); }
+.p-from { font-weight: 600; font-size: 10px; color: var(--ink); }
+.p-when { font-size: 8.5px; color: var(--muted); }
+.p-body { font-size: 10.5px; color: var(--ink); line-height: 1.45; margin-bottom: 8px; }
+.p-actions { display: flex; gap: 5px; }
+.p-btn { flex: 1; text-align: center; border-radius: 5px; padding: 4px 6px; font-size: 9.5px; font-weight: 600; cursor: default; }
+.btn-main   { background: var(--navy);  color: white; }
+.btn-sec    { background: #f0f0f5;      color: var(--ink); }
+.btn-urgent { background: var(--coral); color: white; }
+.btn-gold   { background: var(--gold);  color: var(--ink); }
+</style>
+</head>
+<body>
+<!-- NAVBAR -->
+<nav class="topnav">
+  <div class="topnav-accent"></div>
+  <div class="topnav-inner">
+    <a href="index.html" class="topnav-logo">AQ</a>
+    <div class="topnav-links">
+      <a href="furbo-recruiter.html" class="topnav-link active">Furbo Case Study</a>
+      <a href="readingraphics-casestudy.html" class="topnav-link">Readingraphics</a>
+      <a href="gobernacion-casestudy.html" class="topnav-link">Gobernación</a>
+      <a href="/cdn-cgi/l/email-protection#f49598919e959a90869585819d9a8091869bb49399959d98da979b99" class="topnav-contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <a href="index.html" class="hero-back" style="text-decoration:none;">Portfolio Home</a>
+    <div class="hero-tag">Case Study 01 · Furbo · 2017–2024</div>
+    <h1 class="hero-h1">Furbo <span>AI Trust</span><br><em>Architecture</em></h1>
+    <p class="hero-sub">How I identified that the app — not the hardware — was the real revenue driver, and built the system that made 1M+ Spanish-speaking users trust it enough to pay for it.</p>
+    <div class="hero-meta">
+      <span class="hi">Product Strategy &amp; Content Strategist</span>
+      <span class="sep">·</span><span>Furbo / Tomofun</span>
+      <span class="sep">·</span><span>2017–2024</span>
+      <span class="sep">·</span><span>Iberoamérica</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- KPIs -->
+  <div class="kpi-strip">
+    <div class="kpi-cell"><div class="kpi-val">1M+</div><div class="kpi-lbl">Global Users</div></div>
+    <div class="kpi-cell"><div class="kpi-val">2.3B+</div><div class="kpi-lbl">AI Alerts Delivered</div></div>
+    <div class="kpi-cell"><div class="kpi-val">~30%</div><div class="kpi-lbl">Revenue from Subscriptions</div></div>
+    <div class="kpi-cell"><div class="kpi-val">#1</div><div class="kpi-lbl">Amazon Category 2018–2024</div></div>
+  </div>
+
+  <!-- 00 · SCOPE & AUTHORITY -->
+  <div class="block">
+    <div class="eyebrow">00 · Scope &amp; Authority</div>
+    <h2 class="block-title">What I <em>Owned</em></h2>
+    <div class="decisions" style="grid-template-columns: 1fr 1fr;">
+      <div class="decision-card">
+        <div class="dc-body">Owned end-to-end localization strategy for Iberoamérica — from brief to live alerts across all product lines</div>
+      </div>
+      <div class="decision-card">
+        <div class="dc-body">Defined quality standards and governance model for AI-generated alerts — including thresholds, tier classification, and release criteria</div>
+      </div>
+      <div class="decision-card">
+        <div class="dc-body">Led cross-functional execution across engineering, marketing, and CX — with authority to approve or block releases</div>
+      </div>
+      <div class="decision-card">
+        <div class="dc-body">Reported to VP Product; collaborated directly with regional GMs across Mexico, Argentina, Colombia, Chile, and Spain</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 01 · CONTEXT -->
+  <div class="block">
+    <div class="eyebrow">01 · Context</div>
+    <h2 class="block-title">Hardware + <em>Subscription</em></h2>
+    <p class="prose">
+      Furbo Dog Camera sells a pet monitoring device with a free 1-month subscription trial. After that, renewal is optional — and entirely dependent on whether the app feels worth paying for. I joined in 2017 to own brand strategy, app UX, and AI alert integration for Iberoamérica. I identified early that <strong>the hardware drove acquisition, but the app drove revenue</strong>. Every cold or mistranslated alert was a direct threat to LTV. That insight defined 7 years of product decisions.
+    </p>
+  </div>
+
+  <!-- 02 · PROBLEM -->
+  <div class="block problem-block">
+    <div class="eyebrow">02 · The Problem</div>
+    <h2 class="block-title">A Revenue Risk <em>Disguised as a Translation Problem</em></h2>
+    <p class="prose">
+      <strong>I identified early that Furbo's recurring revenue depended entirely on one decision: whether the user who got a free month with the camera chose to renew their Furbo Dog Nanny subscription.</strong> Expansion into Spanish-speaking markets exposed a structural gap: AI-generated alerts were machine-translated — producing cold, tonally flat messaging with no cultural resonance. The product had no communication system designed for the emotional context of pet ownership in Iberoamérica. <strong>Every notification was a moment of truth for the subscription model. And most were failing.</strong>
+    </p>
+    <div class="pull-quote">"Every notification was a moment of truth for the business model. The alert had to feel worth paying for — in Spanish, in the right tone, every single day."</div>
+  </div>
+
+  <!-- 03 · WHAT I DID -->
+  <div class="block">
+    <div class="eyebrow">03 · What I Did</div>
+    <h2 class="block-title">Four Decisions That <em>Changed Everything</em></h2>
+    <p class="prose">I designed and owned a trust architecture — a system governing how every alert was classified, validated, and delivered. Four decisions defined it:</p>
+    <div class="decisions">
+      <div class="decision-card">
+        <div class="dc-num">Decision 01 · Problem Framing</div>
+        <div class="dc-title">The App Was the Product</div>
+        <div class="dc-body">The hardware drove acquisition. The subscription drove revenue. I reframed the entire Iberoamérica strategy around that insight — every alert, every localization decision, every quality gate existed to protect one thing: <strong>the moment a user decided whether the app was worth paying for.</strong></div>
+      </div>
+      <div class="decision-card">
+        <div class="dc-num">Decision 02 · System Design</div>
+        <div class="dc-title">Trust Architecture Over Case-by-Case</div>
+        <div class="dc-body">Instead of reviewing alerts reactively, I designed a classification system: four tiers (Routine / Sensitive / Health / New Features) each with defined approval workflows, ownership, and a 90%+ perceived clarity threshold. <strong>Scalable from day one. No alert shipped below the gate.</strong></div>
+      </div>
+      <div class="decision-card">
+        <div class="dc-num">Decision 03 · Governance</div>
+        <div class="dc-title">Authority to Block</div>
+        <div class="dc-body">I held and exercised veto power over regional launches. When a 2019 Dog Nanny alert tested at 82% clarity — below threshold — I blocked the global rollout over marketing and engineering pressure. Two weeks of iteration. 93% on retest. <strong>Zero regional rollback.</strong></div>
+      </div>
+      <div class="decision-card">
+        <div class="dc-num">Decision 04 · Trade-off</div>
+        <div class="dc-title">LTV Over Activation</div>
+        <div class="dc-body">Every pressure in a hardware+subscription model points toward speed: ship fast, activate users, hit the campaign date. I consistently made the opposite call — protecting long-term subscription trust over short-term activation metrics. <strong>The 4.7★ rating sustained across 7 years is the compounded result.</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 · REAL ALERTS -->
+  <div class="block">
+    <div class="eyebrow">04 · Real Alerts</div>
+    <h2 class="block-title">Real Alerts, <em>Real Decisions</em></h2>
+    <p class="prose" style="margin-bottom:24px;">Three alert tiers — each shown as the original English, the literal machine translation (the problem), and the regionally adapted version (the result). Every column is a product decision.</p>
+
+    <div class="mockup-legend">
+      <div class="ml-item"><span class="ml-swatch" style="background:var(--teal);"></span><strong>Official EN</strong> — Furbo's documented English</div>
+      <div class="ml-item"><span class="ml-swatch" style="background:var(--coral);"></span><strong>Literal ES</strong> — Machine translation (the problem)</div>
+      <div class="ml-item"><span class="ml-swatch" style="background:var(--gold);"></span><strong>Adapted ES</strong> — Trust architecture result</div>
+    </div>
+
+    <!-- ROUTINE -->
+    <div class="alert-group">
+      <div class="ag-title">🟢 Routine — Barking Alert</div>
+      <div class="three-col">
+        <div>
+          <div class="phone-col-lbl lbl-real">✅ Official English</div>
+          <div class="phone"><div class="phone-screen">
+            <div class="p-header h-routine"><div class="p-appname">Furbo</div><div class="p-time">2:14 PM</div></div>
+            <div class="p-notif" style="margin-top:9px;">
+              <div class="p-badge pb-real">Real · Barking</div>
+              <div class="p-row"><div class="p-ico ico-routine">🐕</div><div><div class="p-from">Furbo Dog Camera</div><div class="p-when">Now · Home</div></div></div>
+              <div class="p-body">Max is barking. Furbo detects when your dog is barking — tap to check in on him now.</div>
+              <div class="p-actions"><div class="p-btn btn-main">View Cam</div><div class="p-btn btn-sec">Toss Treat</div></div>
+            </div>
+          </div></div>
+        </div>
+        <div>
+          <div class="phone-col-lbl lbl-literal">❌ Literal ES (Before)</div>
+          <div class="phone"><div class="phone-screen">
+            <div class="p-header h-routine"><div class="p-appname">Furbo</div><div class="p-time">2:14 PM</div></div>
+            <div class="p-notif lit" style="margin-top:9px;">
+              <div class="p-badge pb-literal">Literal · Alerta</div>
+              <div class="p-row"><div class="p-ico ico-routine">🐕</div><div><div class="p-from">Cámara Furbo</div><div class="p-when">Ahora · Casa</div></div></div>
+              <div class="p-body">Max está ladrando. Furbo detecta cuando su perro está ladrando — pulse para verificar.</div>
+              <div class="p-actions"><div class="p-btn btn-main">Ver cámara</div><div class="p-btn btn-sec">Lanzar golosina</div></div>
+            </div>
+          </div></div>
+        </div>
+        <div>
+          <div class="phone-col-lbl lbl-adapted">✨ Adapted ES (After)</div>
+          <div class="phone"><div class="phone-screen">
+            <div class="p-header h-routine"><div class="p-appname">Furbo</div><div class="p-time">2:14 PM</div></div>
+            <div class="p-notif adp" style="margin-top:9px;">
+              <div class="p-badge pb-adapted">Adaptada · Ladrido</div>
+              <div class="p-row"><div class="p-ico ico-routine">🐕</div><div><div class="p-from">Cámara Furbo</div><div class="p-when">Ahora · Casa</div></div></div>
+              <div class="p-body">¡Max está ladrando! Furbo te avisa para que puedas comprobarlo enseguida y calmarlo. 🐾</div>
+              <div class="p-actions"><div class="p-btn btn-main">Ver cámara</div><div class="p-btn btn-sec">Lanzar premio</div></div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="ae-note"><strong>Routine tier.</strong> "Lanzar <strong>premio</strong>" vs "Lanzar golosina" — positive reinforcement framing in the user's emotional register. Uses <em>tú</em> throughout, signaling closeness from first alert.</div>
+    </div>
+
+    <!-- SENSITIVE -->
+    <div class="alert-group">
+      <div class="ag-title">🟡 Sensitive — Crying / Abnormal Behavior</div>
+      <div class="three-col">
+        <div>
+          <div class="phone-col-lbl lbl-real">✅ Official English</div>
+          <div class="phone"><div class="phone-screen">
+            <div class="p-header h-sensitive"><div class="p-appname">Furbo</div><div class="p-time">4:18 PM</div></div>
+            <div class="p-notif" style="margin-top:9px;">
+              <div class="p-badge pb-real">Real · Abnormal</div>
+              <div class="p-row"><div class="p-ico ico-sensitive">😢</div><div><div class="p-from">Furbo Dog Nanny</div><div class="p-when">4:18 PM · Home</div></div></div>
+              <div class="p-body">Luna is crying or whining. Furbo detected this as an abnormal behavior — she may need your attention.</div>
+              <div class="p-actions"><div class="p-btn btn-main">Check In</div><div class="p-btn btn-sec">Toss Treat</div></div>
+            </div>
+          </div></div>
+        </div>
+        <div>
+          <div class="phone-col-lbl lbl-literal">❌ Literal ES (Before)</div>
+          <div class="phone"><div class="phone-screen">
+            <div class="p-header h-sensitive"><div class="p-appname">Furbo</div><div class="p-time">4:18 PM</div></div>
+            <div class="p-notif lit" style="margin-top:9px;">
+              <div class="p-badge pb-literal">Literal · Comportamiento</div>
+              <div class="p-row"><div class="p-ico ico-sensitive">😢</div><div><div class="p-from">Furbo Dog Nanny</div><div class="p-when">4:18 PM · Casa</div></div></div>
+              <div class="p-body">Luna está llorando o gimiendo. Furbo detectó esto como un comportamiento anormal — puede necesitar su atención.</div>
+              <div class="p-actions"><div class="p-btn btn-main">Verificar</div><div class="p-btn btn-sec">Lanzar golosina</div></div>
+            </div>
+          </div></div>
+        </div>
+        <div>
+          <div class="phone-col-lbl lbl-adapted">✨ Adapted ES (After)</div>
+          <div class="phone"><div class="phone-screen">
+            <div class="p-header h-sensitive"><div class="p-appname">Furbo</div><div class="p-time">4:18 PM</div></div>
+            <div class="p-notif adp" style="margin-top:9px;">
+              <div class="p-badge pb-adapted">Adaptada · Comportamiento</div>
+              <div class="p-row"><div class="p-ico ico-sensitive">😢</div><div><div class="p-from">Furbo Dog Nanny</div><div class="p-when">4:18 PM · Casa</div></div></div>
+              <div class="p-body">Luna está llorando o quejándose. Puede que te necesite — asómate para ver cómo está. 🧡</div>
+              <div class="p-actions"><div class="p-btn btn-gold">Asómate ahora</div><div class="p-btn btn-sec">Lanzar golosina</div></div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="ae-note"><strong>Sensitive tier.</strong> "Luna está llorando o quejándose" — affective copy vs. clinical label. Emotional warmth matched to the user's attachment, not just a feature description. "Asómate" vs "Verificar" — intimate register vs. cold bureaucratic verb.</div>
+    </div>
+
+    <!-- HEALTH/EMERGENCY -->
+    <div class="alert-group" style="margin-bottom:0;">
+      <div class="ag-title">🔴 Health / Emergency — Home Emergency Alert</div>
+      <div class="three-col">
+        <div>
+          <div class="phone-col-lbl lbl-real">✅ Official English</div>
+          <div class="phone"><div class="phone-screen">
+            <div class="p-header h-health"><div class="p-appname">Furbo</div><div class="p-time">11:03 AM</div></div>
+            <div class="p-notif" style="margin-top:9px; border:1.5px solid rgba(232,57,74,.3);">
+              <div class="p-badge pb-real">Real · Emergency</div>
+              <div class="p-row"><div class="p-ico ico-health">🚨</div><div><div class="p-from">Furbo Dog Nanny</div><div class="p-when">11:03 AM · Urgent</div></div></div>
+              <div class="p-body">Home Emergency Alert. Furbo detected the sound of an alarm at home. Please check on Rocky immediately.</div>
+              <div class="p-actions"><div class="p-btn btn-urgent">View Now</div><div class="p-btn btn-sec">Call Help</div></div>
+            </div>
+          </div></div>
+        </div>
+        <div>
+          <div class="phone-col-lbl lbl-literal">❌ Literal ES (Before)</div>
+          <div class="phone"><div class="phone-screen">
+            <div class="p-header h-health"><div class="p-appname">Furbo</div><div class="p-time">11:03 AM</div></div>
+            <div class="p-notif lit" style="margin-top:9px; border-color:rgba(232,57,74,.35);">
+              <div class="p-badge pb-literal">Literal · Emergencia</div>
+              <div class="p-row"><div class="p-ico ico-health">🚨</div><div><div class="p-from">Furbo Dog Nanny</div><div class="p-when">11:03 AM · Urgente</div></div></div>
+              <div class="p-body">Alerta de emergencia en el hogar. Furbo detectó el sonido de una alarma en casa. Por favor verifique a Rocky inmediatamente.</div>
+              <div class="p-actions"><div class="p-btn btn-urgent">Ver ahora</div><div class="p-btn btn-sec">Llamar ayuda</div></div>
+            </div>
+          </div></div>
+        </div>
+        <div>
+          <div class="phone-col-lbl lbl-adapted">✨ Adapted ES (After)</div>
+          <div class="phone"><div class="phone-screen">
+            <div class="p-header h-health"><div class="p-appname">Furbo</div><div class="p-time">11:03 AM</div></div>
+            <div class="p-notif adp" style="margin-top:9px; border-color:var(--coral);">
+              <div class="p-badge pb-adapted">Adaptada · Emergencia</div>
+              <div class="p-row"><div class="p-ico ico-health">🚨</div><div><div class="p-from">Furbo Dog Nanny</div><div class="p-when">11:03 AM · Urgente</div></div></div>
+              <div class="p-body">⚠️ Alerta de emergencia en casa. Furbo detectó el sonido de una alarma. Revisa a Rocky ahora — llama a emergencias si es necesario.</div>
+              <div class="p-actions"><div class="p-btn btn-urgent">Ver ahora</div><div class="p-btn btn-sec">Llamar ayuda</div></div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="ae-note"><strong>Health / Emergency tier.</strong> Urgent without alarming — calibrated tone for a high-stakes moment. The literal translation ("Por favor verifique a Rocky inmediatamente") adds friction when the user needs instant clarity. The adapted version removes formality and delivers urgency cleanly.</div>
+    </div>
+
+  </div>
+
+
+  <!-- 05 · IMPACT -->
+  <div class="block">
+    <div class="eyebrow">05 · Impact</div>
+    <h2 class="block-title">Results at <em>Scale</em></h2>
+    <p class="prose">Over 7 years, the trust architecture compounded into measurable business outcomes.</p>
+    <div class="impact-grid">
+      <div class="impact-card">
+        <div class="ic-val">+35%</div>
+        <div class="ic-lbl">Notification open rate post-adaptation (vs. baseline Q1 2018)</div>
+      </div>
+      <div class="impact-card">
+        <div class="ic-val">4.7★</div>
+        <div class="ic-lbl">App store rating sustained 2018–2024 (20k+ reviews)</div>
+      </div>
+      <div class="impact-card">
+        <div class="ic-val">32k+</div>
+        <div class="ic-lbl">Emergency interventions documented</div>
+      </div>
+      <div class="impact-card">
+        <div class="ic-val">~30%</div>
+        <div class="ic-lbl">Total revenue from subscription tier</div>
+      </div>
+      <div class="impact-card">
+        <div class="ic-val">90%+</div>
+        <div class="ic-lbl">Perceived clarity threshold maintained</div>
+      </div>
+      <div class="impact-card">
+        <div class="ic-val">7yr</div>
+        <div class="ic-lbl">Unbroken ownership through 5 hardware generations</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="r-punch">
+    The title was Senior Product &amp; Content Strategist.<br>
+    <em>The work was product management.</em>
+  </div>
+
+  <!-- FULL CASE STUDY LINK -->
+  <div class="full-link-block">
+    <div>
+      <div class="fl-text">The full case study goes deeper —<br>system design, governance model, alert evolution.</div>
+      <div class="fl-sub">Includes AI governance workflow, beta feedback loop, trade-off analysis, real notification evidence, and infographic.</div>
+    </div>
+    <a href="furbo-casestudy.html" class="fl-btn">Read Full Cas
