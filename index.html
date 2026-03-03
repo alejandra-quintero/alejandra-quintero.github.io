@@ -426,8 +426,10 @@ hr.divider {
 /* ── UNIFIED DARK NAV ── */
 .darknav {
   position: sticky; top: 0; z-index: 100;
-  background: #0e1117;
+  background: #0e1117 !important;
   border-bottom: 1px solid rgba(255,255,255,.08);
+  border-top: 3px solid transparent;
+  border-image: linear-gradient(90deg, var(--teal), var(--coral), var(--gold)) 1;
   height: 52px;
   display: flex; align-items: center;
 }
