@@ -765,54 +765,21 @@ h2.block-title em { font-style: italic; color: var(--teal); font-weight: 600; }
 }
 
 
-.topnav {
-  position: sticky; top: 0; z-index: 100;
-  background: var(--beige);
-  border-bottom: 1.5px solid var(--border);
-}
-.topnav-accent {
-  height: 3px;
-  background: linear-gradient(90deg, var(--teal), var(--coral), var(--gold));
-}
-.topnav-inner {
-  max-width: 780px; margin: 0 auto; padding: 0 32px;
-  display: flex; align-items: center; justify-content: space-between;
-  height: 48px;
-}
-.topnav-logo {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 800; font-size: 18px;
-  text-transform: uppercase; letter-spacing: .04em;
-  color: var(--ink); text-decoration: none;
-  transition: color .18s;
-}
-.topnav-logo:hover { color: var(--teal); }
-.topnav-links {
-  display: flex; gap: 4px; align-items: center;
-}
-.topnav-link {
-  font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 500;
-  color: var(--muted); text-decoration: none;
-  padding: 5px 10px; border-radius: 2px;
-  transition: all .18s; letter-spacing: .01em;
-}
-.topnav-link:hover { color: var(--ink); background: rgba(0,0,0,.04); }
-.topnav-link.active { color: var(--ink); font-weight: 600; }
-.topnav-contact {
-  font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 600;
-  color: var(--teal); text-decoration: none;
-  border: 1.5px solid rgba(42,173,168,.45);
-  padding: 5px 14px; border-radius: 2px; margin-left: 8px;
-  transition: all .18s; letter-spacing: .01em;
-}
-.topnav-contact:hover {
-  background: var(--teal); color: var(--white);
-  border-color: var(--teal);
-}
+
+
+
+
+
+
+
+
+
+
+
 @media(max-width: 600px) {
-  .topnav-links { gap: 2px; }
-  .topnav-link { font-size: 11px; padding: 4px 7px; }
-  .topnav-contact { padding: 4px 10px; margin-left: 4px; }
+  
+  
+  
 }
 
 </style>
@@ -915,23 +882,140 @@ body { background: var(--beige); }
   .journey-row { grid-template-columns:1fr; }
   .r-wrap { padding:0 20px 60px; }
 }
+
+
+
+
+
+
+@media(max-width:600px) {
+  
+}
+
+/* ── CASE NAVIGATION BAR ── */
+.case-nav-bar {
+  background: var(--navy);
+  margin-top: 64px;
+  padding: 28px 0;
+}
+.case-nav-inner {
+  max-width: 780px; margin: 0 auto; padding: 0 32px;
+  display: flex; flex-direction: column; gap: 20px;
+}
+.case-nav-top {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px;
+}
+.case-nav-home {
+  font-family: 'Fragment Mono', monospace; font-size: 11px;
+  text-transform: uppercase; letter-spacing: .08em;
+  color: rgba(250,250,247,.5); text-decoration: none;
+  transition: color .18s;
+}
+.case-nav-home:hover { color: var(--teal); }
+.case-nav-pills {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.case-nav-pill {
+  font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 500;
+  color: rgba(250,250,247,.55); text-decoration: none;
+  border: 1px solid rgba(250,250,247,.15); border-radius: 2px;
+  padding: 5px 12px; transition: all .18s;
+  display: flex; align-items: center; gap: 6px;
+}
+.case-nav-pill:hover { color: var(--white); border-color: rgba(250,250,247,.4); }
+.case-nav-num {
+  font-family: 'Fragment Mono', monospace; font-size: 9px;
+  color: var(--teal); letter-spacing: .05em;
+}
+.case-nav-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid rgba(250,250,247,.1); padding-top: 18px;
+}
+.case-nav-arrow {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 14px;
+  font-weight: 600; text-transform: uppercase; letter-spacing: .05em;
+  color: rgba(250,250,247,.7); text-decoration: none;
+  transition: color .18s;
+}
+.case-nav-arrow:hover { color: var(--teal); }
+@media(max-width:600px) {
+  .case-nav-top { flex-direction: column; align-items: flex-start; }
+  .case-nav-bottom { flex-direction: column; gap: 12px; align-items: flex-start; }
+}
+/* ── UNIFIED DARK NAV ── */
+.darknav {
+  position: sticky; top: 0; z-index: 100;
+  background: #0e1117;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  height: 52px;
+  display: flex; align-items: center;
+}
+.darknav-inner {
+  max-width: 960px; margin: 0 auto; padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%;
+}
+.darknav-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 20px; text-transform: uppercase;
+  color: #fff; text-decoration: none; letter-spacing: .04em;
+  transition: color .18s;
+}
+.darknav-logo:hover { color: var(--teal); }
+.darknav-cases {
+  display: flex; align-items: center; gap: 2px;
+}
+.darknav-case {
+  font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: .08em;
+  color: rgba(255,255,255,.45); text-decoration: none;
+  padding: 6px 14px; border-radius: 2px;
+  transition: all .18s;
+}
+.darknav-case:hover { color: #fff; background: rgba(255,255,255,.07); }
+.darknav-case.active { color: var(--teal); }
+.darknav-right {
+  display: flex; align-items: center; gap: 12px;
+}
+.darknav-lang {
+  font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 500;
+  color: rgba(255,255,255,.35); text-decoration: none;
+  letter-spacing: .06em;
+  transition: color .18s;
+}
+.darknav-lang:hover, .darknav-lang.active { color: rgba(255,255,255,.8); }
+.darknav-lang-sep { color: rgba(255,255,255,.2); font-size: 11px; }
+.darknav-contact {
+  font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 600;
+  color: var(--teal); text-decoration: none;
+  border: 1.5px solid rgba(42,173,168,.5);
+  padding: 5px 14px; border-radius: 2px;
+  transition: all .18s; letter-spacing: .04em; text-transform: uppercase;
+}
+.darknav-contact:hover { background: var(--teal); color: #fff; border-color: var(--teal); }
+@media(max-width:640px) {
+  .darknav-case { font-size: 10px; padding: 5px 8px; }
+  .darknav-contact { padding: 4px 10px; }
+}
 </style>
 </head>
 <body>
-<!-- NAVBAR -->
-<nav class="topnav">
-  <div class="topnav-accent"></div>
-  <div class="topnav-inner">
-    <a href="index.html" class="topnav-logo">AQ</a>
-    <div class="topnav-links">
-      <a href="furbo-recruiter.html" class="topnav-link">Furbo Case Study</a>
-      <a href="readingraphics-casestudy.html" class="topnav-link active">Readingraphics</a>
-      <a href="gobernacion-casestudy.html" class="topnav-link">Gobernación</a>
-      <a href="/cdn-cgi/l/email-protection#b3d2dfd6d9d2ddd7c1d2c2c6daddc7d6c1dcf3d4ded2dadf9dd0dcde" class="topnav-contact">Contact</a>
+<!-- DARK NAV -->
+<nav class="darknav">
+  <div class="darknav-inner">
+    <a href="index.html" class="darknav-logo">AQ</a>
+    <div class="darknav-cases">
+      <a href="furbo-recruiter.html" class="darknav-case">Furbo</a>
+      <a href="readingraphics-casestudy.html" class="darknav-case active">Readingraphics</a>
+      <a href="gobernacion-casestudy.html" class="darknav-case">Gobernación</a>
+      </div>
+    <div class="darknav-right">
+      <span class="darknav-lang active">EN</span><span class="darknav-lang-sep"> | </span><a href="readingraphics-casestudy-es.html" class="darknav-lang">ES</a>
+      <a href="mailto:alejandraquintero@gmail.com" class="darknav-contact">Contact</a>
     </div>
   </div>
 </nav>
-
 <div class="hero">
   <div class="hero-inner">
     <a href="index.html" class="hero-back" style="text-decoration:none;">Portfolio Home</a>
@@ -1169,5 +1253,23 @@ body { background: var(--beige); }
     </div>
   </div>
 
-  <a href="index.html" class="r-inline-link">
-    Portfolio Ho
+  <a href="i
+
+<div class="case-nav-bar">
+  <div class="case-nav-inner">
+    <div class="case-nav-top">
+      <a href="index.html" class="case-nav-home">← Home</a>
+      <div class="case-nav-pills">
+      <a href="furbo-recruiter.html" class="case-nav-pill"><span class="case-nav-num">01</span>Furbo</a>
+      <a href="readingraphics-casestudy.html" class="case-nav-pill" style="color:var(--teal);border-color:var(--teal);"><span class="case-nav-num">02</span>Readingraphics</a>
+      <a href="gobernacion-casestudy.html" class="case-nav-pill"><span class="case-nav-num">03</span>Gobernación</a>
+      </div>
+    </div>
+    <div class="case-nav-bottom">
+      <a href="furbo-recruiter.html" class="case-nav-arrow">← 01 Furbo</a>
+      <a href="gobernacion-casestudy.html" class="case-nav-arrow">03 Gobernación →</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

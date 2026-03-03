@@ -127,6 +127,7 @@ hr.divider {
   border-radius: 2px; text-transform: uppercase;
 }
 .hero-pill.hl { background: var(--teal); border-color: var(--teal); color: var(--white); }
+.hero-pill:hover { background: var(--teal); border-color: var(--teal); color: var(--white); transition: all .18s; }
 
 /* ── ABOUT ME ── */
 .about-grid {
@@ -396,85 +397,126 @@ hr.divider {
   .cases-row { grid-template-columns: 1fr; }
 }
 
-.topnav {
-  position: sticky; top: 0; z-index: 100;
-  background: var(--beige);
-  border-bottom: 1.5px solid var(--border);
-}
-.topnav-accent {
-  height: 3px;
-  background: linear-gradient(90deg, var(--teal), var(--coral), var(--gold));
-}
-.topnav-inner {
-  max-width: 780px; margin: 0 auto; padding: 0 32px;
-  display: flex; align-items: center; justify-content: space-between;
-  height: 48px;
-}
-.topnav-logo {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 800; font-size: 18px;
-  text-transform: uppercase; letter-spacing: .04em;
-  color: var(--ink); text-decoration: none;
-  transition: color .18s;
-}
-.topnav-logo:hover { color: var(--teal); }
-.topnav-links {
-  display: flex; gap: 4px; align-items: center;
-}
-.topnav-link {
-  font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 500;
-  color: var(--muted); text-decoration: none;
-  padding: 5px 10px; border-radius: 2px;
-  transition: all .18s; letter-spacing: .01em;
-}
-.topnav-link:hover { color: var(--ink); background: rgba(0,0,0,.04); }
-.topnav-link.active { color: var(--ink); font-weight: 600; }
-.topnav-contact {
-  font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 600;
-  color: var(--teal); text-decoration: none;
-  border: 1.5px solid rgba(42,173,168,.45);
-  padding: 5px 14px; border-radius: 2px; margin-left: 8px;
-  transition: all .18s; letter-spacing: .01em;
-}
-.topnav-contact:hover {
-  background: var(--teal); color: var(--white);
-  border-color: var(--teal);
-}
+
+
+
+
+
+
+
+
+
+
+
 @media(max-width: 600px) {
-  .topnav-links { gap: 2px; }
-  .topnav-link { font-size: 11px; padding: 4px 7px; }
-  .topnav-contact { padding: 4px 10px; margin-left: 4px; }
+  
+  
+  
 }
 
+
+
+
+
+
+
+@media(max-width:600px) {
+  
+}
+/* ── UNIFIED DARK NAV ── */
+.darknav {
+  position: sticky; top: 0; z-index: 100;
+  background: #0e1117;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  height: 52px;
+  display: flex; align-items: center;
+}
+.darknav-inner {
+  max-width: 960px; margin: 0 auto; padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%;
+}
+.darknav-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 20px; text-transform: uppercase;
+  color: #fff; text-decoration: none; letter-spacing: .04em;
+  transition: color .18s;
+}
+.darknav-logo:hover { color: var(--teal); }
+.darknav-cases {
+  display: flex; align-items: center; gap: 2px;
+}
+.darknav-case {
+  font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: .08em;
+  color: rgba(255,255,255,.45); text-decoration: none;
+  padding: 6px 14px; border-radius: 2px;
+  transition: all .18s;
+}
+.darknav-case:hover { color: #fff; background: rgba(255,255,255,.07); }
+.darknav-case.active { color: var(--teal); }
+.darknav-right {
+  display: flex; align-items: center; gap: 12px;
+}
+.darknav-lang {
+  font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 500;
+  color: rgba(255,255,255,.35); text-decoration: none;
+  letter-spacing: .06em;
+  transition: color .18s;
+}
+.darknav-lang:hover, .darknav-lang.active { color: rgba(255,255,255,.8); }
+.darknav-lang-sep { color: rgba(255,255,255,.2); font-size: 11px; }
+.darknav-contact {
+  font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 600;
+  color: var(--teal); text-decoration: none;
+  border: 1.5px solid rgba(42,173,168,.5);
+  padding: 5px 14px; border-radius: 2px;
+  transition: all .18s; letter-spacing: .04em; text-transform: uppercase;
+}
+.darknav-contact:hover { background: var(--teal); color: #fff; border-color: var(--teal); }
+@media(max-width:640px) {
+  .darknav-case { font-size: 10px; padding: 5px 8px; }
+  .darknav-contact { padding: 4px 10px; }
+}
 </style>
 </head>
 <body>
-<!-- NAVBAR -->
-<nav class="topnav">
-  <div class="topnav-accent"></div>
-  <div class="topnav-inner">
-    <a href="index.html" class="topnav-logo">AQ</a>
-    <div class="topnav-links">
-      <a href="furbo-recruiter-es.html" class="topnav-link">Furbo Case Study</a>
-      <a href="readingraphics-casestudy-es.html" class="topnav-link">Readingraphics</a>
-      <a href="gobernacion-casestudy-es.html" class="topnav-link">Gobernación</a>
-      <div style="display:flex;align-items:center;gap:4px;border:1px solid var(--border);border-radius:2px;padding:3px 8px;">
-        <span style="font-family:'Barlow',sans-serif;font-size:11px;font-weight:600;color:var(--ink);">ES</span>
-        <span style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--border);">|</span>
-        <a href="index.html" style="font-family:'Barlow',sans-serif;font-size:11px;font-weight:500;color:var(--muted);text-decoration:none;">EN</a>
+<!-- DARK NAV -->
+<nav class="darknav">
+  <div class="darknav-inner">
+    <a href="index-es.html" class="darknav-logo">AQ</a>
+    <div class="darknav-cases">
+      <a href="furbo-recruiter-es.html" class="darknav-case">Furbo</a>
+      <a href="readingraphics-casestudy-es.html" class="darknav-case">Readingraphics</a>
+      <a href="gobernacion-casestudy-es.html" class="darknav-case">Gobernación</a>
       </div>
-      <a href="/cdn-cgi/l/email-protection#92f3fef7f8f3fcf6e0f3e3e7fbfce6f7e0fdd2f5fff3fbfebcf1fdff" class="topnav-contact">Contact</a>
+    <div class="darknav-right">
+      <a href="index.html" class="darknav-lang">EN</a><span class="darknav-lang-sep"> | </span><span class="darknav-lang active">ES</span>
+      <a href="mailto:alejandraquintero@gmail.com" class="darknav-contact">Contacto</a>
     </div>
   </div>
 </nav>
-
 <!-- ══ HERO ══ -->
 <div class="hero">
   <div class="hero-inner">
     <div class="hero-label">PM Portfolio · Product Strategy &amp; Systems PM</div>
     <div class="hero-name">Alejandra<br><span>Quintero</span></div>
     <div class="hero-title">Product Strategy &amp; Systems PM</div>
-    <div class="hero-pills">
+    <div style="margin-top:20px;display:flex;gap:28px;flex-wrap:wrap;">
+      <div style="text-align:center;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:32px;color:var(--teal);line-height:1;">15<span style="font-size:20px;">+</span></div>
+        <div style="font-family:'Fragment Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.55);margin-top:4px;">Años</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:32px;color:var(--teal);line-height:1;">1M<span style="font-size:20px;">+</span></div>
+        <div style="font-family:'Fragment Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.55);margin-top:4px;">Usuarios</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:32px;color:var(--teal);line-height:1;">8</div>
+        <div style="font-family:'Fragment Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.55);margin-top:4px;">Industrias</div>
+      </div>
+    </div>
+    <div class="hero-pills" style="margin-top:24px;">
       <span class="hero-pill hl">Product Strategy &amp; Content</span>
       <span class="hero-pill">AI &amp; Productos Human-Centered</span>
       <span class="hero-pill">SaaS · IoT · Gov Tech</span>
@@ -484,7 +526,87 @@ hr.divider {
   </div>
 </div>
 
+
 <div class="page">
+
+  <hr class="divider">
+
+  <!-- ══ CASE STUDIES ══ -->
+  <div class="eyebrow">Portfolio · Casos de Estudio</div>
+  <h2 class="block-title">Trabajo <em>Seleccionado</em></h2>
+  <p class="block-desc">Casos de estudio detallados que documentan estrategia, ejecución, trade-offs e impacto medible.</p>
+
+  <div class="cases-row">
+    <div class="case-card" style="cursor:pointer;" onclick="window.location='furbo-recruiter-es.html'">
+      <div class="case-card-inner">
+        <span class="case-tag" style="background:rgba(42,173,168,.2);color:var(--teal);">Caso de Estudio 01</span>
+        <div class="case-title">Furbo AI Trust<br>Architecture</div>
+        <div class="case-desc">Diseño de un framework de confianza regional para más de 1M de usuarios hispanohablantes — de la traducción literal a la comunicación de IA emocionalmente resonante.</div>
+        <div class="case-meta">
+          <span class="case-pill">Furbo · 2017–2024</span>
+          <span class="case-pill">IoT · AI · SaaS</span>
+          <span class="case-pill">Iberoamérica</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-card" style="cursor:pointer;" onclick="window.location='readingraphics-casestudy-es.html'">
+      <div class="case-card-inner">
+        <span class="case-tag" style="background:rgba(212,175,55,.2);color:var(--gold);">Caso de Estudio 02</span>
+        <div class="case-title">Crecimiento por<br>Segmentación de Comportamiento</div>
+        <div class="case-desc">Ruptura de un plateau de ingresos por suscripción mediante user intent mapping, segmentación conductual y diseño de journey personalizado.</div>
+        <div class="case-meta">
+          <span class="case-pill">Readingraphics · 2025</span>
+          <span class="case-pill">Growth · B2C</span>
+          <span class="case-pill">Advisory 6 meses</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-card" style="cursor:pointer;" onclick="window.location='gobernacion-casestudy-es.html'">
+      <div class="case-card-inner">
+        <span class="case-tag" style="background:rgba(232,57,74,.2);color:var(--coral);">Caso de Estudio 03</span>
+        <div class="case-title">Construir Gobierno<br>Digital desde Cero</div>
+        <div class="case-desc">Creación de la primera unidad digital del gobierno opositor venezolano desde cero — bajo censura activa, sin manual, en 4 meses.</div>
+        <div class="case-meta">
+          <span class="case-pill">Gobernación · 2009–2012</span>
+          <span class="case-pill">0-to-1 · Crisis</span>
+          <span class="case-pill">Venezuela</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+
+  <hr class="divider">
+
+  <!-- ══ RECONOCIMIENTOS ══ -->
+  <div class="eyebrow">Reconocimientos &amp; Premios</div>
+  <h2 class="block-title">Logros <em>Destacados</em></h2>
+  <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:8px;">
+    <div style="flex:1;min-width:200px;padding:20px;border:1.5px solid var(--border);border-radius:4px;background:var(--white);">
+      <span style="color:var(--gold);font-size:20px;">🏆</span>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;text-transform:uppercase;color:var(--ink);margin-top:8px;">Premio Václav Havel</div>
+      <div style="font-family:'Fragment Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--teal);margin-top:4px;">Oslo Freedom Forum · 2017</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:6px;">Rediseño El Chigüire Bipolar</div>
+    </div>
+    <div style="flex:1;min-width:200px;padding:20px;border:1.5px solid var(--border);border-radius:4px;background:var(--white);">
+      <span style="color:var(--gold);font-size:20px;">🏆</span>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;text-transform:uppercase;color:var(--ink);margin-top:8px;">Americas Hackathon Data Fest</div>
+      <div style="font-family:'Fragment Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--teal);margin-top:4px;">Equipo Ganador · Venezuela · 2013</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:6px;">Innovación en datos y producto</div>
+    </div>
+    <div style="flex:1;min-width:200px;padding:20px;border:1.5px solid var(--border);border-radius:4px;background:var(--white);">
+      <span style="color:var(--teal);font-size:20px;">🚀</span>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;text-transform:uppercase;color:var(--ink);margin-top:8px;">Wayra · Aceleradora Telefónica</div>
+      <div style="font-family:'Fragment Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--teal);margin-top:4px;">Sculapio · Contribución UX · 2014</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:6px;">Programa de aceleración seleccionado</div>
+    </div>
+  </div>
+
+  <hr class="divider">
 
   <!-- ══ ABOUT ME ══ -->
   <div style="padding-top: 56px;">
@@ -568,6 +690,9 @@ hr.divider {
     </div>
   </div>
     </div>
+
+
+  <hr class="divider">
 
   <hr class="divider">
 
@@ -663,6 +788,8 @@ hr.divider {
 
   <hr class="divider">
 
+  <hr class="divider">
+
   <!-- ══ TOOLS & PLATFORMS ══ -->
   <div class="eyebrow">Artifact · Tools</div>
   <h2 class="block-title">Herramientas &amp; <em>Plataformas</em></h2>
@@ -743,55 +870,9 @@ hr.divider {
 
   <hr class="divider">
 
-  <!-- ══ CASE STUDIES ══ -->
-  <div class="eyebrow">Portfolio · Casos de Estudio</div>
-  <h2 class="block-title">Trabajo <em>Seleccionado</em></h2>
-  <p class="block-desc">Casos de estudio detallados que documentan estrategia, ejecución, trade-offs e impacto medible.</p>
-
-  <div class="cases-row">
-    <div class="case-card" style="cursor:pointer;" onclick="window.location='furbo-recruiter-es.html'">
-      <div class="case-card-inner">
-        <span class="case-tag" style="background:rgba(42,173,168,.2);color:var(--teal);">Caso de Estudio 01</span>
-        <div class="case-title">Furbo AI Trust<br>Architecture</div>
-        <div class="case-desc">Diseño de un framework de confianza regional para más de 1M de usuarios hispanohablantes — de la traducción literal a la comunicación de IA emocionalmente resonante.</div>
-        <div class="case-meta">
-          <span class="case-pill">Furbo · 2017–2024</span>
-          <span class="case-pill">IoT · AI · SaaS</span>
-          <span class="case-pill">Iberoamérica</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="case-card" style="cursor:pointer;" onclick="window.location='readingraphics-casestudy-es.html'">
-      <div class="case-card-inner">
-        <span class="case-tag" style="background:rgba(212,175,55,.2);color:var(--gold);">Caso de Estudio 02</span>
-        <div class="case-title">Crecimiento por<br>Segmentación de Comportamiento</div>
-        <div class="case-desc">Ruptura de un plateau de ingresos por suscripción mediante user intent mapping, segmentación conductual y diseño de journey personalizado.</div>
-        <div class="case-meta">
-          <span class="case-pill">Readingraphics · 2025</span>
-          <span class="case-pill">Growth · B2C</span>
-          <span class="case-pill">Advisory 6 meses</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="case-card" style="cursor:pointer;" onclick="window.location='gobernacion-casestudy-es.html'">
-      <div class="case-card-inner">
-        <span class="case-tag" style="background:rgba(27,43,94,.2);color:var(--navy);">Caso de Estudio 03</span>
-        <div class="case-title">Construir Gobierno<br>Digital desde Cero</div>
-        <div class="case-desc">Creación de la primera unidad digital del gobierno opositor venezolano desde cero — bajo censura activa, sin manual, en 4 meses.</div>
-        <div class="case-meta">
-          <span class="case-pill">Gobernación · 2009–2012</span>
-          <span class="case-pill">0-to-1 · Crisis</span>
-          <span class="case-pill">Venezuela</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <hr class="divider">
 
-  <!-- ══ CONTACT ══ -->
+    <!-- ══ CONTACT ══ -->
   <div class="eyebrow">Contacto</div>
   <h2 class="block-title">Conectemos</h2>
   <p class="block-desc">Abierta a roles de product leadership, consultoría y colaboración estratégica en IA, SaaS y mercados hispanohablantes.</p>
@@ -801,7 +882,7 @@ hr.divider {
       <div class="cc-icon">✉️</div>
       <div class="cc-label">Email</div>
       <div class="cc-value">
-        <a href="mailto:alejandraquintero@gmail.com">alejandraquintero@gmail.com</a>
+        <a href="/cdn-cgi/l/email-protection#2e4f424b444f404a5c4f5f5b47405a4b5c416e49434f4742004d4143"><span class="__cf_email__" data-cfemail="accdc0c9c6cdc2c8decdddd9c5c2d8c9dec3eccbc1cdc5c082cfc3c1">[email&#160;protected]</span></a>
       </div>
     </div>
     <div class="contact-card cc-2">
@@ -824,6 +905,7 @@ hr.divider {
 
 <!-- ── FOOTER ── -->
 <div style="background:var(--ink);color:rgba(250,250,247,.3);padding:28px 40px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:.1em;">
-  <span>ALEJANDRA QUINTERO · PRODUCT STRATEGY &amp; SYSTEMS PM</span>
-  <div style="display:flex;gap:5px;align-items:center;">
-    <div style="width:12px;height:3px;border-radius:1px;background:var(--teal);"></di
+  <span>ALEJANDRA QUINTERO · PRODUCT STRATEGY &amp; SYSTEMS P
+
+</body>
+</html>
