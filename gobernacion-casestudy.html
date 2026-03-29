@@ -1030,7 +1030,7 @@ body { background: var(--beige); }
       </div>
     <div class="darknav-right">
       <span class="darknav-lang active">EN</span><span class="darknav-lang-sep"> | </span><a href="gobernacion-casestudy-es.html" class="darknav-lang">ES</a>
-      <a href="mailto:alejandraquintero@gmail.com" class="darknav-contact">Contact</a>
+      <a href="/cdn-cgi/l/email-protection#82e3eee7e8e3ece6f0e3f3f7ebecf6e7f0edc2e5efe3ebeeace1edef" class="darknav-contact">Contact</a>
     </div>
   </div>
 </nav>
@@ -1184,7 +1184,7 @@ body { background: var(--beige); }
       <p class="r-lead" style="color:rgba(255,255,255,0.85);margin-bottom:0;">External pressure was constant too. As the only opposition governor who consistently won re-election, Táchira was a permanent target of coordinated disinformation attacks. Every response decision was strategic: respond and risk amplifying the attack, stay silent and risk implied admission, or get ahead of it entirely. I developed the editorial triage criteria — what warranted public response, what didn't, and when to move first. Each communication was a statement. That discipline became part of the protocol.</p>
     </div>
 
-    <p class="r-lead" style="color:rgba(255,255,255,0.85);">I ran micro-workshops with each director — practical, short, in their language — and built curated lists in the government account and in each director's own account and page so they could monitor their sector directly. The governor led by example, but the cabinet followed because they understood the incentive. Directors began responding directly: reading a citizen signal about an issue in their sector, investigating the case themselves, and replying publicly. What started as a communications unit became a distributed accountability system — adopted because it made their work visible, not because it was mandated.</p>
+    <p class="r-lead" style="color:rgba(255,255,255,0.85);">I ran micro-workshops with each director — practical, short, in their language — and built curated lists in the government account and in each director's personal Twitter and Facebook accounts so they could monitor their sector directly. The governor led by example, but the cabinet followed because they understood the incentive. Directors began responding directly: reading a citizen signal about an issue in their sector, investigating the case themselves, and replying publicly. What started as a communications unit became a distributed accountability system — adopted because it made their work visible, not because it was mandated.</p>
   </div>
 
   <!-- 04 SYSTEM DESIGN -->
@@ -1193,29 +1193,43 @@ body { background: var(--beige); }
     <h2 class="r-title">The Architecture <em>I Built</em></h2>
     <p class="r-lead">I designed three interconnected systems: a cross-functional team structure with clear matrix coordination, a crisis communication protocol, and a social monitoring intelligence pipeline feeding directly into cabinet decisions.</p>
 
-    <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);margin:24px 0 4px;">Team Architecture — Direct + Matrix Coordination</h3>
-    <div class="org-grid">
-      <div class="org-dept owned">
-        <div class="org-dept-label owned">Direct Ownership</div>
-        <div class="org-dept-name">Digital Comms Unit</div>
-        <div class="org-dept-detail">2 designers, 1 journalist. Web, social, digital editorial. Built from zero in 4 months.</div>
-      </div>
-      <div class="org-dept matrix">
-        <div class="org-dept-label matrix">Matrix Coordination</div>
-        <div class="org-dept-name">Print Dept</div>
-        <div class="org-dept-detail">~20 people. Journalists sent stories before print. I adapted and published. Photographers briefed on digital needs.</div>
-      </div>
-      <div class="org-dept matrix">
-        <div class="org-dept-label matrix">Matrix Coordination</div>
-        <div class="org-dept-name">Audiovisual</div>
-        <div class="org-dept-detail">~6 people. Camera operators, editors, TV journalists. Content pipeline integrated into digital output.</div>
-      </div>
-      <div class="org-dept matrix">
-        <div class="org-dept-label matrix">Matrix Coordination</div>
-        <div class="org-dept-name">Propaganda &amp; Strategy</div>
-        <div class="org-dept-detail">~4 political advisors. Alignment between political messaging and digital editorial line.</div>
-      </div>
-    </div>
+    <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);margin:24px 0 12px;">Team Architecture — Direct + Matrix Coordination</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:13px;background:var(--white);border:1.5px solid var(--border);border-radius:3px;overflow:hidden;">
+      <thead>
+        <tr style="background:var(--navy);color:var(--white);">
+          <th style="padding:10px 16px;text-align:left;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:400;width:22%;">Relationship</th>
+          <th style="padding:10px 16px;text-align:left;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:400;width:20%;">Team / Dept</th>
+          <th style="padding:10px 16px;text-align:left;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:400;width:10%;">Size</th>
+          <th style="padding:10px 16px;text-align:left;font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:400;">Role &amp; Integration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:12px 16px;"><span style="display:inline-block;padding:3px 8px;background:var(--teal);color:var(--white);font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;">Direct Ownership</span></td>
+          <td style="padding:12px 16px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;text-transform:uppercase;color:var(--ink);">Digital Comms Unit</td>
+          <td style="padding:12px 16px;color:var(--muted);font-family:'Fragment Mono',monospace;font-size:11px;">3 people</td>
+          <td style="padding:12px 16px;color:#3a3530;line-height:1.5;">2 designers, 1 journalist. Web, social, digital editorial. Built from zero in 4 months.</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);background:rgba(0,0,0,.015);">
+          <td style="padding:12px 16px;"><span style="display:inline-block;padding:3px 8px;background:rgba(27,43,94,.12);color:var(--navy);font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;">Matrix Coord.</span></td>
+          <td style="padding:12px 16px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;text-transform:uppercase;color:var(--ink);">Print Dept</td>
+          <td style="padding:12px 16px;color:var(--muted);font-family:'Fragment Mono',monospace;font-size:11px;">~20 people</td>
+          <td style="padding:12px 16px;color:#3a3530;line-height:1.5;">Journalists sent stories before print. I adapted and published. Photographers briefed on digital needs.</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:12px 16px;"><span style="display:inline-block;padding:3px 8px;background:rgba(27,43,94,.12);color:var(--navy);font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;">Matrix Coord.</span></td>
+          <td style="padding:12px 16px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;text-transform:uppercase;color:var(--ink);">Audiovisual</td>
+          <td style="padding:12px 16px;color:var(--muted);font-family:'Fragment Mono',monospace;font-size:11px;">~6 people</td>
+          <td style="padding:12px 16px;color:#3a3530;line-height:1.5;">Camera operators, editors, TV journalists. Content pipeline integrated into digital output.</td>
+        </tr>
+        <tr style="background:rgba(0,0,0,.015);">
+          <td style="padding:12px 16px;"><span style="display:inline-block;padding:3px 8px;background:rgba(27,43,94,.12);color:var(--navy);font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;">Matrix Coord.</span></td>
+          <td style="padding:12px 16px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;text-transform:uppercase;color:var(--ink);">Propaganda &amp; Strategy</td>
+          <td style="padding:12px 16px;color:var(--muted);font-family:'Fragment Mono',monospace;font-size:11px;">~4 people</td>
+          <td style="padding:12px 16px;color:#3a3530;line-height:1.5;">Political advisors. Alignment between political messaging and digital editorial line.</td>
+        </tr>
+      </tbody>
+    </table>
     <p class="org-note">Every 6 weeks: rotational operational leadership of all 4 departments (~35 people) during full communication guard shifts.</p>
 
     <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);margin:32px 0 4px;">Crisis Communication Protocol</h3>
@@ -1275,6 +1289,8 @@ body { background: var(--beige); }
         <div class="r-card-body">Patterns — recurring complaints, geographic clusters — documented and reported to the cabinet as signals for policy or infrastructure decisions.</div>
       </div>
     </div>
+
+    <p class="r-lead" style="margin-top:16px;">The protocol was designed for speed without sacrificing accuracy. During working hours, the target response time was <strong>under one hour</strong> — a standard the team maintained consistently across three years. Speed was not accidental; it was an output of having a defined process where every step had a clear owner and no decision required escalation.</p>
 
     <div style="margin-top:20px;background:var(--white);border:1.5px solid var(--border);border-radius:3px;padding:20px 24px;border-left:4px solid var(--teal);">
       <div style="font-family:'Fragment Mono',monospace;font-size:8px;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);margin-bottom:12px;">Example · Crisis Cycle in Action · 2010</div>
@@ -1338,11 +1354,12 @@ body { background: var(--beige); }
       <div class="r-stat"><div class="r-stat-val">3+ yr</div><div class="r-stat-lbl">Unit continued operating post-tenure</div></div>
     </div>
 
+    <p class="r-lead" style="margin-top:24px;font-style:italic;color:var(--muted);">Six years after my tenure, the former governor wrote this recommendation — a testament to the lasting impact of the system.</p>
     <div class="r-testimonial">
       <div class="r-testimonial-quote">
-        "Alejandra Quintero developed an entire innovative communication policy — demonstrating <strong>creativity, capacity to analyze complex social realities, rapid response capability, and research effort to offer adequate solutions to citizens.</strong> She is a person trained to work under pressure, in dynamic and diverse scenarios."
+        "In 2009, very few public institutions in Venezuela had ventured into 2.0 communication — this allowed us to overcome the censorship obstacles imposed by the Chávez government. She demonstrated <strong>creativity, capacity to analyze complex social realities, rapid response capability, and research effort to offer adequate solutions to citizens.</strong> She is a person trained to work under pressure, in dynamic and diverse scenarios."
       </div>
-      <div class="r-testimonial-attr">— <span>César Pérez Vivas</span> · Governor, Estado Táchira · LinkedIn, September 2018</div>
+      <div class="r-testimonial-attr">— <span>César Pérez Vivas</span> · Former Governor, Estado Táchira · Deputy to the Venezuelan Parliament (4 consecutive terms) · LinkedIn, September 2018</div>
     </div>
 
     <div class="r-punch">
@@ -1365,9 +1382,4 @@ body { background: var(--beige); }
     </div>
     <div class="case-nav-bottom">
       <a href="readingraphics-casestudy.html" class="case-nav-arrow">← 02 Readingraphics</a>
-      <span></span>
-    </div>
-  </div>
-</div>
-</body>
-</html>
+      <span>

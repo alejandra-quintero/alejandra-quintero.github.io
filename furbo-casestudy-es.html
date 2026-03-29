@@ -204,6 +204,17 @@ h2.block-title em { font-style: italic; color: var(--teal); font-weight: 600; }
   color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
   line-height: 1.4;
 }
+.kpi-sub {
+  font-family: 'Fragment Mono', monospace; font-size: 9px;
+  text-transform: uppercase; letter-spacing: .05em;
+  color: #b8b0a4; margin-top: 4px; line-height: 1.4;
+}
+.ic-note {
+  font-family: 'Fragment Mono', monospace; font-size: 8px;
+  color: #b8b0a4; letter-spacing: .03em;
+  margin-top: 5px; font-style: italic; text-transform: none;
+  line-height: 1.4;
+}
 
 /* ── PROBLEM ── */
 .problem-grid {
@@ -906,6 +917,21 @@ div.main-content {
 </style>
 </head>
 <body>
+<!-- DARK NAV -->
+<nav class="darknav">
+  <div class="darknav-inner">
+    <a href="index-es.html" class="darknav-logo">AQ</a>
+    <div class="darknav-cases">
+      <a href="furbo-recruiter-es.html" class="darknav-case active">Furbo</a>
+      <a href="readingraphics-casestudy-es.html" class="darknav-case">Readingraphics</a>
+      <a href="gobernacion-casestudy-es.html" class="darknav-case">Gobernación</a>
+    </div>
+    <div class="darknav-right">
+      <a href="furbo-casestudy.html" class="darknav-lang">EN</a><span class="darknav-lang-sep"> | </span><span class="darknav-lang active">ES</span>
+      <a href="/cdn-cgi/l/email-protection#81e0ede4ebe0efe5f3e0f0f4e8eff5e4f3eec1e6ece0e8edafe2eeec" class="darknav-contact">Contacto</a>
+    </div>
+  </div>
+</nav>
 <div class="site-wrap">
 <nav class="sidebar">
   <div class="sidebar-logo">
@@ -937,7 +963,7 @@ div.main-content {
     <h1 class="hero-h1">Furbo <span>AI Trust</span><br><em>Architecture</em></h1>
     <p class="hero-sub">El hardware vende el producto. La app vende la suscripción. Identifiqué que el verdadero motor del modelo de negocio era la eficacia de la app — y pasé 7 años construyendo la arquitectura de confianza que hizo que los usuarios hispanohablantes renovaran.</p>
     <div class="hero-meta-simple">
-      <span class="hi">Product Strategy &amp; Content Strategist</span>
+      <span class="hi">Senior Product &amp; Content Strategist</span>
       <span class="sep">·</span><span>Furbo</span>
       <span class="sep">·</span><span>2017–2024</span>
       <span class="sep">·</span><span>Iberoamérica</span>
@@ -971,9 +997,9 @@ div.main-content {
 
     <div class="artifact-label">Resultados Clave de un Vistazo</div>
     <div class="kpi-strip">
-      <div class="kpi-cell"><div class="kpi-val">1M+</div><div class="kpi-lbl">Usuarios Globales</div></div>
+      <div class="kpi-cell"><div class="kpi-val">1M+</div><div class="kpi-lbl">Usuarios Globales</div><div class="kpi-sub">incl. 500K+ descargas Play Store en Iberoamérica</div></div>
       <div class="kpi-cell"><div class="kpi-val">2.3B+</div><div class="kpi-lbl">Alertas AI Entregadas</div></div>
-      <div class="kpi-cell"><div class="kpi-val">~30%</div><div class="kpi-lbl">Ingresos por Suscripciones</div></div>
+      <div class="kpi-cell"><div class="kpi-val">~30%</div><div class="kpi-lbl">del revenue total por suscripciones — ≈$1.8M de $6M GMV (2024)</div><div class="ic-note">Est. basado en Grips Intelligence (GMV online furbo.com, 2024–2025)</div></div>
       <div class="kpi-cell"><div class="kpi-val">#1</div><div class="kpi-lbl">Categoría Amazon 2018–2024</div></div>
     </div>
 
@@ -1807,7 +1833,7 @@ div.main-content {
 
 </div></div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 document.addEventListener('DOMContentLoaded', function() {
   // Open first section by default
   var sections = document.querySelectorAll('.section:not(.always-open)');
@@ -1859,10 +1885,4 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     </div>
     <div class="case-nav-bottom">
-      <span></span>
-      <a href="readingraphics-casestudy-es.html" class="case-nav-arrow">02 Readingraphics →</a>
-    </div>
-  </div>
-</div>
-</body>
-</html>
+  
