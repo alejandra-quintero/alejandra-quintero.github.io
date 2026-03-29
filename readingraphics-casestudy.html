@@ -1012,7 +1012,7 @@ body { background: var(--beige); }
       </div>
     <div class="darknav-right">
       <span class="darknav-lang active">EN</span><span class="darknav-lang-sep"> | </span><a href="readingraphics-casestudy-es.html" class="darknav-lang">ES</a>
-      <a href="mailto:alejandraquintero@gmail.com" class="darknav-contact">Contact</a>
+      <a href="/cdn-cgi/l/email-protection#3f5e535a555e515b4d5e4e4a56514b5a4d507f58525e5653115c5052" class="darknav-contact">Contact</a>
     </div>
   </div>
 </nav>
@@ -1055,7 +1055,7 @@ body { background: var(--beige); }
         <div class="r-card-body">Implemented all automation flows directly in Go High Level — built, tested, and iterated on every journey sequence and A/B experiment</div>
       </div>
       <div class="r-card">
-        <div class="r-card-body">Owned the full engagement roadmap — reported directly to the CEO and made all strategic prioritization decisions independently</div>
+        <div class="r-card-body">Owned the full engagement roadmap — reported directly to the CEO and made all strategic prioritization decisions independently. Coordinated with the content team on category-aligned email copy and with the platform admin on Go High Level automation configuration.</div>
       </div>
     </div>
   </div>
@@ -1065,8 +1065,9 @@ body { background: var(--beige); }
     <div class="r-eyebrow">01 · Context &amp; Strategic Insight</div>
     <h2 class="r-title">The <em>Right Problem</em></h2>
     <p class="r-lead">Readingraphics offers book summaries in three formats — 1-page infographic, 10–15 page text, and 20-minute audio — with a free tier and an Unlimited Membership subscription. The business had strong top-of-funnel acquisition: users were downloading free content consistently. But revenue had plateaued.</p>
-    <p class="r-lead">The initial brief was to optimize and systematize existing user journeys. Before touching anything, I asked a different question: <strong>why weren't users converting in the first place?</strong> The CEO didn't have an answer — and didn't believe the data would reveal one. I proposed we look before we build.</p>
+    <p class="r-lead">The brief was to improve the user journey. Before redesigning anything, I ran a behavioral audit to understand why trial users were churning. The data revealed the problem wasn't the journey itself — it was that every user was receiving the same journey regardless of intent. That diagnostic shifted the entire approach: instead of optimizing one flow, we built three.</p>
     <p class="r-lead">The analysis revealed the bottleneck was neither traffic nor product — it was the complete absence of a user journey designed around intent. Users downloaded content and disappeared. The product had no system for recognizing what they wanted or re-engaging them with relevant value. <strong>The right problem was hiding behind the wrong brief.</strong></p>
+    <div class="r-quote">"The brief was to improve the user journey. The audit revealed the journey wasn't the problem — the absence of segmentation was."</div>
     <div class="r-quote">"The brief was to optimize user journeys. The right question was: why aren't they converting?"</div>
   </div>
 
@@ -1099,11 +1100,40 @@ body { background: var(--beige); }
     </div>
   </div>
 
+  <!-- 02.5 TRADE-OFF -->
+  <div class="r-section">
+    <div class="r-eyebrow">02.5 · The Defining Decision</div>
+    <h2 class="r-title">Diagnose First, <em>at My Own Risk</em></h2>
+    <p class="r-lead">The first decision point was whether to propose a full behavioral audit before touching any journey — knowing it would consume time with no guaranteed buy-in. The brief was already scoped. Execution was expected.</p>
+    <p class="r-lead">I chose to run the diagnostic first, absorbing that cost myself, rather than optimize journeys that might be solving the wrong problem. If no signal emerged from the data, we'd proceed with the original brief unchanged. The signal emerged. The engagement was reformulated around the new framing — and the client became the strongest advocate for the segmentation approach.</p>
+    <div class="r-quote">"Execution was expected. I chose diagnosis first — at my own risk — because optimizing the wrong journey would have compounded the problem."</div>
+  </div>
+
+  <!-- 02.6 TIMELINE -->
+  <div class="r-section">
+    <div class="r-eyebrow">02.6 · Engagement Timeline</div>
+    <h2 class="r-title">From Audit <em>to Revenue Lift</em></h2>
+    <div class="journey-flow" style="margin-top:20px;">
+      <div class="journey-row">
+        <div class="journey-seg high" style="font-size:10px;">Timeline</div>
+        <div class="journey-steps">
+          <div class="journey-step"><span class="journey-step-num">Month 1</span><strong>Data Audit</strong>Exported, cleaned &amp; structured behavioral data. Formed hypothesis. Identified conversion signal.</div>
+          <div class="journey-arrow">→</div>
+          <div class="journey-step"><span class="journey-step-num">Month 2</span><strong>Segmentation &amp; Build</strong>Defined 3 behavioral segments. Designed and implemented journey flows in Go High Level.</div>
+          <div class="journey-arrow">→</div>
+          <div class="journey-step"><span class="journey-step-num">Months 3–5</span><strong>A/B Testing</strong>Ran 7 experiments across subject lines, tone, CTA placement, and timing. Iterated on results.</div>
+          <div class="journey-arrow">→</div>
+          <div class="journey-step"><span class="journey-step-num">Month 6</span><strong>+20% Revenue</strong>Subscription revenue growth confirmed vs. 3-month pre-engagement baseline. System handed off.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- 03 HYPOTHESIS + DATA -->
   <div class="r-section">
     <div class="r-eyebrow">03 · Hypothesis &amp; Data Analysis</div>
     <h2 class="r-title">Finding the <em>Signal in the Data</em></h2>
-    <p class="r-lead">I integrated Go High Level with Google Analytics to audit user behavior across all funnel stages. The core hypothesis: <strong>user intent and likelihood to subscribe vary by content category downloaded.</strong> If that pattern held in the data, segmentation and personalized journeys would unlock the conversion.</p>
+    <p class="r-lead">I integrated Go High Level with Google Analytics to audit user behavior across all funnel stages. Raw event and contact data was exported from both platforms, cleaned and structured using SQL and Excel, and analyzed to compare behavioral patterns across user cohorts. The core hypothesis: <strong>user intent and likelihood to subscribe vary by content category downloaded.</strong> If that pattern held in the data, segmentation and personalized journeys would unlock the conversion.</p>
     <p class="r-lead">The analysis compared content categories downloaded by paid members vs. trial users who did not return. A clear pattern emerged: <strong>paid subscribers overwhelmingly downloaded Business &amp; Self-Development content first — and returned to that category repeatedly.</strong> Trial users who downloaded outside that category had significantly lower return rates. The signal was not just correlation — it was a behavioral fingerprint that predicted subscription intent.</p>
   </div>
 
@@ -1229,6 +1259,13 @@ body { background: var(--beige); }
           <td><span class="ab-win">✓ Variant B</span></td>
           <td>+14% open rate</td>
         </tr>
+        <tr>
+          <td><strong>Personalization Depth — Seg. B</strong></td>
+          <td>Subject line only personalized</td>
+          <td>Subject + first sentence personalized</td>
+          <td><span style="color:var(--muted);font-family:'Fragment Mono',monospace;font-size:10px;">— No sig. diff.</span></td>
+          <td>Δ&lt;2% CTR · inconclusive · added copy complexity for no measurable gain; rolled back to subject-only</td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -1238,13 +1275,14 @@ body { background: var(--beige); }
     <div class="r-eyebrow">07 · Results</div>
     <h2 class="r-title">Breaking the <em>Revenue Plateau</em></h2>
     <p class="r-lead">The behavioral segmentation and personalized journey system broke a sustained revenue plateau within the 6-month engagement — with no increase in acquisition spend. Results compounded across the funnel — from return visits through to subscription conversion and retention — validating the core hypothesis: <strong>when user journeys align with intent, conversion follows.</strong></p>
+    <p class="r-lead" style="font-size:12px; color:var(--muted); margin-bottom:4px;">⚠ Absolute baseline figures are under NDA. All metrics below reflect relative change vs. the 3-month pre-engagement baseline period.</p>
     <div class="r-impact">
-      <div class="r-stat"><div class="r-stat-val">+20%</div><div class="r-stat-lbl">Subscription revenue growth · short-term</div></div>
-      <div class="r-stat"><div class="r-stat-val">+18%</div><div class="r-stat-lbl">Trial-to-paid conversion rate</div></div>
-      <div class="r-stat"><div class="r-stat-val">+31%</div><div class="r-stat-lbl">Email open rate · personalized subjects</div></div>
-      <div class="r-stat"><div class="r-stat-val">+41%</div><div class="r-stat-lbl">Return visit rate · Segment C re-engagement</div></div>
+      <div class="r-stat"><div class="r-stat-val">+20%</div><div class="r-stat-lbl">Subscription revenue · vs. 3-month pre-engagement baseline</div></div>
+      <div class="r-stat"><div class="r-stat-val">+18%</div><div class="r-stat-lbl">Trial-to-paid conversion rate · relative lift over baseline</div></div>
+      <div class="r-stat"><div class="r-stat-val">+31%</div><div class="r-stat-lbl">Email open rate · personalized vs. prior broadcast average</div></div>
+      <div class="r-stat"><div class="r-stat-val">+41%</div><div class="r-stat-lbl">Return visit rate · Segment C vs. pre-segmentation baseline</div></div>
       <div class="r-stat"><div class="r-stat-val">3</div><div class="r-stat-lbl">Behavioral segments · distinct journey flows</div></div>
-      <div class="r-stat"><div class="r-stat-val">6</div><div class="r-stat-lbl">A/B tests run · 6 with statistically significant lifts</div></div>
+      <div class="r-stat"><div class="r-stat-val">7</div><div class="r-stat-lbl">A/B tests run · 6 with statistically significant lifts</div></div>
     </div>
 
     <div class="r-punch">
@@ -1253,7 +1291,9 @@ body { background: var(--beige); }
     </div>
   </div>
 
-  <a href="i
+  </div>
+
+</div><!-- /.r-wrap -->
 
 <div class="case-nav-bar">
   <div class="case-nav-inner">
@@ -1271,5 +1311,6 @@ body { background: var(--beige); }
     </div>
   </div>
 </div>
+
 </body>
 </html>
