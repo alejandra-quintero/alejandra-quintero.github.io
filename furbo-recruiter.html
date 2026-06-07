@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Furbo AI Trust — PM Case Study</title>
+<title>Furbo AI Trust Architecture — Case Study</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Barlow:wght@300;400;500;600&family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -292,11 +292,32 @@ body {
   font-style: italic; text-transform: none;
 }
 
-/* ── FULL STUDY LINK ── */
-.r-punch { margin-top:36px; padding:24px 28px; background:var(--navy); border-radius:3px; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:18px; line-height:1.4; color:var(--white); letter-spacing:.01em; }
-.r-punch em { color:var(--teal); font-style:italic; }
+/* ── CLOSING STATEMENT ── */
+.r-punch {
+  margin-top: 48px;
+  padding: 28px 0 0;
+  border-top: 1.5px solid var(--border);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 21px; line-height: 1.45;
+  color: var(--navy); letter-spacing: .01em;
+}
+.r-punch::before {
+  content: '';
+  display: block;
+  width: 32px; height: 3px;
+  background: var(--teal);
+  margin-bottom: 20px;
+}
+.r-punch em {
+  display: block;
+  margin-top: 12px;
+  font-family: 'Fragment Mono', monospace;
+  font-size: 10.5px; font-weight: 400; font-style: normal;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--teal);
+}
 .full-link-block {
-  margin-top: 48px; padding: 28px 32px;
+  margin-top: 36px; padding: 28px 32px;
   background: var(--navy); border-radius: 3px;
   display: flex; align-items: center; justify-content: space-between;
   gap: 24px;
@@ -556,7 +577,7 @@ body {
       </div>
     <div class="darknav-right">
       <span class="darknav-lang active">EN</span><span class="darknav-lang-sep"> | </span><a href="furbo-recruiter-es.html" class="darknav-lang">ES</a>
-      <a href="/cdn-cgi/l/email-protection#4f2e232a252e212b3d2e3e3a26213b2a3d200f28222e2623612c2022" class="darknav-contact">Contact</a>
+      <a href="mailto:alejandraquintero@gmail.com" class="darknav-contact">Contact</a>
     </div>
   </div>
 </nav>
@@ -565,15 +586,15 @@ body {
   <div class="hero-inner">
     <a href="index.html" class="hero-back" style="text-decoration:none;">Portfolio Home</a>
     <div class="hero-tag">Case Study 01 · Furbo · 2017–2024</div>
-    <h1 class="hero-h1">Furbo <span>AI Trust</span><br><em>Architecture</em></h1>
-    <p class="hero-sub">How I identified that the app — not the hardware — was the real revenue driver, and built the system that made 1M+ Spanish-speaking users trust it enough to pay for it.</p>
+    <h1 class="hero-h1">Furbo <span>AI &amp; Lifecycle</span><br><em>Systems</em></h1>
+    <p class="hero-sub">How I identified the app — not the hardware — as where Furbo's subscription value was earned or lost, and built the AI trust and lifecycle systems that sustained it across Spanish-speaking markets for 7 years.</p>
     <div class="hero-meta">
-      <span class="hi">Senior Product &amp; Content Strategist</span>
+      <span class="hi">Senior Product Strategist</span>
       <span class="sep">·</span><span>Furbo / Tomofun</span>
       <span class="sep">·</span><span>2017–2024</span>
       <span class="sep">·</span><span>Iberoamérica</span>
     </div>
-    <div class="hero-framing"><strong>Product Systems &amp; Behavioral Intelligence Design</strong> · AI · Trust Architecture · Iberoamérica</div>
+    <div class="hero-framing"><strong>AI trust systems · localization governance · lifecycle strategy · regional product operations</strong></div>
   </div>
 </div>
 
@@ -593,16 +614,16 @@ body {
     <h2 class="block-title">What I <em>Owned</em></h2>
     <div class="decisions" style="grid-template-columns: 1fr 1fr;">
       <div class="decision-card">
-        <div class="dc-body">Owned end-to-end localization strategy for Iberoamérica — from brief to live alerts across all product lines</div>
+        <div class="dc-body">Owned the full regional system for Iberoamérica — subscription onboarding logic, AI alert quality, behavioral localization, and lifecycle communication across all product lines</div>
       </div>
       <div class="decision-card">
-        <div class="dc-body">Defined quality standards and governance model for AI-generated alerts — including thresholds, tier classification, and release criteria</div>
+        <div class="dc-body">Defined quality standards and rollout governance model for AI-generated alerts — including confidence thresholds, tier classification, human-in-the-loop validation, and release criteria</div>
       </div>
       <div class="decision-card">
         <div class="dc-body">Led cross-functional execution across engineering, marketing, and CX — with authority to approve or block releases</div>
       </div>
       <div class="decision-card">
-        <div class="dc-body">Reported to VP Product; collaborated directly with regional GMs across Mexico, Argentina, Colombia, Chile, and Spain</div>
+        <div class="dc-body">Full ownership of the Spanish-language subscription experience across Iberoamérica — from onboarding through renewal, across every alert, launch, and market, for 7 years</div>
       </div>
     </div>
   </div>
@@ -612,16 +633,16 @@ body {
     <div class="eyebrow">01 · Context</div>
     <h2 class="block-title">Hardware + <em>Subscription</em></h2>
     <p class="prose">
-      Furbo Dog Camera sells a pet monitoring device with a free 1-month subscription trial. After that, renewal is optional — and entirely dependent on whether the app feels worth paying for. I joined in 2017 to own brand strategy, app UX, and AI alert integration for Iberoamérica. I identified early that <strong>the hardware drove acquisition, but the app drove revenue</strong>. Every cold or mistranslated alert was a direct threat to LTV. That insight defined 7 years of product decisions.
+      Furbo Dog Camera sells a pet monitoring device with a free 1-month subscription trial. After that, renewal is optional — and entirely dependent on whether the app feels worth paying for. I joined in 2017 with ownership of brand strategy, app UX, and AI alert integration for Iberoamérica. Early on, I identified that <strong>the hardware drove acquisition, but the app drove revenue</strong>. Every cold or mistranslated alert was a direct threat to LTV. That insight anchored 7 years of product decisions.
     </p>
   </div>
 
   <!-- 02 · PROBLEM -->
   <div class="block problem-block">
     <div class="eyebrow">02 · The Problem</div>
-    <h2 class="block-title">A Revenue Risk <em>Disguised as a Translation Problem</em></h2>
+    <h2 class="block-title">A Revenue Risk <em>Hidden Inside a Product Experience Gap</em></h2>
     <p class="prose">
-      <strong>I identified early that Furbo's recurring revenue depended entirely on one decision: whether the user who got a free month with the camera chose to renew their Furbo Dog Nanny subscription.</strong> Expansion into Spanish-speaking markets exposed a structural gap: AI-generated alerts were machine-translated — producing cold, tonally flat messaging with no cultural resonance. The product had no communication system designed for the emotional context of pet ownership in Iberoamérica. <strong>Every notification was a moment of truth for the subscription model. And most were failing.</strong>
+      <strong>Furbo's recurring revenue depended entirely on one decision: whether a user who got a free month with the camera chose to renew their Furbo Dog Nanny subscription.</strong> Expansion into Spanish-speaking markets exposed a structural gap: the AI-generated alert system had no behavioral or emotional logic designed for the context of pet ownership in Iberoamérica. Alerts were machine-translated — producing cold, tonally flat messaging that eroded the perceived value of the subscription at every interaction. There was no classification system, no quality threshold, no regional adaptation layer. <strong>Every notification was a moment of truth for the subscription model. And most were failing.</strong>
     </p>
     <div class="pull-quote">"Every notification was a moment of truth for the business model. The alert had to feel worth paying for — in Spanish, in the right tone, every single day."</div>
   </div>
@@ -629,23 +650,23 @@ body {
   <!-- 03 · WHAT I DID -->
   <div class="block">
     <div class="eyebrow">03 · What I Did</div>
-    <h2 class="block-title">Four Decisions That <em>Changed Everything</em></h2>
-    <p class="prose">I designed and owned a trust architecture — a system governing how every alert was classified, validated, and delivered. Four decisions defined it:</p>
+    <h2 class="block-title">Four Decisions That <em>Built the System</em></h2>
+    <p class="prose">I designed and owned a trust architecture — a system governing how every alert was classified, validated, and delivered across Iberoamérica. Four decisions defined it:</p>
     <div class="decisions">
       <div class="decision-card">
         <div class="dc-num">Decision 01 · Problem Framing</div>
         <div class="dc-title">The App Was the Product</div>
-        <div class="dc-body">The hardware drove acquisition. The subscription drove revenue. I reframed the entire Iberoamérica strategy around that insight — every alert, every localization decision, every quality gate existed to protect one thing: <strong>the moment a user decided whether the app was worth paying for.</strong></div>
+        <div class="dc-body">The hardware drove acquisition. The subscription drove revenue. I reframed the entire Iberoamérica strategy around that insight — every lifecycle decision, every quality gate, every product operation existed to protect one thing: <strong>the moment a user decided whether the app was worth renewing.</strong></div>
       </div>
       <div class="decision-card">
         <div class="dc-num">Decision 02 · System Design</div>
-        <div class="dc-title">Trust Architecture Over Case-by-Case</div>
-        <div class="dc-body">Instead of reviewing alerts reactively, I designed a classification system: four tiers (Routine / Sensitive / Health / New Features) each with defined approval workflows, ownership, and a 90%+ perceived clarity threshold. <strong>Scalable from day one. No alert shipped below the gate.</strong></div>
+        <div class="dc-title">Classification System Over Case-by-Case</div>
+        <div class="dc-body">Instead of reviewing alerts reactively, I built a tiered classification system: four behavioral categories (Routine / Sensitive / Health / New Features), each with defined approval workflows, human-in-the-loop validation, regional ownership, and a 90%+ perceived clarity threshold. <strong>No alert shipped without clearing the gate.</strong></div>
       </div>
       <div class="decision-card">
-        <div class="dc-num">Decision 03 · Governance</div>
+        <div class="dc-num">Decision 03 · Rollout Governance</div>
         <div class="dc-title">Authority to Block</div>
-        <div class="dc-body">I held and exercised veto power over regional launches. When a 2019 Dog Nanny alert tested at 82% clarity — below threshold — I blocked the global rollout over marketing and engineering pressure. Two weeks of iteration. 93% on retest. <strong>Zero regional rollback.</strong></div>
+        <div class="dc-body">I held and exercised veto power over regional launches. When a 2019 Dog Nanny alert tested at 82% clarity — below threshold — I blocked the global rollout over marketing and engineering pressure. Two weeks of iteration. 93% on retest. <strong>No rollback. No deterioration in regional ratings post-launch.</strong></div>
       </div>
       <div class="decision-card">
         <div class="dc-num">Decision 04 · Trade-off</div>
@@ -659,7 +680,7 @@ body {
   <div class="block">
     <div class="eyebrow">04 · Real Alerts</div>
     <h2 class="block-title">Real Alerts, <em>Real Decisions</em></h2>
-    <p class="prose" style="margin-bottom:24px;">Three alert tiers — each shown as the original English, the literal machine translation (the problem), and the regionally adapted version (the result). Every column is a product decision.</p>
+    <p class="prose" style="margin-bottom:24px;">Three alert tiers — each shown as the original English, the literal machine translation (the failure state), and the regionally adapted version. Each column reflects a behavioral and localization decision with direct implications for how the subscription felt to use.</p>
 
     <div class="mockup-legend">
       <div class="ml-item"><span class="ml-swatch" style="background:var(--teal);"></span><strong>Official EN</strong> — Furbo's documented English</div>
@@ -806,7 +827,7 @@ body {
   <div class="block">
     <div class="eyebrow">05 · Impact</div>
     <h2 class="block-title">Results at <em>Scale</em></h2>
-    <p class="prose">Over 7 years, the trust architecture compounded into measurable business outcomes.</p>
+    <p class="prose">Over 7 years, the alert quality system and localization governance compounded into outcomes visible across engagement, perceived value, and subscription durability.</p>
     <div class="impact-grid">
       <div class="impact-card">
         <div class="ic-val">+35%</div>
@@ -823,8 +844,8 @@ body {
       </div>
       <div class="impact-card">
         <div class="ic-val">~30%</div>
-        <div class="ic-lbl">of total revenue from subscriptions — ≈$1.8M of $6M GMV (2024)</div>
-        <div class="ic-note">Est. based on Grips Intelligence (furbo.com online GMV, 2024–2025)</div>
+        <div class="ic-lbl">Subscription revenue share of total GMV — the business model the trust system was built to protect</div>
+        <div class="ic-note">Est. based on Grips Intelligence (furbo.com online GMV, 2024–2025). ≈$1.8M of $6M GMV.</div>
       </div>
       <div class="impact-card">
         <div class="ic-val">90%+</div>
@@ -838,15 +859,14 @@ body {
   </div>
 
   <div class="r-punch">
-    The title was Senior Product &amp; Content Strategist.<br>
-    <em>The work was product management.</em>
+    Seven years. Five hardware generations. One subscription system that had to earn trust — in the right language, at the right emotional register, across every alert, every tier, every market in Iberoamérica.
   </div>
 
   <!-- FULL CASE STUDY LINK -->
   <div class="full-link-block">
     <div>
-      <div class="fl-text">The full case study goes deeper —<br>system design, governance model, alert evolution.</div>
-      <div class="fl-sub">Includes AI governance workflow, beta feedback loop, trade-off analysis, real notification evidence, and infographic.</div>
+      <div class="fl-text">The full case study goes deeper into the system —<br>governance logic, classification design, and the decisions behind the work.</div>
+      <div class="fl-sub">Includes the alert tier framework, rollout governance model, regional adaptation rationale, and the 2019 blocked launch in detail.</div>
     </div>
     <a href="furbo-casestudy.html" class="fl-btn">Read Full Case Study →</a>
   </div>
